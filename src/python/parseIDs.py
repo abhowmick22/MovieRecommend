@@ -17,7 +17,7 @@ for line in open('movies.dat', 'r'):
 # Format of output file is:
 # Wikipedia ID, MovieLens ID (None indicates no movie review present)
 with open('movie.metadata.tsv', 'r') as tsvin:
-	csvfile = open('IDmap.csv', 'ar+')
+	csvfile = open('IDmap2.csv', 'ar+')
 	tsvin = csv.reader(tsvin, delimiter = '\t')
 	csvout = csv.writer(csvfile, delimiter=',')
 
@@ -36,7 +36,7 @@ with open('movie.metadata.tsv', 'r') as tsvin:
 
 	for row in tsvin:
 		tsvRowNbr += 1
-		if tsvRowNbr <= 0 or tsvRowNbr >= 20000:
+		if tsvRowNbr < 35000:
 			continue
 			
 		wikiID = row[0]
