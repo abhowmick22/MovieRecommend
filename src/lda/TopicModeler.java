@@ -22,13 +22,13 @@ public class TopicModeler {
 	
 
 	// Model a test document as list of topics
-	public ArrayList<Double> getFeatures(){
+	public ArrayList<Double> getFeatures(Document doc, Model model){
 		return null;
 		
 	}
 	
 	// Model the provided corpus
-	public Model modelCorpus(){
+	public Model modelCorpus(Corpus corpus, Configs conf){
 		
 		return null;
 	}

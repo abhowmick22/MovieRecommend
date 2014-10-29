@@ -1,5 +1,7 @@
 package lda;
 
+import java.util.List;
+
 /*
  * This module carries out variational inference to learn the
  * optimizing values of the variational parameters \gamma
@@ -8,5 +10,10 @@ package lda;
  */
 
 public class InferenceBlock {
+	
+	// do variational inference on a document, passing the current state of model
+	public void infer(Document doc, Model model, Configs conf){
+		
+	}
 
 }
