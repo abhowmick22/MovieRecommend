@@ -7,9 +7,7 @@ package lda;
 
 public class TopicModeler {
 	
-	private Model model;
-	private Metrics metrics;
-	
+
 	// Model the provided corpus
 	public Model modelCorpus(){
 		
