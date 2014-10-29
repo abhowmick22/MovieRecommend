@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    Documentation for LDA Framework
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Overall Idea:
+------------
+Latent Dirichlet Allocation (LDA) is a fully Baysian setting problem that learns parameters to model a given corpus to run inferences and topic identification. It also provides the techniques for topic identification given a new documents, outside of the corpus. Being a generative model, it undertands and models the way natural text is generated maximizing it with respect to the corpus available. 
+
+Project Idea:
+-------------
+The aim of this section of the project is to implement a LDA training system to read movie reviews and spit out a distribution on a set of latent topics which can then be used for feature extraction for other parts of the project.
+
+Basic Blocks:
+-------------
+The TopicModeler handles the entire framework and is an API connecting it to other parts of the project. It makes calls to other blocks like InferenceBlock and EstimatorBlock repeatedly.
+
+As LDA uses variational inference and maximum likelihood estimate with a lower bound, it fits into the EM algorithm kind of setting.
+
+InferenceBlock is responsible for the Expectation (E) part of the algorithm while EstimatorBlock does the lower bound Maximization (M) part of the algorithm.
+
+*********************************************************************************************
+FUNCTIONALITIES OF BLOCKS
+*********************************************************************************************
+TopicModeler:
+-------------
+Being the only API for interaction between the LDA module and other parts of the project, TopicModelers handles everything related to LDA. Right from reading the corpus, extracting features, computing the dictionary, tracking the model parameters (\alpha, \beta, \nu), making calls to other blocks within to execute the EM iterations; TopicModeler is the brain of this LDA framework.
+
+
+InferenceBlock:
+---------------
+As mentioned earlier, this block solves for the variational inference problem on a given document. It takes in the document and the current estimates of \alpha and \beta, calculates the variational parameters for the given document which approximate \alpha and \beta for M step for the particular document. Hence, for every EM pass, this module is called as many as times as the number of documents that exist in the corpus. It is primarily based on two update rules for members of variational parameters using expectation of log likelihood, etc
+
+
+EstimatorBlock:
+---------------
+This block takes in the approximate variational parameters along with current \alpha and \beta estimates, performs the Maximization step and returns \alpha and \beta for the next iteration of EM algorithm. This block is called once for pass of EM and is based on the Newton Raphson descent iterations. For this particular problem, the inversion of Hessian needed for NR can be computed in linear time, thereby avoiding the problem of computing inverses of huge matrices.
+
+*********************************************************************************************
+SUPPORTING CLASSES
+*********************************************************************************************
+1. TopicModeler:
+The main API that will interact with the outside world.
+
+    Attributes:
+
+
+    Methods:
+        - ModelCorpus : Given a corpus, return the LDA model
+        - getMetrics : Return evaluation metrics like perplexity, etc
+
+2. EstimatorBlock
+Given the corpus, variational parameters (\phi and \gamma)for all the documents; estimate the parameters \alpha
+and \beta using MLE.
+
+    Attributes:
+
+
+    Methods:
+        - 
+
+3. InferenceBlock
+Carries out variational inference to estimate \phi and \gamma. This is the E step of the main EM algorithm
+    
+    Attributes:
+
+
+    Methods:
+        - 
+
+4. Configs
+Bunch of settings for various steps like convergenceRate, noIterations, thresholds, etc.
+
+5. Utilities
+Class to contain all distributions, optimization methods and other mathematical operations
+
+*********************************************************************************************
+DESCRIPTOR CLASSES
+*********************************************************************************************
+
+1. Model:
+Information about model like \alpha, \beta, list of topics. This object will be returns to the topicModeler API
+
+2. Corpus:
+Class to represent the text corpus, other relevant metadata.
+
+3. Document :
+Class to represent information about a document
+
+4. Vocabulary:
+Class that contains the vocabulary for the entire LDA module
+
+5. Metric : 
+Class that contains information related to metrics.
+*********************************************************************************************

@@ -1,0 +1,11 @@
+# ignoring files for cleaner repos
+
+# Binaries created locally
+bin/
+
+#Library used for algebra
+la4j-0.4.9/*
+
+#Some random files eclipse creates
+.project
+.classpath
