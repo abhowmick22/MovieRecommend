@@ -1,0 +1,40 @@
+=======================
+Collaborative Filtering
+=======================
+
+Objective
+---------
+Given a dataset of 10 million user ratings for movies, with 10,000 movies and 72,000 users,
+our aim is to try and predict the "missing" ratings, i.e. We try to predict what ratings users
+would assign to movies they haven't rated based on the movies they have rated.
+
+Dataset
+-------
+We use the MovieLens dataset, which has a colletion of 10 million ratings, made by 72,000 users
+for 10,000 movies. The dataset has been pruned so that all included users have rated at least 20
+movies.
+
+Method
+------
+We use Matrix Factorization to build this system. We assume that there are a certain number (say k)
+of latent/hidden variables that decide the relationships between users and the ratings they assign.
+We use batch gradient descent as optimization algorithm. The likelihood function turns out to be 
+quadratic in the model parameters, and lends itself well to gradient descent.
+
+========================
+Code
+========================
+
+CollaborativeFiltering.java
+---------------------------
+This contains all of the main logic. We use the la4j linear algebra library for Java, for sparse vectors.
+We run through the 10 million ratings for several iterations, and shuffle it for each iteration to change
+the order of the input.
+
+Test.java
+---------
+This file contains various tests done on the datasets.
+
+Reference
+---------
+Y. Koren, R.Bell, C. Volinsky Matrix factorization techniques for recom- mender systems, IEEE Computer, 42(8):30-37, 2009
