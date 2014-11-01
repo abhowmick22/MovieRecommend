@@ -3,6 +3,9 @@ package lda;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+
 /*
  * This class captures all the information about the model learned
  * from a corpus - including \alpha, \beta, list of topics
@@ -21,18 +24,19 @@ public class Model {
 	private int wordsPerTopic;
 	
 	// \alpha for the corpus
-	private List<Double> alpha;
+	//private List<Double> alpha;
+	private RealVector alpha;
 	
 	// \beta for the corpus
-	private List<List<Double> > beta;
+	private RealMatrix beta;
 	
 	// Do we need to store the posterior variational params ?
 	
 	// \gamma for all the documents
-	private List<List<Double> > gamma;
+	private List<RealVector> gamma;
 	
 	// \phi for all the documents
-	private List<List<List<Double> > > phi;
+	private List<RealMatrix> phi;
 	
 	// the vocabulary learned from the corpus
 	private Vocabulary vocabulary;
@@ -45,7 +49,7 @@ public class Model {
 		
 		// initialize alpha
 		this.alpha = conf.getInitAlpha();
-			
+		// how to initiqlize beta ?
 	}
 	
 	// method to return the top K words from each topic
@@ -58,19 +62,19 @@ public class Model {
 		this.nbrTopics = n;
 	}
 	
-	public void setAlpha(List<Double> a){
+	public void setAlpha(RealVector a){
 		this.alpha = a;
 	}
 
-	public void setBeta(List<List<Double> > b){
+	public void setBeta(RealMatrix b){
 		this.beta = b;
 	}
 	
-	public void setGamma(List<List<Double> > g){
+	public void setGamma(List<RealVector> g){
 		this.gamma = g;
 	}
 	
-	public void setPhi(List<List<List<Double> > > p){
+	public void setPhi(List<RealMatrix> p){
 		this.phi = p;
 	}
 	
@@ -79,19 +83,19 @@ public class Model {
 		return this.nbrTopics;
 	}
 	
-	public List<Double> getAlpha(){
+	public RealVector getAlpha(){
 		return this.alpha;
 	}
 	
-	public List<List<Double> > getBeta(){
+	public RealMatrix getBeta(){
 		return this.beta;
 	}
 	
-	public List<List<Double> > getGamma(){
+	public List<RealVector> getGamma(){
 		return this.gamma;
 	}
 	
-	public List<List<List<Double> > > getPhi(){
+	public List<RealMatrix> getPhi(){
 		return this.phi;
 	}
 	

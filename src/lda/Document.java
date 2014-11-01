@@ -14,7 +14,7 @@ public class Document {
 	private int docID;
 	
 	// Total number of words
-	private int nbrWords;
+	private int docSize;
 	
 	// Number of unique terms
 	private int uniqueWords;
@@ -23,7 +23,7 @@ public class Document {
 	private Hashtable<Integer, Integer> wordFreqList;
 	
 	// list of words in the document, according to vocabulary index
-	private List<Integer> words;
+	private List<Integer> words;			// this will be of size nbrWords
 	
 	// Read the document given a list of words and a vocabulary
 	public void readDoc(List<String> document, Vocabulary vocab){
@@ -31,8 +31,8 @@ public class Document {
 	}
 	
 	// getters
-	public int getNbrWords(){
-		return this.nbrWords;
+	public int getDocSize(){
+		return this.docSize;
 	}
 	
 	public int getUniqueWords(){

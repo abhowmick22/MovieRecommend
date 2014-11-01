@@ -2,6 +2,9 @@ package lda;
 
 import java.util.List;
 
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.RealVector;
+
 /*
  * This class contains all the configurations for the estimation and inference
  * algorithms, and also initialization values. These are used to configure the TopicModeler.
@@ -13,7 +16,7 @@ public class Configs {
 	private int nbrTopics;
 	
 	// Initial alpha
-	private List<Double> initAlpha;
+	private RealVector initAlpha;
 	
 	// Max number of iterations for variational inference
 	private int varIters;
@@ -29,13 +32,13 @@ public class Configs {
 	
 	// constructor initiliazes stuff to defalut values
 	public Configs(){
-		for(int i=0; i<100; i++)
-			this.initAlpha.add((double) 1);
-			this.nbrTopics = 100;
-			this.varIters = 20;
-			this.varConvergence = 1e-6;
-			this.emIters = 100;
-			this.emConvergence = 1e-4;
+		initAlpha = new ArrayRealVector(100, (double) 1);
+			
+		this.nbrTopics = 100;
+		this.varIters = 20;
+		this.varConvergence = 1e-6;
+		this.emIters = 100;
+		this.emConvergence = 1e-4;
 	}
 	
 	// setters
@@ -59,7 +62,7 @@ public class Configs {
 		this.nbrTopics = topics;		// has a default value of 100
 	}
 	
-	public void setInitAlpha(List<Double> alpha){
+	public void setInitAlpha(RealVector alpha){
 		this.initAlpha = alpha;			// has a default value of 100
 	}
 	
@@ -84,7 +87,7 @@ public class Configs {
 		return this.nbrTopics;
 	}
 	
-	public List<Double> getInitAlpha(){
+	public RealVector getInitAlpha(){
 		return this.initAlpha;
 	}
 }
