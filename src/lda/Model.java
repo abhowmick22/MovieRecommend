@@ -3,6 +3,8 @@ package lda;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
@@ -43,13 +45,22 @@ public class Model {
 	
 
 	// initialize the model
-	public void initModel(Corpus c, Configs conf){
+	public void initModel(Corpus c, Configs conf, Vocabulary vocab){
 		this.corpus = c;
 		this.nbrTopics = conf.getNbrTopics();
+		this.wordsPerTopic = vocab.getVocabSize();
 		
 		// initialize alpha
-		this.alpha = conf.getInitAlpha();
-		// how to initiqlize beta ?
+		this.alpha = new ArrayRealVector(this.nbrTopics, (double) 1);
+		// initialize beta
+		this.beta = new Array2DRowRealMatrix(this.nbrTopics, this.wordsPerTopic);
+		
+		// initialize phi
+		
+		// initialize gamma
+	
+		
+
 	}
 	
 	// method to return the top K words from each topic

@@ -15,9 +15,6 @@ public class Configs {
 	// Number of topics to extract
 	private int nbrTopics;
 	
-	// Initial alpha
-	private RealVector initAlpha;
-	
 	// Max number of iterations for variational inference
 	private int varIters;
 	
@@ -32,7 +29,6 @@ public class Configs {
 	
 	// constructor initiliazes stuff to defalut values
 	public Configs(){
-		initAlpha = new ArrayRealVector(100, (double) 1);
 			
 		this.nbrTopics = 100;
 		this.varIters = 20;
@@ -62,10 +58,6 @@ public class Configs {
 		this.nbrTopics = topics;		// has a default value of 100
 	}
 	
-	public void setInitAlpha(RealVector alpha){
-		this.initAlpha = alpha;			// has a default value of 100
-	}
-	
 	// getters
 	public int getVarIters(){
 		return this.varIters;
@@ -87,7 +79,4 @@ public class Configs {
 		return this.nbrTopics;
 	}
 	
-	public RealVector getInitAlpha(){
-		return this.initAlpha;
-	}
 }

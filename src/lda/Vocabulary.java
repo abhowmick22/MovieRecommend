@@ -10,6 +10,9 @@ import java.util.List;
 
 public class Vocabulary {
 	
+	// size of vocab 
+	private int vocabSize;
+	
 	// array of words
 	private ArrayList<String> words = new ArrayList<String>();
 	
@@ -21,6 +24,15 @@ public class Vocabulary {
 	// getter for words
 	public ArrayList<String> getWords(){
 		return this.words;
+	}
+	
+	public int getVocabSize(){
+		return this.vocabSize;
+	}
+	
+	// setter
+	public void setVocabSize(int vsize){
+		this.vocabSize = vsize;
 	}
 	
 
