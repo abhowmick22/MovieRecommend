@@ -42,6 +42,10 @@ public class Model {
 	public void initModel(Corpus c, Configs conf){
 		this.corpus = c;
 		this.nbrTopics = conf.getNbrTopics();
+		
+		// initialize alpha
+		this.alpha = conf.getInitAlpha();
+			
 	}
 	
 	// method to return the top K words from each topic

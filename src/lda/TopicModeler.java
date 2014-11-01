@@ -37,6 +37,14 @@ public class TopicModeler {
 		model.initModel(corpus, conf);
 		
 		// Do the E-M algorithm
+		double prevLikelihood = 0;
+		double likelihood = 0;
+		double convergence = 1;
+		double emConv = conf.getEmConvergence();
+		int iters = 0;
+		int maxIters = conf.getEmIters();
+		
+		while(iters < maxIters){				// test for max number of EM iterations
 		
 		// E-step for each document
 		// update the variational parameters in the model
@@ -48,9 +56,18 @@ public class TopicModeler {
 			infBlock.infer(docs.get(i), model, conf);
 		}
 		
+		// compute likelihood given variational params
+		
+		
 		// M-step
 		EstimatorBlock estBlock = new EstimatorBlock();
 		estBlock.estimate(corpus, model);
+		
+		// calculate and check for convergence
+		convergence = Math.abs((likelihood - prevLikelihood) / prevLikelihood); 
+		if(convergence < emConv)	break;
+		prevLikelihood = likelihood;
+		}
 		
 		return model;
 	}
