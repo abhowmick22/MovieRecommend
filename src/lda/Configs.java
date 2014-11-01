@@ -2,10 +2,13 @@ package lda;
 
 /*
  * This class contains all the configurations for the estimation and inference
- * algorithms. These can be set externally through the TopicModeler
+ * algorithms, and also initialization values. These are used to configure the TopicModeler.
  */
 
 public class Configs {
+	
+	// Number of topics to extract
+	private int nbrTopics;
 	
 	// Max number of iterations for variational inference
 	private int varIters;
@@ -21,35 +24,43 @@ public class Configs {
 	
 	// setters
 	public void setVarIters(int iters){
-		varIters = iters;
+		this.varIters = iters;
 	}
 	
 	public void setVarConvergence(double conv){
-		varConvergence = conv;
+		this.varConvergence = conv;
 	}
 	
 	public void setEmIters(int iters){
-		emIters = iters;
+		this.emIters = iters;
 	}
 
 	public void setEmConvergence(double conv){
-		emConvergence = conv;
+		this.emConvergence = conv;
+	}
+	
+	public void setNbrTopics(int topics){
+		this.nbrTopics = topics;
 	}
 	
 	// getters
 	public int getVarIters(){
-		return varIters;
+		return this.varIters;
 	}
 	
-	public double setVarConvergence(){
-		return varConvergence;
+	public double getVarConvergence(){
+		return this.varConvergence;
 	}
 	
-	public int setEmIters(){
-		return emIters;
+	public int getEmIters(){
+		return this.emIters;
 	}
 
-	public double setEmConvergence(){
-		return emConvergence;
+	public double getEmConvergence(){
+		return this.emConvergence;
+	}
+	
+	public int getNbrTopics(){
+		return this.nbrTopics;
 	}
 }

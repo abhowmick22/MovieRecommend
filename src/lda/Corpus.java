@@ -33,5 +33,9 @@ public class Corpus {
 	public int getNbrWords(){
 		return this.nbrWords;
 	}
+	
+	public List<Document> getDocs(){
+		return this.documents;
+	}
 
 }

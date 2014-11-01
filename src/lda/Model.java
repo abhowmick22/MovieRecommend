@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public class Model {
-
+	
 	// Corpus from which this is learned
 	private Corpus corpus;
 	
@@ -37,9 +37,11 @@ public class Model {
 	// the vocabulary learned from the corpus
 	private Vocabulary vocabulary;
 	
+
 	// initialize the model
-	public void initModel(){
-		
+	public void initModel(Corpus c, Configs conf){
+		this.corpus = c;
+		this.nbrTopics = conf.getNbrTopics();
 	}
 	
 	// method to return the top K words from each topic

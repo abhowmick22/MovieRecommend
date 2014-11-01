@@ -1,6 +1,7 @@
 package lda;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * This is the main module that models the corpus, using variational
@@ -23,6 +24,7 @@ public class TopicModeler {
 
 	// Model a test document as list of topics
 	public ArrayList<Double> getFeatures(Document doc, Model model){
+		
 		return null;
 		
 	}
@@ -30,7 +32,27 @@ public class TopicModeler {
 	// Model the provided corpus
 	public Model modelCorpus(Corpus corpus, Configs conf){
 		
-		return null;
+		// Initiate a model
+		Model model = new Model();
+		model.initModel(corpus, conf);
+		
+		// Do the E-M algorithm
+		
+		// E-step for each document
+		// update the variational parameters in the model
+		InferenceBlock infBlock = new InferenceBlock();
+		int nDocs = corpus.getNbrDocs();
+		List<Document> docs = corpus.getDocs();
+		
+		for(int i=0; i<nDocs; i++){
+			infBlock.infer(docs.get(i), model, conf);
+		}
+		
+		// M-step
+		EstimatorBlock estBlock = new EstimatorBlock();
+		estBlock.estimate(corpus, model);
+		
+		return model;
 	}
 	
 	// Return the performance metrics

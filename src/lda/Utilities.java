@@ -24,7 +24,7 @@ public class Utilities {
 	}
 	
 	
-	// This method evaluated the Hessian of a vector
+	// This method evaluates the Hessian of a vector
 	public List<List<Double> > hessian(List<Double> point){
 		return null;
 	}

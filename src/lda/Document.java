@@ -19,7 +19,7 @@ public class Document {
 	// Number of unique terms
 	private int uniqueTerms;
 	
-	// The map of words to their frequency
+	// The map of words (vocabulary index) to their frequency
 	private Hashtable<Integer, Integer> words;
 	
 	// Read the document given a list of words and a vocabulary
