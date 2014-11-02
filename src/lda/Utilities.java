@@ -26,21 +26,38 @@ public class Utilities {
 		return null;
 	}
 	
-	
 	// This method evaluates the Hessian of a vector
 	public List<List<Double> > hessian(List<Double> point){
 		return null;
 	}
 	
-	// This method evaluates the psi function -
-	// This is the first derivative of the log gamma function
-	public double psi(double input){
+	/*
+	 * Methods specific to variational inference
+	 */
+	
+	// This method calculates the log gamma function
+	public double logGamma(double input){
 		return 0;
 	}
 	
+	// This is the taylor approximation of the first derivative of the log gamma function
+	public double diGamma(double input){
+		return 0;
+	}
+	
+	// This is the taylor approximation of the second derivative of the log gamma function
+	public double triGamma(double input){
+		return 0;
+	}
+	
+	
+	/*
+	 * Some Useful matrix operations
+	 */
+	
 	// This method returns the column-wise sum of a 2D array double[][]
 	public RealVector matSumByCol(RealMatrix input){
-		double[][] data = input.getData();
+		//double[][] data = input.getData();
 		return null;
 	}
 	
