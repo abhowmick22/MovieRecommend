@@ -22,7 +22,7 @@ public class InferenceBlock {
 		
 		// This is the variational inference algorithm in the LDA paper
 		
-		int docIndex = doc.getDocID();
+		int docIndex = doc.getDocId();
 		int nTops = model.getNbrTopics();
 		int nWords = doc.getDocSize();
 		int vocabSize = model.getVocabSize();

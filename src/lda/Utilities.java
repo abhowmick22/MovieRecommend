@@ -1,7 +1,5 @@
 package lda;
 
-import java.util.List;
-
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
@@ -14,20 +12,20 @@ public class Utilities {
 	
 	// Evaluate the stationary point of a function using Newton-Raphson method,
 	// assuming the form of the likelihood function is known (thus, it is not general)
-	// In LDA, this is used to maximize the loer bound of log L
-	// wrt \alpha and \beta in the M-step
-	public List<Double> optimizeNR(List<Double > init){
+	// In LDA, this is used to maximize the lower bound of log L, (i.e. function is known)
+	// wrt \alpha in the M-step
+	public RealVector optimizeNR(RealVector initAlpha){
 		return null;
 	}
 	
 	
-	// This method evaluates the gradient of a vector
-	public List<Double> gradient(List<Double> point){
+	// This method evaluates the gradient of a vector, dy/dx
+	public RealVector gradient(double x, RealVector y){
 		return null;
 	}
 	
 	// This method evaluates the Hessian of a vector
-	public List<List<Double> > hessian(List<Double> point){
+	public RealMatrix hessian(double x, RealVector y){
 		return null;
 	}
 	
@@ -61,5 +59,14 @@ public class Utilities {
 		return null;
 	}
 	
+	
+	/*
+	 * Some helper functions for this classs
+	 */
+	
+	// Sum of a vector
+	public double vectorSum(RealVector input){
+		return 0;
+	}
 	
 }
