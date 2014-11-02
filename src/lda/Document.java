@@ -9,15 +9,17 @@ import java.util.List;
  */
 
 public class Document {
-	
 	// Document ID
-	private int docID;
+	private int docId;
 	
 	// Total number of words
 	private int docSize;
 	
 	// Number of unique words
 	private int uniqueWords;
+	
+	// Meta-data, id of the movie
+	private int movieId;
 	
 	// The map of words (vocabulary index) to their frequency
 	// Each <K,V> pair is a <unique word index, frequency>
@@ -31,6 +33,21 @@ public class Document {
 	// populate the 'words' and 'wordFreqList' data structures
 	public void readDoc(List<String> document, Vocabulary vocab){
 		
+	}
+	
+	//Constructor
+	public Document(List<Integer> features, int idMovie, int idDoc){
+		//Setting the internal parameters
+		this.movieId = idMovie;
+		this.docId = idDoc;
+		this.docSize = features.size();
+		
+		// Assigning the features
+		this.words = features;
+		
+		// Functionality of uniqueWords, wordFreqList to be added later
+		//private int uniqueWords;
+		//private Hashtable<Integer, Integer> wordFreqList;
 	}
 	
 	// getters
@@ -50,8 +67,11 @@ public class Document {
 		return this.words;
 	}
 	
-	public int getDocID(){
-		return this.docID;
+	public int getDocId(){
+		return this.docId;
 	}
 
+	public int getMovieId() {
+		return movieId;
+	}
 }

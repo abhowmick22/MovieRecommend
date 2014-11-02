@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 /*
  * This class models the corpus of documents
  */
 
 public class Corpus {
-	
-	// Constructor, takes in the file path and
-	// populates all the members
-	protected Corpus(File data){
-		
-	}
-	
 	// Number of documents in the corpus
 	private int nbrDocs;
 	
-	// Number of Words in each document
+	// Number of Words in each document 
+	// Each document has different number of words
+	// Uninitialized, untouched
 	private int nbrWords;
 	
 	// The list of documents in the corpus
@@ -37,5 +36,78 @@ public class Corpus {
 	public List<Document> getDocs(){
 		return this.documents;
 	}
+	
+	/************************************************************/
+	// Constructor, takes in the file path and
+	// populates all the members
+	protected Corpus(File data){
+		System.out.println("Creating corpus object");
+		
+		// Opening the file and reading each document
+		try {
+			// Reader initialization for text reading
+		    BufferedReader reader = new BufferedReader(new FileReader(data));
+		    String text = null;
 
+		    // Initializing the documents
+		    this.documents = new ArrayList<Document>();
+		    
+		    
+		    // Keeping track of the current count of movies
+		    int movieCount = 0;
+		    // Reading each line (each document)
+		    while ((text = reader.readLine()) != null) {
+		    	movieCount ++;
+		    	// Identifying movieId and features part in the text
+		    	int delimitPos = text.indexOf(",");
+		    	int movieId = Integer.parseInt(text.substring(0, delimitPos-1));
+
+		    	// Extracting the numerical features
+		    	String subText = text.substring(delimitPos + 3, text.length()-1);
+		    	String[] featureStrings = subText.split(",");
+
+		    	List<Integer> features = new ArrayList<Integer>();
+		    	// Collecting all the features ( word indices )
+		    	for(String featureStringsMem: featureStrings){
+		    		//System.out.println(featureStringsMem.trim());
+		    		String trimmedString = featureStringsMem.trim();
+		    		// Eliminating spaces
+		    		if(trimmedString.length() > 0)
+		    			features.add(Integer.parseInt(trimmedString));
+		    	}
+		    	
+		    	// Creating the movie document object
+		    	Document movieDocument = new Document(features, movieId, movieCount);
+		    	this.documents.add(movieDocument);
+		    }
+		   
+		    // Closing the file
+		    reader.close();
+		} 
+		catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		} 
+		catch (IOException e) {
+		    e.printStackTrace();
+		}
+		
+		//Final assignments
+		nbrDocs = this.documents.size(); 
+		
+		System.out.println("Successfully read corpus!");
+	}
+
+	/************************************************************/
+	public static void main(String[] args){
+		// Path to the file
+		String filePath = "data/summaryFeatures.txt";
+		Corpus movieSummaries;
+		
+		//Creating the file to read the documents from
+		File documentFile = new File(filePath);
+		movieSummaries = new Corpus(documentFile);
+		
+		System.out.println(movieSummaries.documents.size());
+	}
+	/************************************************************/
 }
