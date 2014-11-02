@@ -1,5 +1,6 @@
 # ignoring files for cleaner repos
 
+# Satwik local ignores
 # Binaries created locally
 bin/
 
@@ -9,3 +10,5 @@ la4j-0.4.9/*
 #Some random files eclipse creates
 .project
 .classpath
+.metadata
+src/.metadata

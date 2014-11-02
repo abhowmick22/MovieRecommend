@@ -3,7 +3,6 @@ package lda;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
-
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -41,7 +40,7 @@ public class Corpus {
 	// Constructor, takes in the file path and
 	// populates all the members
 	protected Corpus(File data){
-		System.out.println("Creating corpus object");
+		System.out.println("Reading the corpus...");
 		
 		// Opening the file and reading each document
 		try {
@@ -51,7 +50,6 @@ public class Corpus {
 
 		    // Initializing the documents
 		    this.documents = new ArrayList<Document>();
-		    
 		    
 		    // Keeping track of the current count of movies
 		    int movieCount = 0;
@@ -92,7 +90,7 @@ public class Corpus {
 		}
 		
 		//Final assignments
-		nbrDocs = this.documents.size(); 
+		this.nbrDocs = this.documents.size(); 
 		
 		System.out.println("Successfully read corpus!");
 	}
@@ -100,14 +98,21 @@ public class Corpus {
 	/************************************************************/
 	public static void main(String[] args){
 		// Path to the file
-		String filePath = "data/summaryFeatures.txt";
+		String corpusPath = "data/summariesTrain.txt";
+		String vocabPath = "data/sortedVocab.txt";
+		
 		Corpus movieSummaries;
+		Vocabulary movieVocab;
 		
 		//Creating the file to read the documents from
-		File documentFile = new File(filePath);
-		movieSummaries = new Corpus(documentFile);
+		File documentFile = new File(corpusPath);
+		File vocabFile = new File(vocabPath);
 		
-		System.out.println(movieSummaries.documents.size());
+		movieSummaries = new Corpus(documentFile);
+		movieVocab = new Vocabulary(vocabFile);
+		
+		System.out.println("Number of movie summaries read : " + movieSummaries.documents.size());
+		System.out.println("Successfully read " + movieVocab.getVocabSize() + " words from vocabulary!");
 	}
 	/************************************************************/
 }

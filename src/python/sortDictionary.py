@@ -29,7 +29,7 @@ words.sort()
 
 # Dumping the new dictionary
 newDictFile = open('../../data/sortedVocab.txt', 'w');
-for i in xrange(1, len(words)):
+for i in xrange(0, len(words)):
     newLine = str(i) + ',' + words[i] + '\n';
     newDictFile.write(newLine)
     

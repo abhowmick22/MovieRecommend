@@ -52,8 +52,9 @@ for i in xrange(0, len(featMovieId)):
 
     # Write in test set
     else:
+        pass
         testFile.write(featureLines[i] + '\n');
 
 #[mapMovieId.remove(x) for x in matches];
 #print mapMovieId;
-#print noMatches, len(featMovieId), len(mapMovieId)
+print noMatches, len(featMovieId), len(mapMovieId)

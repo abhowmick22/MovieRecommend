@@ -1,8 +1,9 @@
 package lda;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.ArrayList;
 
 /*
  * This class models a single document
@@ -27,12 +28,17 @@ public class Document {
 	
 	// list of words according to the order in which they appear in document
 	// each entry is the index of the word in Vocabulary
-	private List<Integer> words;			// this will be of size nbrWords
+	private List<Integer> wordIds;			// this will be of size nbrWords
 	
-	// Read the document given a list of words and a vocabulary
-	// populate the 'words' and 'wordFreqList' data structures
-	public void readDoc(List<String> document, Vocabulary vocab){
+	// Return the words associated with the document given the vocabulary
+	public List<String> readDoc(Vocabulary vocab){
+		List<String> wordsInDoc = new ArrayList<String>();
 		
+		List<String> vocabWords = vocab.getWords();
+		for (int wordId: wordIds){
+			wordsInDoc.add(vocabWords.get(wordId));
+		}
+		return wordsInDoc;
 	}
 	
 	//Constructor
@@ -43,7 +49,7 @@ public class Document {
 		this.docSize = features.size();
 		
 		// Assigning the features
-		this.words = features;
+		this.wordIds = features;
 		
 		// Functionality of uniqueWords, wordFreqList to be added later
 		//private int uniqueWords;
@@ -63,8 +69,8 @@ public class Document {
 		return this.wordFreqList;
 	}
 	
-	public List<Integer> getWords(){
-		return this.words;
+	public List<Integer> getWordIds(){
+		return this.wordIds;
 	}
 	
 	public int getDocId(){
