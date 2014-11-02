@@ -55,8 +55,14 @@ public class InferenceBlock {
 				phi.setRow(n, StatUtils.normalize(phiRow.toArray()));
 				
 			}
+			
 			// update \gamma
 			gamma = alpha.add(utils.matSumByCol(phi));
+			
+			// TODO : Reflect changes back in the model
+			// Update the model
+			model.setGammaSingle(gamma, docIndex);
+			model.setPhiSingle(phi, docIndex);
 			
 			/* 
 			 * Calculate likelihood terms

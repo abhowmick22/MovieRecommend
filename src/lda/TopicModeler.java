@@ -58,7 +58,7 @@ public class TopicModeler {
 		
 		// M-step
 		EstimatorBlock estBlock = new EstimatorBlock();
-		estBlock.estimate(corpus, model);
+		estBlock.estimate(corpus, model, conf);
 		
 		// calculate and check for convergence
 		convergence = Math.abs((likelihood - prevLikelihood) / prevLikelihood); 

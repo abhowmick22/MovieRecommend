@@ -114,8 +114,16 @@ public class Model {
 		this.gamma = g;
 	}
 	
+	public void setGammaSingle(RealVector g, int index){
+		this.gamma.set(index, g);
+	}
+	
 	public void setPhi(List<RealMatrix> p){
 		this.phi = p;
+	}
+	
+	public void setPhiSingle(RealMatrix p, int index){
+		this.phi.set(index, p);
 	}
 	
 	// getters
