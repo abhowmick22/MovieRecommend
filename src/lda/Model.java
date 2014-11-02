@@ -2,9 +2,13 @@ package lda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.stat.StatUtils;
 
 /*
  * This class captures all the information about the model learned
@@ -43,13 +47,49 @@ public class Model {
 	
 
 	// initialize the model
-	public void initModel(Corpus c, Configs conf){
+	public void initModel(Corpus c, Configs conf, Vocabulary vocab){
 		this.corpus = c;
 		this.nbrTopics = conf.getNbrTopics();
+		this.wordsPerTopic = vocab.getVocabSize();
+		int nbrDocs = this.corpus.getNbrDocs();
 		
-		// initialize alpha
-		this.alpha = conf.getInitAlpha();
-		// how to initiqlize beta ?
+		// initialize alpha, with all values set to 1
+		this.alpha = new ArrayRealVector(this.nbrTopics, (double) 1);
+		// initialize beta
+		this.beta = new Array2DRowRealMatrix(this.nbrTopics, this.wordsPerTopic);
+		
+		// init the values of beta, by randomizing and normalizing over the rows
+		Random rand = new Random(10701);
+		double[] row;
+		for(int i=0; i<beta.getRowDimension(); i++){
+			for(int j=0; j<beta.getColumnDimension(); j++){
+				beta.setEntry(i, j, rand.nextDouble());
+			}
+			row = beta.getRow(i);
+			row = StatUtils.normalize(row);
+			beta.setRow(i, row);
+		}	
+		
+		// initialize phi
+		RealMatrix oneuponk = new Array2DRowRealMatrix(this.wordsPerTopic, this.nbrTopics);
+		// assuming that all elements are initialized to zero
+		for(int i=0; i<oneuponk.getRowDimension(); i++){
+			for(int j=0; j<oneuponk.getColumnDimension(); j++){
+				oneuponk.setEntry(i, j, (double) (1/this.nbrTopics));
+			}
+		}
+		// initialize gamma
+		RealVector nuponk = new ArrayRealVector(this.nbrTopics, (double) (this.wordsPerTopic/this.nbrTopics));
+		nuponk = nuponk.add(alpha);
+		
+		// initialie phi and gamma for all the documents
+		for(int i=0; i<nbrDocs; i++){
+			phi = new ArrayList<RealMatrix>();
+			phi.add(oneuponk);
+			gamma = new ArrayList<RealVector>();
+			gamma.add(nuponk);
+		}
+		
 	}
 	
 	// method to return the top K words from each topic

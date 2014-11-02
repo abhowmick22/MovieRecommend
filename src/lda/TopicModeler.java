@@ -30,11 +30,11 @@ public class TopicModeler {
 	}
 	
 	// Model the provided corpus
-	public Model modelCorpus(Corpus corpus, Configs conf){
+	public Model modelCorpus(Corpus corpus, Configs conf, Vocabulary vocab){
 		
 		// Initiate a model
 		Model model = new Model();
-		model.initModel(corpus, conf);
+		model.initModel(corpus, conf, vocab);
 		
 		// Do the E-M algorithm
 		double prevLikelihood = 0;
