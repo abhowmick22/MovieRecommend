@@ -2,6 +2,9 @@ package lda;
 
 import java.util.List;
 
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+
 /*
  * This module implements all the distributions, optimisations,
  * and other math utility functions.
@@ -26,6 +29,18 @@ public class Utilities {
 	
 	// This method evaluates the Hessian of a vector
 	public List<List<Double> > hessian(List<Double> point){
+		return null;
+	}
+	
+	// This method evaluates the psi function -
+	// This is the first derivative of the log gamma function
+	public double psi(double input){
+		return 0;
+	}
+	
+	// This method returns the column-wise sum of a 2D array double[][]
+	public RealVector matSumByCol(RealMatrix input){
+		double[][] data = input.getData();
 		return null;
 	}
 	
