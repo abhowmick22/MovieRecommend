@@ -123,6 +123,10 @@ public class Model {
 		return this.nbrTopics;
 	}
 	
+	public int getVocabSize(){
+		return this.wordsPerTopic;
+	}
+	
 	public RealVector getAlpha(){
 		return this.alpha;
 	}
