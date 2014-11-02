@@ -47,9 +47,6 @@ index['{'] = len(words);
 # Opening a file to dump feature for the movie plots
 featureFile = open('../../data/summaryFeatures.txt', 'wb');
 
-if(featureFile == None):
-    sys.exit('Feature file not found\n');
-
 # For each movie summary find the indices of words and dump them as feature vectors
 iterId = 0;
 for line in summaryLines:
