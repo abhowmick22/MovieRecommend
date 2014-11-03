@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
+
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
+
 /*
  * This class models the corpus of documents
  */
@@ -113,6 +118,16 @@ public class Corpus {
 		
 		System.out.println("Number of movie summaries read : " + movieSummaries.documents.size());
 		System.out.println("Successfully read " + movieVocab.getVocabSize() + " words from vocabulary!");
+		
+		// Debugging Utilities
+		Utilities utils = new Utilities();
+		
+		RealVector hessianDiag = new ArrayRealVector(new double[]{1, 2, 3, 4, 5, 6});
+		RealVector gradient = new ArrayRealVector(new double[]{6, 5, 4, 3, 2, 1});
+		double hessianConst = 4.0;
+		RealVector nrStep = utils.computeNRStep(hessianDiag, hessianConst, gradient);
+		
+		System.out.println(nrStep);
 	}
 	/************************************************************/
 }
