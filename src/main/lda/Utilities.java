@@ -7,6 +7,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 // For Gamma functions
 import org.apache.commons.math3.special.Gamma;
+import org.apache.commons.math3.stat.StatUtils;
 
 /*
  * This module implements all the distributions, optimizations,
@@ -204,8 +205,20 @@ public class Utilities {
 	
 	// This method returns the column-wise sum of a 2D array double[][]
 	public RealVector matSumByCol(RealMatrix input){
-		//double[][] data = input.getData();
-		return null;
+		double[][] data = input.getData();
+		int colDimension = input.getColumnDimension();
+		int rowDimension = input.getRowDimension();
+		RealVector sum = new ArrayRealVector(colDimension);
+		double temp;
+		
+		for(int j=0; j<colDimension; j++){
+			temp = 0;
+			for(int i=0; i<rowDimension; i++){
+				temp += data[i][j];			
+			}
+			sum.setEntry(j, temp);
+		}
+		return sum;
 	}
 	
 	
@@ -215,7 +228,16 @@ public class Utilities {
 	
 	// Sum of a vector
 	public double vectorSum(RealVector input){
-		return 0;
+		double[] data = input.toArray();
+		return StatUtils.sum(data);
+	}
+	
+	// Normalize a vector
+	public double[] normalize(double[] input){
+		double sum = StatUtils.sum(input);
+		RealVector ip = new ArrayRealVector(input);
+		ip.mapMultiply((double) (1/sum));
+		return ip.toArray();
 	}
 	
 }

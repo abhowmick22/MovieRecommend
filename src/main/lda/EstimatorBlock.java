@@ -52,7 +52,7 @@ public class EstimatorBlock {
 			}
 			
 			// Normalize the beta row
-			beta.setRow(i, StatUtils.normalize(beta.getRow(i)));
+			beta.setRow(i, utils.normalize(beta.getRow(i)));
 		}
 		
 		// Estimate alpha by Newton-Raphson

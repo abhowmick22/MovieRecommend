@@ -57,7 +57,6 @@ public class Corpus {
 		    int movieCount = 0;
 		    // Reading each line (each document)
 		    while ((text = reader.readLine()) != null) {
-		    	movieCount ++;
 		    	// Identifying movieId and features part in the text
 		    	int delimitPos = text.indexOf(",");
 		    	int movieId = Integer.parseInt(text.substring(0, delimitPos-1));
@@ -80,6 +79,7 @@ public class Corpus {
 		    	// Creating the movie document object
 		    	Document movieDocument = new Document(features, movieId, movieCount);
 		    	this.documents.add(movieDocument);
+		    	movieCount ++;
 		    }
 		   
 		    // Closing the file

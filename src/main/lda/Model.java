@@ -52,6 +52,7 @@ public class Model {
 		this.nbrTopics = conf.getNbrTopics();
 		this.wordsPerTopic = vocab.getVocabSize();
 		int nbrDocs = this.corpus.getNbrDocs();
+		Utilities utils = new Utilities();
 		
 		// initialize alpha, with all values set to 1
 		this.alpha = new ArrayRealVector(this.nbrTopics, (double) 1);
@@ -66,7 +67,7 @@ public class Model {
 				beta.setEntry(i, j, rand.nextDouble());
 			}
 			row = beta.getRow(i);
-			row = StatUtils.normalize(row);
+			row = utils.normalize(row);
 			beta.setRow(i, row);
 		}	
 		

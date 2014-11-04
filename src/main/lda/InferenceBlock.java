@@ -52,7 +52,7 @@ public class InferenceBlock {
 											Math.exp(utils.diGamma(gamma.getEntry(i)))));
 				}
 				// normalize phiRow and set it back to phi
-				phi.setRow(n, StatUtils.normalize(phiRow.toArray()));
+				phi.setRow(n, utils.normalize(phiRow.toArray()));
 				
 			}
 			
