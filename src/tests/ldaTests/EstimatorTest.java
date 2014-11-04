@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import org.apache.commons.math3.special.Gamma;
+
 import main.lda.Configs;
 import main.lda.Corpus;
 import main.lda.EstimatorBlock;
@@ -16,6 +18,8 @@ public class EstimatorTest {
 	
 	/************************************************************/
 	public static void main(String[] args){
+		
+				System.out.println(Gamma.logGamma(0.01));
 		
 		// Path to the file
 				String corpusPath = "data/summaries_debug.txt";

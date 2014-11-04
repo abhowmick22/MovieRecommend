@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.special.Gamma;
 import org.apache.commons.math3.stat.StatUtils;
 
 /*
@@ -39,25 +40,31 @@ public class InferenceBlock {
 		int iters = 0;
 		double alphaSum = 0, gammaSum = 0;
 		double C1, C2, C3, C4, C5, C6, C7, C8, C9;
-		C1 = C2 = C3 = C4 = C5 = C6 = C7 = C8 = C9 = 0;
+
+		System.out.println(phi.getColumnDimension());
 		
+	
 		// Do variational inference until convergence
-		RealVector phiRow;
+		RealVector phiCol;
 		while((iters < conf.getVarIters()) || (convergence > conf.getVarConvergence())){
+			C1 = C2 = C3 = C4 = C5 = C6 = C7 = C8 = C9 = 0.0;
+			
+
 			for(int n=0; n<nWords; n++){
-				phiRow = phi.getRowVector(n);
+				wordindex = words.get(n);
+				phiCol = phi.getColumnVector(wordindex);
 				for(int i=0; i<nTops; i++){
-					wordindex = words.get(i);
-					phiRow.setEntry(i, (beta.getRowVector(i).getEntry(wordindex) * 
+					// TODO : Fixit
+						phiCol.setEntry(i, (beta.getEntry(i, wordindex) *
 											Math.exp(utils.diGamma(gamma.getEntry(i)))));
 				}
-				// normalize phiRow and set it back to phi
-				phi.setRow(n, utils.normalize(phiRow.toArray()));
+				// normalize phiCol and set it back to phi
+				phi.setColumn(wordindex, utils.normalize(phiCol.toArray()));
 				
 			}
 			
 			// update \gamma
-			gamma = alpha.add(utils.matSumByCol(phi));
+			gamma = alpha.add(utils.matSumAlongDim(phi, 2));
 			
 			// TODO : Reflect changes back in the model
 			// Update the model
@@ -71,6 +78,8 @@ public class InferenceBlock {
 			alphaSum = StatUtils.sum(alpha.toArray());
 			gammaSum = StatUtils.sum(gamma.toArray());
 			
+			//System.out.println(Gamma.digamma(gammaSum));
+			
 			// C1
 			C1 += utils.logGamma(alphaSum);
 			
@@ -80,23 +89,29 @@ public class InferenceBlock {
 			
 			// C3
 			for(int i=0; i<nTops; i++)
-				C3 += (alphaSum-nTops) * (utils.diGamma(gamma.getEntry(i)) - 
+				C3 += (alpha.getEntry(i)-1) * (utils.diGamma(gamma.getEntry(i)) - 
 							utils.diGamma(gammaSum));
 			
 			// C4
+			System.out.println("C4 for new iteration is : " + C4);
 			for(int n=0; n<nWords; n++){
 				for(int i=0; i<nTops; i++){
-					C4 += phi.getEntry(n, i) * (utils.diGamma(gamma.getEntry(i))
+					C4 += phi.getEntry(i, n) * (utils.diGamma(gamma.getEntry(i))
 							- utils.diGamma(gammaSum));
+					
 				}
+				System.out.println(C4);
 			}
+			System.out.println("\n\n\n");
+			//System.out.println(phi.getEntry(i, n));
+			//System.out.println(C4);
 			
 			// C5
 			for(int n=0; n<nWords; n++){
 				for(int i=0; i<nTops; i++){
 					for(int j=0; j<vocabSize; j++){
 						if(words.get(n) == j)
-						C5 += phi.getEntry(n, i) * Math.log10(beta.getEntry(i, j));
+						C5 += phi.getEntry(i, n) * Math.log10(beta.getEntry(i, j));
 						// TODO : Check if above interpretation is correct
 					}
 				}
@@ -107,7 +122,7 @@ public class InferenceBlock {
 			
 			// C7
 			for(int i=0; i<nTops; i++)
-				C7 += Math.log10(gamma.getEntry(i));
+				C7 += utils.logGamma(gamma.getEntry(i));
 			
 			// C8
 			for(int i=0; i<nTops; i++)
@@ -117,12 +132,26 @@ public class InferenceBlock {
 			// C9
 			for(int n=0; n<nWords; n++){
 				for(int i=0; i<nTops; i++){
-					C9 += phi.getEntry(n, i) * Math.log10(phi.getEntry(n, i));
+					C9 += phi.getEntry(i, n) * Math.log10(phi.getEntry(i, n));
 				}
 			}
 			
+			/*
+			System.out.println(C1);
+			System.out.println(C2);
+			System.out.println(C3);
+			*/
+			/*
+			System.out.println(C4);
+			System.out.println(C5);
+			System.out.println(C6);
+			System.out.println(C7);
+			System.out.println(C8);
+			System.out.println(C9 + "\n\n");
+			*/
+			
 			// Calculate the likelihood
-			likelihood += C1 - C2 + C3 + C4 + C5 - C6 + C7 - C8 - C9;
+			likelihood = C1 - C2 + C3 + C4 + C5 - C6 + C7 - C8 - C9;
 			
 			// Find convergence
 			convergence = Math.abs((likelihood - prevLikelihood) / prevLikelihood);

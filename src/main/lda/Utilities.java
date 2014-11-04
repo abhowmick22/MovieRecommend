@@ -204,20 +204,27 @@ public class Utilities {
 	 */
 	
 	// This method returns the column-wise sum of a 2D array double[][]
-	public RealVector matSumByCol(RealMatrix input){
-		double[][] data = input.getData();
-		int colDimension = input.getColumnDimension();
-		int rowDimension = input.getRowDimension();
-		RealVector sum = new ArrayRealVector(colDimension);
-		double temp;
+	public RealVector matSumAlongDim(RealMatrix input, int dimension){
+		//double[][] data = input.getData();
+		int rowDimension;
+		int colDimension;
+		RealVector sum;
 		
-		for(int j=0; j<colDimension; j++){
-			temp = 0;
-			for(int i=0; i<rowDimension; i++){
-				temp += data[i][j];			
-			}
-			sum.setEntry(j, temp);
+		if(dimension == 2){
+			colDimension = input.getColumnDimension();
+			rowDimension = input.getRowDimension();
+			sum = new ArrayRealVector(rowDimension);
+			for (int i=0; i<colDimension; i++)
+				sum = sum.add(input.getColumnVector(i));
 		}
+		else{
+			rowDimension = input.getColumnDimension();
+			colDimension = input.getRowDimension();
+			sum = new ArrayRealVector(colDimension);
+			for (int i=0; i<rowDimension; i++)
+				sum = sum.add(input.getRowVector(i));
+		}
+		
 		return sum;
 	}
 	
