@@ -2,12 +2,14 @@ package main.lda;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 // For Gamma functions
 import org.apache.commons.math3.special.Gamma;
 import org.apache.commons.math3.stat.StatUtils;
+import org.la4j.vector.Vector;
 
 /*
  * This module implements all the distributions, optimizations,
@@ -68,10 +70,38 @@ public class Utilities {
 		
 		return newAlpha;
 	}
-	
+		
 	/*
 	 * Methods specific to Newton Raphson
 	 */
+	// Compute the alpha independent component of gradient and use it for NR iterations
+	// This is specially used for batch processing of documents
+	// Takes the gammaTerm until now along with different set of Documents and updates the gammaTerm of gradient
+	/*RealVector updateGradientGammaTerm(RealVector initGammaTerm, List<RealVector>curGamma){
+		int batchSize = curGamma.size();
+		int noTopics = initGammaTerm.getDimension();
+		RealVector updatedGammaTerm = initGammaTerm.copy();
+		
+		for(int i = 0; i < batchSize; i++){
+			
+			// Get the sum of gamma values for a particular document over topics
+			double docGammaSum = 0;
+			for(int j = 0; j < noTopics; j++)
+				docGammaSum += curGamma.get(i).getEntry(j);
+				
+			// Getting the contribution of each document in the alpha independent term of the gradient
+			// to be used in NR iterations
+			RealVector docGradient = new ArrayRealVector(noTopics);
+			for(int j = 0; j < noTopics; j++)
+				docGradient.setEntry(j, this.diGamma(curGamma.get(i).getEntry(j)) - this.diGamma(docGammaSum));
+			
+			// Adding the contribution of document to the initGammaTerm to get updated gammaTerm
+			updatedGammaTerm = updatedGammaTerm.add(docGradient);
+		}
+		
+		return updatedGammaTerm;
+	}*/
+	
 	
 	// For the given alpha and gamma, computes the gradient to be used for NR iterations
 	public RealVector computeGradient(RealVector alpha, List<RealVector> gamma){
