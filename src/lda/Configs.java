@@ -27,7 +27,10 @@ public class Configs {
 	// Convergence threshold for E-M
 	private double emConvergence;
 	
-	// constructor initiliazes stuff to defalut values
+	// Parameters for NR method
+	private double maxNRIterations, alphaChangeThreshold; 
+	
+	// constructor initializes stuff to default values
 	public Configs(){
 			
 		this.nbrTopics = 100;
@@ -35,6 +38,10 @@ public class Configs {
 		this.varConvergence = 1e-6;
 		this.emIters = 100;
 		this.emConvergence = 1e-4;
+		
+		// Parameters for NR method
+		this.setMaxNRIterations(1000);
+		this.setAlphaChangeThreshold(1e-2);
 	}
 	
 	// setters
@@ -77,6 +84,22 @@ public class Configs {
 	
 	public int getNbrTopics(){
 		return this.nbrTopics;
+	}
+
+	public double getMaxNRIterations() {
+		return maxNRIterations;
+	}
+
+	public void setMaxNRIterations(double maxNRIterations) {
+		this.maxNRIterations = maxNRIterations;
+	}
+
+	public double getAlphaChangeThreshold() {
+		return alphaChangeThreshold;
+	}
+
+	public void setAlphaChangeThreshold(double alphaChangeThreshold) {
+		this.alphaChangeThreshold = alphaChangeThreshold;
 	}
 	
 }
