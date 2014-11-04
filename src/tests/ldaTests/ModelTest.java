@@ -39,16 +39,25 @@ public class ModelTest {
 		
 		System.out.println("Nbr of topics: " + model.getNbrTopics());
 		System.out.println("Vocab size: " + model.getVocabSize());
+		System.out.println("Nbr of reviews: " + movieSummaries.getNbrDocs());
 		
-		File dump = new File("src/tests/ldaTests/dump.txt");
+		File dump = new File("src/tests/ldaTests/modelDump.txt");
 		try {
 			PrintWriter writer = new PrintWriter(dump, "UTF-8");
+			System.out.println("Size of alpha is: " + model.getAlpha().getDimension());
+			System.out.println("Size of beta is: " + model.getBeta().getRowDimension() + 
+									" X " + model.getBeta().getColumnDimension());
 			writer.println("Hyperparameters:\n\n");
 			writer.println("Initial alpha: " + model.getAlpha());
 			writer.println("Initial beta: " + model.getBeta());
-			System.out.println("Variational parameters:\n\n");
-			System.out.println("Initial gamma: " + model.getGamma());
-			System.out.println("Initial phi: " + model.getPhi());
+			System.out.println("Size of gamma is: " + model.getGamma().size() + 
+									" X " + model.getGamma().get(0).getDimension());
+			System.out.println("Size of phi is: " + model.getPhi().size() + 
+									" X " + model.getPhi().get(0).getRowDimension() +
+									" X " + model.getPhi().get(0).getColumnDimension());
+			writer.println("Variational parameters:\n\n");
+			writer.println("Initial gamma: " + model.getGamma());
+			writer.println("Initial phi: " + model.getPhi());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {

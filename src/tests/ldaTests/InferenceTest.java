@@ -1,8 +1,6 @@
 package tests.ldaTests;
 
 import java.io.File;
-import java.util.List;
-
 import main.lda.Configs;
 import main.lda.Corpus;
 import main.lda.Document;

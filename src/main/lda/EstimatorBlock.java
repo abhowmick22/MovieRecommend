@@ -50,7 +50,7 @@ public class EstimatorBlock {
 				}
 				beta.setEntry(i, j, b);
 			}
-			
+			System.out.println("Beta estimation: Topics done : " + i);
 			// Normalize the beta row
 			beta.setRow(i, utils.normalize(beta.getRow(i)));
 		}

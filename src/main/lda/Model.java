@@ -53,6 +53,8 @@ public class Model {
 		this.wordsPerTopic = vocab.getVocabSize();
 		int nbrDocs = this.corpus.getNbrDocs();
 		Utilities utils = new Utilities();
+		phi = new ArrayList<RealMatrix>();
+		gamma = new ArrayList<RealVector>();
 		
 		// initialize alpha, with all values set to 1
 		this.alpha = new ArrayRealVector(this.nbrTopics, (double) 1);
@@ -85,12 +87,10 @@ public class Model {
 		
 		// initialie phi and gamma for all the documents
 		for(int i=0; i<nbrDocs; i++){
-			phi = new ArrayList<RealMatrix>();
 			phi.add(oneuponk);
-			gamma = new ArrayList<RealVector>();
 			gamma.add(nuponk);
 		}
-		
+
 	}
 	
 	// method to return the top K words from each topic
