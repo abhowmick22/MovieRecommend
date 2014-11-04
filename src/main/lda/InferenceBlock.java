@@ -76,8 +76,8 @@ public class InferenceBlock {
 			
 			// TODO : Reflect changes back in the model
 			// Update the model
-			//model.setGammaSingle(gamma, docIndex);
-			//model.setPhiSingle(phi, docIndex);
+			model.setGammaSingle(gamma, docIndex);
+			model.setPhiSingle(phi, docIndex);
 			
 			/* 
 			 * Calculate likelihood terms
