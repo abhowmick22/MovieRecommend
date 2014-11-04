@@ -8,7 +8,6 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
-import org.apache.commons.math3.stat.StatUtils;
 
 /*
  * This class captures all the information about the model learned
@@ -57,7 +56,7 @@ public class Model {
 		gamma = new ArrayList<RealVector>();
 		
 		// initialize alpha, with all values set to 1
-		this.alpha = new ArrayRealVector(this.nbrTopics, (double) 1);
+		this.alpha = new ArrayRealVector(this.nbrTopics, (double) 2.0);
 		// initialize beta
 		this.beta = new Array2DRowRealMatrix(this.nbrTopics, this.wordsPerTopic);
 		
@@ -72,17 +71,17 @@ public class Model {
 			row = utils.normalize(row);
 			beta.setRow(i, row);
 		}	
-		
+		System.out.println(beta.getRowDimension());
 		// initialize phi
-		RealMatrix oneuponk = new Array2DRowRealMatrix(this.wordsPerTopic, this.nbrTopics);
+		RealMatrix oneuponk = new Array2DRowRealMatrix(this.nbrTopics, this.wordsPerTopic);
 		// assuming that all elements are initialized to zero
 		for(int i=0; i<oneuponk.getRowDimension(); i++){
 			for(int j=0; j<oneuponk.getColumnDimension(); j++){
-				oneuponk.setEntry(i, j, (double) (1/this.nbrTopics));
+				oneuponk.setEntry(i, j, (1.0/(double)this.nbrTopics));
 			}
 		}
 		// initialize gamma
-		RealVector nuponk = new ArrayRealVector(this.nbrTopics, (double) (this.wordsPerTopic/this.nbrTopics));
+		RealVector nuponk = new ArrayRealVector(this.nbrTopics,  ((double) this.wordsPerTopic/(double) this.nbrTopics));
 		nuponk = nuponk.add(alpha);
 		
 		// initialie phi and gamma for all the documents

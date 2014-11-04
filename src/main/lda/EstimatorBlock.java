@@ -45,12 +45,12 @@ public class EstimatorBlock {
 					
 					for(int n=0; n<nbrWords; n++){
 						if(docWords.get(n) == j)
-							b += phi.getEntry(n, i);
+							b += phi.getEntry(i, n);
 					}
 				}
 				beta.setEntry(i, j, b);
 			}
-			System.out.println("Beta estimation: Topics done : " + i);
+			//System.out.println("Beta estimation: Topics done : " + i);
 			// Normalize the beta row
 			beta.setRow(i, utils.normalize(beta.getRow(i)));
 		}
