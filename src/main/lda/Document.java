@@ -48,6 +48,8 @@ public class Document {
 		this.docId = idDoc;
 		this.docSize = features.size();
 		
+		if(this.docSize == 0)
+			System.out.println("Zero words : " + this.movieId + " " + this.docId);
 		// Assigning the features
 		this.wordIds = features;
 		

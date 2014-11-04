@@ -14,7 +14,7 @@ public class InferenceTest {
 	public static void main(String[] args){
 		
 		// Path to the file
-				String corpusPath = "data/summariesTrain.txt";
+				String corpusPath = "data/summaries_debug.txt";
 				String vocabPath = "data/sortedVocab.txt";
 				
 				Corpus movieSummaries;
@@ -43,6 +43,7 @@ public class InferenceTest {
 				//List<Document> docs = movieSummaries.getDocs();
 				//for(Document d : docs)	System.out.println(d.getDocId());
 				Document doc = movieSummaries.getDocs().get(0);
+				
 				double likelihood = inf.infer(doc, model, conf);
 				
 				System.out.println(likelihood);

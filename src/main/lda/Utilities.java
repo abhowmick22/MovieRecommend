@@ -273,7 +273,7 @@ public class Utilities {
 	public double[] normalize(double[] input){
 		double sum = StatUtils.sum(input);
 		RealVector ip = new ArrayRealVector(input);
-		ip.mapMultiply((double) (1/sum));
+		ip = ip.mapMultiply(1.0/sum);
 		return ip.toArray();
 	}
 	

@@ -8,6 +8,7 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.stat.StatUtils;
 
 /*
  * This class captures all the information about the model learned
@@ -73,17 +74,25 @@ public class Model {
 			beta.setRow(i, row);
 		}	
 		
-		// Initialize phi for each document
-		RealMatrix phiSingle = new Array2DRowRealMatrix(1, 1);
-		
-		// Initialize gamma for each document
-		RealVector gammaSingle = new ArrayRealVector(1);
-		
+		//int entries = 0; 
 		// Adding dummy phi and gamma for access later in the pipeline
 		for(int i = 0; i < this.corpus.getNbrDocs(); i++){
+			// Reading the number of words in the document
+			int docSize = this.corpus.getDocs().get(i).getDocSize();
+			
+			// Initialize phi for each document
+			RealMatrix phiSingle = new Array2DRowRealMatrix(nbrTopics, docSize);
+			
+			// Initialize gamma for each document
+			RealVector gammaSingle = new ArrayRealVector(nbrTopics);
+			
 			this.phi.add(phiSingle);
 			this.gamma.add(gammaSingle);
+			
+			// Counting the space taken by phi and gamma
+			//entries += nbrTopics * docSize;
 		}
+		//System.out.println("Size : " + entries * 8/(1024 * 1024));
 	}
 	
 	// method to return the top K words from each topic

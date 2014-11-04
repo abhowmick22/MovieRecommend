@@ -48,14 +48,13 @@ public class InferenceBlock {
 		phi = phi.scalarAdd(1.0/(double) nTops);
 		
 		// Initialize gamma
-		RealVector gamma = new ArrayRealVector(nTops);
+		RealVector gamma = new ArrayRealVector(nTops, nWords/(double)nTops);
 		gamma = alpha.add(gamma);
-	
+		
 		// Do variational inference until convergence
 		RealVector phiCol;
 		while((iters < conf.getVarIters()) || (convergence > conf.getVarConvergence())){
 			C1 = C2 = C3 = C4 = C5 = C6 = C7 = C8 = C9 = 0.0;
-			
 
 			for(int n = 0; n < nWords; n++){
 				wordindex = words.get(n);
@@ -85,14 +84,13 @@ public class InferenceBlock {
 			alphaSum = StatUtils.sum(alpha.toArray());
 			gammaSum = StatUtils.sum(gamma.toArray());
 			
-			//System.out.println(Gamma.digamma(gammaSum));
-			
 			// C1
 			C1 += utils.logGamma(alphaSum);
 			
 			// C2
-			for(int i=0; i<nTops; i++)	
+			for(int i=0; i<nTops; i++){	
 				C2 += utils.logGamma(alpha.getEntry(i));
+			}
 			
 			// C3
 			for(int i=0; i<nTops; i++)
@@ -100,18 +98,13 @@ public class InferenceBlock {
 							utils.diGamma(gammaSum));
 			
 			// C4
-			//System.out.println("C4 for new iteration is : " + C4);
 			for(int n=0; n<nWords; n++){
 				for(int i=0; i<nTops; i++){
 					C4 += phi.getEntry(i, n) * (utils.diGamma(gamma.getEntry(i))
 							- utils.diGamma(gammaSum));
 					
 				}
-				//System.out.println(C4);
 			}
-			//System.out.println("\n\n\n");
-			//System.out.println(phi.getEntry(i, n));
-			//System.out.println(C4);
 			
 			// C5
 			for(int n=0; n<nWords; n++){
@@ -143,19 +136,18 @@ public class InferenceBlock {
 				}
 			}
 			
-			/*
-			System.out.println(C1);
+			
+			// Debugging messages
+			/*System.out.println(C1);
 			System.out.println(C2);
 			System.out.println(C3);
-			*/
-			/*
 			System.out.println(C4);
 			System.out.println(C5);
 			System.out.println(C6);
 			System.out.println(C7);
 			System.out.println(C8);
-			System.out.println(C9 + "\n\n");
-			*/
+			System.out.println(C9 + "\n\n");*/
+			
 			
 			// Calculate the likelihood
 			likelihood = C1 - C2 + C3 + C4 + C5 - C6 + C7 - C8 - C9;
@@ -168,5 +160,4 @@ public class InferenceBlock {
 		
 		return likelihood;
 	}
-
 }
