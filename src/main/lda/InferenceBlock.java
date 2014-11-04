@@ -2,6 +2,8 @@ package main.lda;
 
 import java.util.List;
 
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.special.Gamma;
@@ -27,10 +29,6 @@ public class InferenceBlock {
 		int nTops = model.getNbrTopics();
 		int nWords = doc.getDocSize();
 		int vocabSize = model.getVocabSize();
-		RealVector alpha = model.getAlpha();
-		RealMatrix beta = model.getBeta();
-		RealMatrix phi = model.getPhi().get(docIndex);
-		RealVector gamma = model.getGamma().get(docIndex);
 		List<Integer> words = doc.getWordIds();
 		Utilities utils = new Utilities();
 		int wordindex;
@@ -41,8 +39,19 @@ public class InferenceBlock {
 		double alphaSum = 0, gammaSum = 0;
 		double C1, C2, C3, C4, C5, C6, C7, C8, C9;
 
-		System.out.println(phi.getColumnDimension());
+		//System.out.println(phi.getColumnDimension());
+	
+		// Get alpha and beta
+		RealVector alpha = model.getAlpha();
+		RealMatrix beta = model.getBeta();
 		
+		// Initialize phi
+		RealMatrix phi = new Array2DRowRealMatrix(nTops, nWords);
+		phi = phi.scalarAdd(1.0/(double) nTops);
+		
+		// Initialize gamma
+		RealVector gamma = new ArrayRealVector(nTops);
+		gamma = alpha.add(gamma);
 	
 		// Do variational inference until convergence
 		RealVector phiCol;
@@ -54,8 +63,7 @@ public class InferenceBlock {
 				wordindex = words.get(n);
 				phiCol = phi.getColumnVector(wordindex);
 				for(int i=0; i<nTops; i++){
-					// TODO : Fixit
-						phiCol.setEntry(i, (beta.getEntry(i, wordindex) *
+					phiCol.setEntry(i, (beta.getEntry(i, wordindex) *
 											Math.exp(utils.diGamma(gamma.getEntry(i)))));
 				}
 				// normalize phiCol and set it back to phi
@@ -68,8 +76,8 @@ public class InferenceBlock {
 			
 			// TODO : Reflect changes back in the model
 			// Update the model
-			model.setGammaSingle(gamma, docIndex);
-			model.setPhiSingle(phi, docIndex);
+			//model.setGammaSingle(gamma, docIndex);
+			//model.setPhiSingle(phi, docIndex);
 			
 			/* 
 			 * Calculate likelihood terms
@@ -93,16 +101,16 @@ public class InferenceBlock {
 							utils.diGamma(gammaSum));
 			
 			// C4
-			System.out.println("C4 for new iteration is : " + C4);
+			//System.out.println("C4 for new iteration is : " + C4);
 			for(int n=0; n<nWords; n++){
 				for(int i=0; i<nTops; i++){
 					C4 += phi.getEntry(i, n) * (utils.diGamma(gamma.getEntry(i))
 							- utils.diGamma(gammaSum));
 					
 				}
-				System.out.println(C4);
+				//System.out.println(C4);
 			}
-			System.out.println("\n\n\n");
+			//System.out.println("\n\n\n");
 			//System.out.println(phi.getEntry(i, n));
 			//System.out.println(C4);
 			
