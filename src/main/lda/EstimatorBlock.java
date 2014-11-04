@@ -48,7 +48,7 @@ public class EstimatorBlock {
 				
 				// Column of beta corresponding to the current word found in the document
 				RealVector betaWordCol = beta.getColumnVector(wordId);
-				RealVector phiWordCol = phi.getColumnVector(wordId);
+				RealVector phiWordCol = phi.getColumnVector(n);
 				
 				beta.setColumnVector(wordId, betaWordCol.add(phiWordCol));
 			}
