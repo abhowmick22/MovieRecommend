@@ -34,9 +34,9 @@ public class Configs {
 	public Configs(){
 			
 		this.nbrTopics = 100;
-		this.varIters = 5;
+		this.varIters = 20;
 		this.varConvergence = 1e-6;
-		this.emIters = 100;
+		this.emIters = 5;
 		this.emConvergence = 1e-4;
 		
 		// Parameters for NR method

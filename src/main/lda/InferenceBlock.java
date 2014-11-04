@@ -53,7 +53,7 @@ public class InferenceBlock {
 		
 		// Do variational inference until convergence
 		RealVector phiCol;
-		while((iters < conf.getVarIters()) || (convergence > conf.getVarConvergence())){
+		while((iters < conf.getVarIters()) && (convergence > conf.getVarConvergence())){
 			C1 = C2 = C3 = C4 = C5 = C6 = C7 = C8 = C9 = 0.0;
 
 			for(int n = 0; n < nWords; n++){

@@ -12,6 +12,7 @@ import main.lda.Corpus;
 import main.lda.EstimatorBlock;
 import main.lda.InferenceBlock;
 import main.lda.Model;
+import main.lda.TopicModeler;
 import main.lda.Vocabulary;
 import main.lda.Document;
 
@@ -28,7 +29,7 @@ public class EMTest {
 				Corpus movieSummaries;
 				Vocabulary movieVocab;
 				Model model;
-				InferenceBlock inf;
+				TopicModeler tm;
 				
 				//Creating the file to read the documents from
 				File documentFile = new File(corpusPath);
@@ -37,7 +38,7 @@ public class EMTest {
 				movieSummaries = new Corpus(documentFile);
 				movieVocab = new Vocabulary(vocabFile);
 				model = new Model();
-				inf = new InferenceBlock();
+				tm = new TopicModeler();
 				
 				// Create the configs
 				Configs conf = new Configs();
@@ -47,15 +48,31 @@ public class EMTest {
 				model.initModel(movieSummaries, conf, movieVocab);
 				System.out.println("Created the model!");
 				
-				// Get the likelihood of a single document
-				//List<Document> docs = movieSummaries.getDocs();
-				//for(Document d : docs)	System.out.println(d.getDocId());
-				Document doc = movieSummaries.getDocs().get(0);
+				//Creating the file to read the documents from
+				File modelDump = new File("src/tests/ldaTests/modelDump.txt");
+				PrintWriter writer = null;
+				try {
+					writer = new PrintWriter(modelDump, "UTF-8");
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedEncodingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
-				double likelihood = inf.infer(doc, model, conf);
+				// Model the corpus
+				model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 				
-				System.out.println(likelihood);
-		
+				// Write out the file to a dump
+				writer.println("After ESTIMATION \n----------------\n\n");
+				writer.println("Hyperparameters:\n\n");
+				writer.println("Initial alpha: " + model.getAlpha());
+				writer.println("Initial beta: " + model.getBeta());
+				writer.println("Variational parameters:\n\n");
+				writer.println("Initial gamma: " + model.getGamma());
+				writer.println("Initial phi: " + model.getPhi());
+
 	}
 	/************************************************************/
 
