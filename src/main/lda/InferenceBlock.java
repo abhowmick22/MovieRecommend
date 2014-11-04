@@ -38,8 +38,6 @@ public class InferenceBlock {
 		int iters = 0;
 		double alphaSum = 0, gammaSum = 0;
 		double C1, C2, C3, C4, C5, C6, C7, C8, C9;
-
-		//System.out.println(phi.getColumnDimension());
 	
 		// Get alpha and beta
 		RealVector alpha = model.getAlpha();
@@ -59,15 +57,16 @@ public class InferenceBlock {
 			C1 = C2 = C3 = C4 = C5 = C6 = C7 = C8 = C9 = 0.0;
 			
 
-			for(int n=0; n<nWords; n++){
+			for(int n = 0; n < nWords; n++){
 				wordindex = words.get(n);
-				phiCol = phi.getColumnVector(wordindex);
+				
+				phiCol = phi.getColumnVector(n);
 				for(int i=0; i<nTops; i++){
 					phiCol.setEntry(i, (beta.getEntry(i, wordindex) *
 											Math.exp(utils.diGamma(gamma.getEntry(i)))));
 				}
 				// normalize phiCol and set it back to phi
-				phi.setColumn(wordindex, utils.normalize(phiCol.toArray()));
+				phi.setColumn(n, utils.normalize(phiCol.toArray()));
 				
 			}
 			

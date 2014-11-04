@@ -50,14 +50,7 @@ public class ModelTest {
 			writer.println("Hyperparameters:\n\n");
 			writer.println("Initial alpha: " + model.getAlpha());
 			writer.println("Initial beta: " + model.getBeta());
-			System.out.println("Size of gamma is: " + model.getGamma().size() + 
-									" X " + model.getGamma().get(0).getDimension());
-			System.out.println("Size of phi is: " + model.getPhi().size() + 
-									" X " + model.getPhi().get(0).getRowDimension() +
-									" X " + model.getPhi().get(0).getColumnDimension());
-			writer.println("Variational parameters:\n\n");
-			writer.println("Initial gamma: " + model.getGamma());
-			writer.println("Initial phi: " + model.getPhi());
+		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {

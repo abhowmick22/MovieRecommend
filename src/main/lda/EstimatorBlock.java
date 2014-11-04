@@ -2,6 +2,7 @@ package main.lda;
 
 import java.util.List;
 
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.stat.StatUtils;
@@ -25,7 +26,6 @@ public class EstimatorBlock {
 		double b = 0;
 		List<Document> documents = corpus.getDocs();
 		Document doc;
-		RealMatrix beta = model.getBeta();
 		RealVector alpha = model.getAlpha();
 		RealMatrix phi;
 		List<RealMatrix> phiAll = model.getPhi(); 
@@ -33,35 +33,39 @@ public class EstimatorBlock {
 		Utilities utils = new Utilities();
 		
 		// estimate beta
-		for(int i=0; i<nbrTopics; i++){
-			for(int j=0; j<vocabSize; j++){
+		RealMatrix beta = new Array2DRowRealMatrix(nbrTopics, vocabSize);
+		
+		// For each document
+		for(int docId = 0; docId < nbrDocs; docId++){
+			doc = documents.get(docId);
+			docWords = doc.getWordIds();
+			nbrWords = doc.getDocSize();
+			phi = phiAll.get(docId);
+			
+			// For each word in the document
+			for(int n = 0; n < nbrWords; n++){
+				int wordId = docWords.get(n);
 				
-				b = 0; 
-				for(int d=0; d<nbrDocs; d++){
-					doc = documents.get(d);
-					docWords = doc.getWordIds();
-					nbrWords = doc.getDocSize();
-					phi = phiAll.get(d);
-					
-					for(int n=0; n<nbrWords; n++){
-						if(docWords.get(n) == j)
-							b += phi.getEntry(i, n);
-					}
-				}
-				beta.setEntry(i, j, b);
+				// Column of beta corresponding to the current word found in the document
+				RealVector betaWordCol = beta.getColumnVector(wordId);
+				RealVector phiWordCol = phi.getColumnVector(wordId);
+				
+				beta.setColumnVector(wordId, betaWordCol.add(phiWordCol));
 			}
-			//System.out.println("Beta estimation: Topics done : " + i);
-			// Normalize the beta row
-			beta.setRow(i, utils.normalize(beta.getRow(i)));
 		}
 		
-		// Estimate alpha by Newton-Raphson
+		// For each topic
+		for(int topicId = 0; topicId < nbrTopics; topicId++)
+		//System.out.println("Beta estimation: Topics done : " + i);
+		// Normalize the beta matrix along rows
+			beta.setRow(topicId, utils.normalize(beta.getRow(topicId)));
+
+
+		// Estimate alpha by Newton-Raphson iterations
 		alpha = utils.performNR(conf, alpha, model.getGamma());
 		
 		// Update the model
 		model.setBeta(beta);
 		model.setAlpha(alpha);
-		
 	}
-	
 }

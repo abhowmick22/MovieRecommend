@@ -67,29 +67,23 @@ public class Model {
 			for(int j=0; j<beta.getColumnDimension(); j++){
 				beta.setEntry(i, j, rand.nextDouble());
 			}
+			
 			row = beta.getRow(i);
 			row = utils.normalize(row);
 			beta.setRow(i, row);
 		}	
-		System.out.println(beta.getRowDimension());
-		// initialize phi
-		RealMatrix oneuponk = new Array2DRowRealMatrix(this.nbrTopics, this.wordsPerTopic);
-		// assuming that all elements are initialized to zero
-		for(int i=0; i<oneuponk.getRowDimension(); i++){
-			for(int j=0; j<oneuponk.getColumnDimension(); j++){
-				oneuponk.setEntry(i, j, (1.0/(double)this.nbrTopics));
-			}
-		}
-		// initialize gamma
-		RealVector nuponk = new ArrayRealVector(this.nbrTopics,  ((double) this.wordsPerTopic/(double) this.nbrTopics));
-		nuponk = nuponk.add(alpha);
 		
-		// initialie phi and gamma for all the documents
-		for(int i=0; i<nbrDocs; i++){
-			phi.add(oneuponk);
-			gamma.add(nuponk);
+		// Initialize phi for each document
+		RealMatrix phiSingle = new Array2DRowRealMatrix(1, 1);
+		
+		// Initialize gamma for each document
+		RealVector gammaSingle = new ArrayRealVector(1);
+		
+		// Adding dummy phi and gamma for access later in the pipeline
+		for(int i = 0; i < this.corpus.getNbrDocs(); i++){
+			this.phi.add(phiSingle);
+			this.gamma.add(gammaSingle);
 		}
-
 	}
 	
 	// method to return the top K words from each topic
