@@ -93,6 +93,7 @@ public class Model {
 	}
 	
 	// method to return the top K words from each topic
+	// TODO : Implement this method
 	public List<List<String> > getTopics(int wordsPerTopic){
 		return null;
 	}
