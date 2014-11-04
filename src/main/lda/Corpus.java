@@ -1,10 +1,9 @@
-package lda;
+package main.lda;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -12,7 +11,6 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 
 import org.apache.commons.math3.linear.ArrayRealVector;
-import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
 /*
@@ -69,6 +67,7 @@ public class Corpus {
 		    	int movieId = Integer.parseInt(text.substring(0, delimitPos-1));
 
 		    	// Extracting the numerical features
+		    	// ASSUMPTION : we have '"[' following delimitPos and ']"' at the end
 		    	String subText = text.substring(delimitPos + 3, text.length()-1);
 		    	String[] featureStrings = subText.split(",");
 
@@ -126,30 +125,30 @@ public class Corpus {
 		Utilities utils = new Utilities();
 		
 		// Debugging NR solver
-		/*int noTopics = 10;
-		int noDocuments = 5;
+		int nbrTopics = 10;
+		int nbrDocuments = 5;
 		
 		Configs configs = new Configs();
-		RealVector initAlpha = new ArrayRealVector(noTopics);
+		RealVector initAlpha = new ArrayRealVector(nbrTopics);
 		List<RealVector> gamma = new ArrayList<RealVector>();
 		
 		// Randomly assigning values to initAlpha and gamma
 		Random rand = new Random();
 		
-		for(int i = 0; i < noTopics; i++)
+		for(int i = 0; i < nbrTopics; i++)
 			initAlpha.setEntry(i, rand.nextDouble());
 		
-		for(int i = 0; i < noDocuments; i++){
-			RealVector documentGamma = new ArrayRealVector(noTopics);
-			for(int j = 0; j < noTopics; j++)
+		for(int i = 0; i < nbrDocuments; i++){
+			RealVector documentGamma = new ArrayRealVector(nbrTopics);
+			for(int j = 0; j < nbrTopics; j++)
 				documentGamma.setEntry(j, rand.nextDouble());
 			
 			gamma.add(documentGamma);
 		}
 		
-		RealVector nextAlpha = utils.performNR(configs, initAlpha, gamma);
-		System.out.println(nextAlpha);
-		System.out.println(initAlpha);*/
+		//RealVector nextAlpha = utils.performNR(configs, initAlpha, gamma);
+		//System.out.println(nextAlpha);
+		//System.out.println(initAlpha);
 		
 		// Debugging each step
 		/*RealVector hessianDiag = new ArrayRealVector(new double[]{1, 2, 3, 4, 5, 6});

@@ -1,4 +1,4 @@
-package lda;
+package main.lda;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class InferenceBlock {
 		RealMatrix beta = model.getBeta();
 		RealMatrix phi = model.getPhi().get(docIndex);
 		RealVector gamma = model.getGamma().get(docIndex);
-		List<Integer> words = doc.getWords();
+		List<Integer> words = doc.getWordIds();
 		Utilities utils = new Utilities();
 		int wordindex;
 		double likelihood = 0;

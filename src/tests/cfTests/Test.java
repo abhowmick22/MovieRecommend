@@ -1,5 +1,5 @@
-package collabfilter.tests;
-import collabfilter.main.*;
+package tests.cfTests;
+import main.collabfilter.*;
 
 public class Test {
 

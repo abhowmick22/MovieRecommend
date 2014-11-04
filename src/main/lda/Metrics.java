@@ -1,4 +1,4 @@
-package lda;
+package main.lda;
 
 /*
  * This class stores all the performance metrics of the 

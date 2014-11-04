@@ -1,4 +1,4 @@
-package lda;
+package main.lda;
 
 //import java.util.ArrayList;
 import java.util.Hashtable;

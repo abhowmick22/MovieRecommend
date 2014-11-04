@@ -1,4 +1,4 @@
-package lda;
+package main.lda;
 
 import java.io.BufferedReader;
 import java.io.File;
