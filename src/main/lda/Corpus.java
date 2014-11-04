@@ -3,15 +3,11 @@ package main.lda;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.BufferedReader;
-
-import org.apache.commons.math3.linear.ArrayRealVector;
-import org.apache.commons.math3.linear.RealVector;
 
 /*
  * This class models the corpus of documents
@@ -45,7 +41,7 @@ public class Corpus {
 	/************************************************************/
 	// Constructor, takes in the file path and
 	// populates all the members
-	protected Corpus(File data){
+	public Corpus(File data){
 		System.out.println("Reading the corpus...");
 		
 		// Opening the file and reading each document
@@ -102,60 +98,4 @@ public class Corpus {
 		System.out.println("Successfully read corpus!");
 	}
 
-	/************************************************************/
-	public static void main(String[] args){
-		// Path to the file
-		String corpusPath = "data/summariesTrain.txt";
-		String vocabPath = "data/sortedVocab.txt";
-		
-		Corpus movieSummaries;
-		Vocabulary movieVocab;
-		
-		//Creating the file to read the documents from
-		File documentFile = new File(corpusPath);
-		File vocabFile = new File(vocabPath);
-		
-		movieSummaries = new Corpus(documentFile);
-		movieVocab = new Vocabulary(vocabFile);
-		
-		System.out.println("Number of movie summaries read : " + movieSummaries.documents.size());
-		System.out.println("Successfully read " + movieVocab.getVocabSize() + " words from vocabulary!");
-		
-		// Debugging Utilities and other functionalities
-		Utilities utils = new Utilities();
-		
-		// Debugging NR solver
-		int nbrTopics = 10;
-		int nbrDocuments = 5;
-		
-		Configs configs = new Configs();
-		RealVector initAlpha = new ArrayRealVector(nbrTopics);
-		List<RealVector> gamma = new ArrayList<RealVector>();
-		
-		// Randomly assigning values to initAlpha and gamma
-		Random rand = new Random();
-		
-		for(int i = 0; i < nbrTopics; i++)
-			initAlpha.setEntry(i, rand.nextDouble());
-		
-		for(int i = 0; i < nbrDocuments; i++){
-			RealVector documentGamma = new ArrayRealVector(nbrTopics);
-			for(int j = 0; j < nbrTopics; j++)
-				documentGamma.setEntry(j, rand.nextDouble());
-			
-			gamma.add(documentGamma);
-		}
-		
-		//RealVector nextAlpha = utils.performNR(configs, initAlpha, gamma);
-		//System.out.println(nextAlpha);
-		//System.out.println(initAlpha);
-		
-		// Debugging each step
-		/*RealVector hessianDiag = new ArrayRealVector(new double[]{1, 2, 3, 4, 5, 6});
-		RealVector gradient = new ArrayRealVector(new double[]{6, 5, 4, 3, 2, 1});
-		double hessianConst = 4.0;
-		RealVector nrStep = utils.computeNRStep(hessianDiag, hessianConst, gradient);
-		System.out.println(nrStep);*/
-	}
-	/************************************************************/
 }
