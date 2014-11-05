@@ -71,7 +71,8 @@ public class InferenceBlock {
 			
 			// update \gamma
 			gamma = alpha.add(utils.matSumAlongDim(phi, 2));
-			
+			//System.out.println("alpha " + alpha + " \n");
+			//System.out.println(gamma + " \n" + iters);
 			// TODO : Reflect changes back in the model
 			// Update the model
 			model.setGammaSingle(gamma, docIndex);
@@ -103,6 +104,8 @@ public class InferenceBlock {
 					C4 += phi.getEntry(i, n) * (utils.diGamma(gamma.getEntry(i))
 							- utils.diGamma(gammaSum));
 					
+					//if(phi.getEntry(i,n) > 1)
+						//System.out.println(phi.getEntry(i,n));
 				}
 			}
 			
@@ -112,6 +115,7 @@ public class InferenceBlock {
 					for(int j=0; j<vocabSize; j++){
 						if(words.get(n) == j)
 						C5 += phi.getEntry(i, n) * Math.log10(beta.getEntry(i, j));
+						
 						// TODO : Check if above interpretation is correct
 					}
 				}
@@ -141,12 +145,14 @@ public class InferenceBlock {
 			/*System.out.println(C1);
 			System.out.println(C2);
 			System.out.println(C3);
-			System.out.println(C4);
-			System.out.println(C5);
-			System.out.println(C6);
-			System.out.println(C7);
-			System.out.println(C8);
-			System.out.println(C9 + "\n\n");*/
+			*/
+			
+			//System.out.println(C4);
+			//System.out.println(C5);
+			//System.out.println(C6);
+			//System.out.println(C7);
+			//System.out.println(C8);
+			//System.out.println(C9 + "\n\n");
 			
 			
 			// Calculate the likelihood

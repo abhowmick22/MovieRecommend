@@ -66,6 +66,7 @@ public class Utilities {
 			
 			// Updating the value of alpha; re-iterate until maximum iterations exhaust or update is small
 			newAlpha = newAlpha.subtract(alphaIncrement);
+			//newAlpha = newAlpha.add(alphaIncrement);
 		}
 		
 		return newAlpha;

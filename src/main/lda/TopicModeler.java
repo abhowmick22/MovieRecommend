@@ -43,7 +43,6 @@ public class TopicModeler {
 		double emConv = conf.getEmConvergence();
 		int iters = 0;
 		int maxIters = conf.getEmIters();
-		System.out.println(maxIters);
 		int nDocs = corpus.getNbrDocs();
 		InferenceBlock infBlock = new InferenceBlock();
 		EstimatorBlock estBlock = new EstimatorBlock();
@@ -51,7 +50,6 @@ public class TopicModeler {
 		
 		while((iters < maxIters) && (convergence > emConv)){
 
-		//System.out.println("iters : " + iters);
 		// E-step for each document
 		// update the variational parameters in the model
 		likelihood = 0;
@@ -59,8 +57,8 @@ public class TopicModeler {
 			likelihood += infBlock.infer(docs.get(i), model, conf);
 			//System.out.println(likelihood);
 		}
-		System.out.println(likelihood);
-		System.out.println("\n\n\n");
+		//System.out.println(likelihood);
+		//System.out.println("\n\n\n");
 		// M-step
 		estBlock.estimate(corpus, model, conf);
 		
