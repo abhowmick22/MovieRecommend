@@ -62,11 +62,11 @@ public class EstimatorBlock {
 
 
 		// Estimate alpha by Newton-Raphson iterations
-		System.out.println("ip alpha " + alpha + " \n");
-		System.out.println("ip gamma " + model.getGamma() + " \n");
+		//System.out.println("ip alpha " + alpha + " \n");
+		//System.out.println("ip gamma " + model.getGamma() + " \n");
 		alpha = utils.performNR(conf, alpha, model.getGamma());
-		System.out.println("gamma " + model.getGamma() + " \n");
-		System.out.println("alpha " + alpha + " \n");
+		//System.out.println("gamma " + model.getGamma() + " \n");
+		//System.out.println("alpha " + alpha + " \n");
 		
 		// Update the model
 		model.setBeta(beta);

@@ -54,6 +54,7 @@ public class TopicModeler {
 		// update the variational parameters in the model
 		likelihood = 0;
 		for(int i=0; i<nDocs; i++){
+			System.out.format("Running inference on document : %d\n", i);
 			likelihood += infBlock.infer(docs.get(i), model, conf);
 			//System.out.println(likelihood);
 		}

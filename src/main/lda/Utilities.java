@@ -39,24 +39,31 @@ public class Utilities {
 		}
 		
 		// declarations of running variables
-		RealVector gradient, hessianDiag, alphaIncrement;
 		double hessianConst;
 		
 		//New alpha
 		RealVector newAlpha = initAlpha;
+		// Holder objects for the variables used in the algorithm 
+		RealVector gradient, hessianDiag, alphaIncrement;
+		
 		// Limiting the number of iterations
-		for(int i = 0; i < configs.getMaxNRIterations(); i++){
+		for(int i = 0; i < 10*configs.getMaxNRIterations(); i++){
+			
 			// Obtaining the gradient 
-			gradient = this.computeGradient(initAlpha, gamma);
+			gradient = this.computeGradient(newAlpha, gamma);
+			//System.out.println("Gradient : " + gradient);
 			
 			// Obtaining the hessian diagonal
-			hessianDiag = this.computeHessianDiag(initAlpha, gamma.size());
+			hessianDiag = this.computeHessianDiag(newAlpha, gamma.size());
+			//System.out.println("Diagonal : " + hessianDiag);
 			
 			// Obtaining the hessian constant
-			hessianConst = this.computeHessianConstant(initAlpha);
+			hessianConst = this.computeHessianConstant(newAlpha);
+			//System.out.println("Constant : " + hessianDiag);
 			
 			// Obtaining the increment in alpha
 			alphaIncrement = this.computeNRStep(hessianDiag, hessianConst, gradient);
+			//System.out.println("Increment : " + alphaIncrement + "\n\n\n");
 			
 			// Checking if increment is within the threshold, exist if yes
 			if(alphaIncrement.getNorm() < configs.getAlphaChangeThreshold()){
@@ -65,10 +72,17 @@ public class Utilities {
 			}
 			
 			// Updating the value of alpha; re-iterate until maximum iterations exhaust or update is small
-			newAlpha = newAlpha.subtract(alphaIncrement);
-			//newAlpha = newAlpha.add(alphaIncrement);
+			RealVector normalizedInc = this.normalizeL2(alphaIncrement);
+			double learningRate = 0.01;
+			
+			newAlpha = newAlpha.add(normalizedInc.mapMultiply(learningRate));
+			//newAlpha = newAlpha.subtract(this.normalizeL2(alphaIncrement));
+			
 		}
-		
+
+		System.out.println("NR iterations completed or exhausted");
+		//System.out.println(initAlpha);
+		//System.out.println(newAlpha + "\n\n\n\n");
 		return newAlpha;
 	}
 		
@@ -278,4 +292,8 @@ public class Utilities {
 		return ip.toArray();
 	}
 	
+	// Normalize a vector given realVector input (easier and more frequently used)
+	public RealVector normalizeL2(RealVector input){
+		return input.mapMultiply(1.0/input.getNorm());
+	}
 }

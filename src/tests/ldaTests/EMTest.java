@@ -23,6 +23,7 @@ public class EMTest {
 	public static void main(String[] args){
 		
 		// Path to the file
+				//String corpusPath = "data/summariesTrain.txt";
 				String corpusPath = "data/summaries_debug.txt";
 				String vocabPath = "data/sortedVocab.txt";
 				
