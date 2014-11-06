@@ -2,7 +2,7 @@
 import sys;
 
 # Reading processed summaries and vocabulary 
-vocabFile = open('../../data/vocab.txt', 'r');
+vocabFile = open('../../data/vocab_nostemming.txt', 'r');
 
 # Checking for existance of files
 if(vocabFile == None):
@@ -28,7 +28,7 @@ for i in vocabLines:
 words.sort()
 
 # Dumping the new dictionary
-newDictFile = open('../../data/sortedVocab.txt', 'w');
+newDictFile = open('../../data/sortedVocab_nostemming.txt', 'w');
 for i in xrange(0, len(words)):
     newLine = str(i) + ',' + words[i] + '\n';
     newDictFile.write(newLine)

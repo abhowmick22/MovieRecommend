@@ -4,9 +4,9 @@ import string
 import csv
 import sys
 
-inFile = open('../../data/processed_summaries.txt', 'r')
+inFile = open('../../data/processed_summaries_nostemming.txt', 'r')
 csvin = csv.reader(inFile, delimiter=' ')
-outFile = open('../../data/vocab.txt', 'w')
+outFile = open('../../data/vocab_nostemming.txt', 'w')
 
 vocabulary = {}
 index = 0
@@ -19,6 +19,7 @@ for row in csvin :
 		words = elem.split(',')
 		for word in words[1:] :
 			word = word.strip('["\']')
+			word = word.lower()
 			if word != '' :
 				totalWords += 1
 			# populate the vocab dictionary
@@ -26,6 +27,9 @@ for row in csvin :
 				index += 1
 				vocabulary[word] = index
 			# This is to create a vector of the document
+
+
+			
 			'''
 			if word != '' :
 				cells.append(word)
@@ -34,6 +38,7 @@ for row in csvin :
 
 items = vocabulary.items()
 items = sorted(items, key=lambda x : x[1])
+
 
 for item in items:
 	outFile.write(str(item[1]) + ',' + str(item[0]) + '\r\n')

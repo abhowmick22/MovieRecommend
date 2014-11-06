@@ -23,9 +23,9 @@ public class EMTest {
 	public static void main(String[] args){
 		
 		// Path to the file
-				//String corpusPath = "data/summariesTrain.txt";
-				String corpusPath = "data/summaries_debug_big.txt";
-				String vocabPath = "data/sortedVocab.txt";
+				String corpusPath = "data/summariesTrain.txt";
+				//String corpusPath = "data/summaries_debug_big_nostemming.txt";
+				String vocabPath = "data/sortedVocab_nostemming.txt";
 				
 				Corpus movieSummaries;
 				Vocabulary movieVocab;

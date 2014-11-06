@@ -9,7 +9,7 @@ from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
 
 inFile = open('plot_summaries.txt', 'r')
-outFile = open('processed_summaries.txt', 'w')
+outFile = open('processed_summaries_nostemming.txt', 'w')
 csvout = csv.writer(outFile, delimiter=',')
 for line in inFile.readlines() :
 	elems = line.split('\t', 1)
@@ -32,7 +32,7 @@ for line in inFile.readlines() :
 #		print "unicode string"
 #	else:
 #		print "not a string"
-	words = [stemmer.stem(word) for word in words]
+	#words = [stemmer.stem(word) for word in words]
 	#print words
 	#words=words.replace(u'\xa0',u'')
 	#words=words.replace(u'\u000a',u'p')
