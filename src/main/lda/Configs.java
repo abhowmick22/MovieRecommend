@@ -36,11 +36,11 @@ public class Configs {
 		this.nbrTopics = 100;
 		this.varIters = 20;
 		this.varConvergence = 1e-6;
-		this.emIters = 5;
-		this.emConvergence = 1e-4;
+		this.emIters = 20;
+		this.emConvergence = 1e-2;
 		
 		// Parameters for NR method
-		this.setMaxNRIterations(1000);
+		this.setMaxNRIterations(1e4);
 		this.setAlphaChangeThreshold(1e-2);
 	}
 	

@@ -61,6 +61,11 @@ public class Vocabulary {
 		return this.words;
 	}
 	
+	// Getting to get a particular word
+	public String getWordAtIndex(int wordIndex){
+		return this.words.get(wordIndex);
+	}
+	
 	public int getVocabSize(){
 		return this.vocabSize;
 	}

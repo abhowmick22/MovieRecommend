@@ -47,7 +47,7 @@ public class Utilities {
 		RealVector gradient, hessianDiag, alphaIncrement;
 		
 		// Limiting the number of iterations
-		for(int i = 0; i < 10*configs.getMaxNRIterations(); i++){
+		for(int i = 0; i < configs.getMaxNRIterations(); i++){
 			
 			// Obtaining the gradient 
 			gradient = this.computeGradient(newAlpha, gamma);
@@ -73,10 +73,10 @@ public class Utilities {
 			
 			// Updating the value of alpha; re-iterate until maximum iterations exhaust or update is small
 			RealVector normalizedInc = this.normalizeL2(alphaIncrement);
-			double learningRate = 0.01;
+			double learningRate = 0.001;
 			
-			newAlpha = newAlpha.add(normalizedInc.mapMultiply(learningRate));
-			//newAlpha = newAlpha.subtract(this.normalizeL2(alphaIncrement));
+			//newAlpha = newAlpha.add(normalizedInc.mapMultiply(learningRate));
+			newAlpha = newAlpha.subtract(normalizedInc.mapMultiply(learningRate));
 			
 		}
 

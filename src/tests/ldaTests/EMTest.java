@@ -24,7 +24,7 @@ public class EMTest {
 		
 		// Path to the file
 				//String corpusPath = "data/summariesTrain.txt";
-				String corpusPath = "data/summaries_debug.txt";
+				String corpusPath = "data/summaries_debug_big.txt";
 				String vocabPath = "data/sortedVocab.txt";
 				
 				Corpus movieSummaries;
@@ -65,6 +65,10 @@ public class EMTest {
 				// Model the corpus
 				model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 				
+				// Debugging - getting the number of words for each topic
+				model.getTopicWords(10);
+				if(true) return;
+			
 				// Write out the file to a dump
 				writer.println("After ESTIMATION \n----------------\n\n");
 				writer.println("Hyperparameters:\n\n");

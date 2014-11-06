@@ -2,6 +2,7 @@ package main.lda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -52,6 +53,7 @@ public class Model {
 		this.nbrTopics = conf.getNbrTopics();
 		this.wordsPerTopic = vocab.getVocabSize();
 		int nbrDocs = this.corpus.getNbrDocs();
+		this.vocabulary = vocab;
 		Utilities utils = new Utilities();
 		phi = new ArrayList<RealMatrix>();
 		gamma = new ArrayList<RealVector>();
@@ -97,8 +99,67 @@ public class Model {
 	
 	// method to return the top K words from each topic
 	// TODO : Implement this method
-	public List<List<String> > getTopics(int wordsPerTopic){
-		return null;
+	public List<List<String> > getTopicWords(int wordsPerTopic){
+		
+		//List of top words for each topic;
+		List<List<String> > topWords = new ArrayList<List<String> >();
+		List<List<Double> > topWordVals = new ArrayList<List<Double> >();
+		
+		// Iterating over the words for each topic to get the top probability words
+		for(int topicId = 0 ; topicId < this.nbrTopics; topicId++){
+			// Checking for non-zero entries and extracting corresponding words
+			List<String> topicWords = new ArrayList<String>();
+			List<Double> topicWordVals = new ArrayList<Double>();
+			List<String> topicTopWords = new ArrayList<String>(); 
+			List<Double> topicTopWordVals = new ArrayList<Double>();
+			
+			// Iterating over beta for words
+			//System.out.println(this.vocabulary.getVocabSize());
+			for(int i = 0; i < this.vocabulary.getVocabSize(); i++){
+				if(this.beta.getEntry(topicId, i) > 0){
+					topicWords.add(this.vocabulary.getWordAtIndex(i));
+					topicWordVals.add(this.beta.getEntry(topicId, i));  
+				}	
+			}
+			
+			
+			//Get the top K elements using brute force
+			for(int iter = 0; iter < wordsPerTopic; iter++){
+				int topId = 0;
+				double topVal = topicWordVals.get(topId);
+				
+				for(int cur = 1; cur < topicWordVals.size(); cur++){
+					if(topVal < topicWordVals.get(cur)){
+						// Replace the top element 
+						topVal = topicWordVals.get(cur);
+						topId = cur;
+					}
+				}
+					
+				//Adding the current top word
+				topicTopWords.add(topicWords.get(topId));
+				topicTopWordVals.add(topicWordVals.get(topId));
+				
+				// Remove the particular topMember
+				topicWords.remove(topId);
+				topicWordVals.remove(topId);
+			}
+			
+			topWords.add(topicTopWords);
+			topWordVals.add(topicTopWordVals);
+		}
+
+		// Printing the top words
+		for(int i = 0; i < topWords.size(); i++){
+			System.out.println(topWords.get(i));
+			System.out.println(topWordVals.get(i));
+			System.out.println("\n");
+		}
+		//System.out.println(topWords);
+		//System.out.println(topWordVals);
+		//System.out.println("\n\n");
+		
+		return topWords;
 	}
 	
 	// setters
@@ -153,6 +214,5 @@ public class Model {
 	
 	public List<RealMatrix> getPhi(){
 		return this.phi;
-	}
-	
+	}	
 }
