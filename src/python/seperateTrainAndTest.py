@@ -4,7 +4,7 @@ import sys;
 import re;
 
 # Reading processed summaries and vocabulary 
-featureFile = open('../../data/summaryFeatures_nostemming.txt', 'r');
+featureFile = open('../../data/summaryFeatures_majorremoved.txt', 'r');
 testIdFile = open('../../data/IDmap.csv', 'r');
 
 # Checking for existance of files
@@ -37,8 +37,8 @@ featMovieId = [int(i[0]) for i in splitFeatures];
 curIndex = 0;
 
 # Opening a file to dump feature for the movie plots in training and testing sets
-trainFile = open('../../data/summariesTrain_nostemming.txt', 'wb');
-testFile = open('../../data/summariesTest_nostemming.txt', 'wb');
+trainFile = open('../../data/summariesTrain_majorremoved.txt', 'wb');
+testFile = open('../../data/summariesTest_majorremoved.txt', 'wb');
 
 noMatches = 0;
 matches = [];

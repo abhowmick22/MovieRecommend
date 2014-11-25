@@ -4,7 +4,8 @@ import re;
 
 # Reading processed summaries and vocabulary 
 summaryFile = open('../../data/processed_summaries_nostemming.txt', 'r');
-vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
+vocabFile = open('../../data/sortedVocab_majorremoved.txt', 'r');
+#vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
 
 # Checking for existance of files
 if(summaryFile == None or vocabFile == None):
@@ -20,8 +21,6 @@ summaryFile.close();
 vocabFile.close();
 
 # Compute the index based on starting letter
-words = [];
-
 # Initialize the index with 'a' at 0
 index = {'a':0};
 
@@ -45,7 +44,7 @@ for i in vocabLines:
 index['{'] = len(words);
 
 # Opening a file to dump feature for the movie plots
-featureFile = open('../../data/summaryFeatures_nostemming.txt', 'wb');
+featureFile = open('../../data/summaryFeatures_majorremoved.txt', 'wb');
 
 # For each movie summary find the indices of words and dump them as feature vectors
 iterId = 0;
@@ -75,7 +74,8 @@ for line in summaryLines:
             if(i in subWordList):
                 feature.append(index[startLetter] + subWordList.index(i));
    
-    # Dumping the feature vector into the file
-    featureFile.write(str(movieId) + ', ' +  str(feature) + '\n');
+    # Dumping the feature vector into the file, only if number of features using the curent dictionary is greater than 1
+    if(len(feature) > 0):
+        featureFile.write(str(movieId) + ', ' +  str(feature) + '\n');
 
 featureFile.close()

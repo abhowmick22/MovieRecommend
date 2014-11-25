@@ -28,9 +28,16 @@ for i in vocabLines:
 words.sort()
 
 # Dumping the new dictionary
-newDictFile = open('../../data/sortedVocab_nostemming.txt', 'w');
+majorWords = ['one', 'film', 'back', 'two'];
+newDictFile = open('../../data/sortedVocab_majorremoved.txt', 'w');
+wordId = 0;
 for i in xrange(0, len(words)):
-    newLine = str(i) + ',' + words[i] + '\n';
+    if(words[i] in majorWords):
+        continue;
+
+    # Adding a new word in the dictionary
+    newLine = str(wordId) + ',' + words[i] + '\n';
+    wordId = wordId + 1;
     newDictFile.write(newLine)
     
 newDictFile.close();

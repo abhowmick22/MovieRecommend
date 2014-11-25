@@ -51,19 +51,24 @@ public class Utilities {
 			
 			// Obtaining the gradient 
 			gradient = this.computeGradient(newAlpha, gamma);
+			//gradient = this.normalizeL2(gradient);
 			//System.out.println("Gradient : " + gradient);
+			//System.out.println("Gradient Magnitude:" + gradient.getNorm() + " " + gamma.size());
 			
-			// Obtaining the hessian diagonal
+			// Obtaining the Hessian diagonal
 			hessianDiag = this.computeHessianDiag(newAlpha, gamma.size());
 			//System.out.println("Diagonal : " + hessianDiag);
+			//System.out.format("Hessian diagonal norm: %f\n", hessianDiag.getNorm());
 			
-			// Obtaining the hessian constant
+			// Obtaining the Hessian constant
 			hessianConst = this.computeHessianConstant(newAlpha);
 			//System.out.println("Constant : " + hessianDiag);
+			//System.out.format("Hessian constant norm: %f\n", hessianConst);
 			
 			// Obtaining the increment in alpha
 			alphaIncrement = this.computeNRStep(hessianDiag, hessianConst, gradient);
-			//System.out.println("Increment : " + alphaIncrement + "\n\n\n");
+			//System.out.println("Increment : " + alphaIncrement + "\n");
+			//System.out.println("Increment magnitude: " + alphaIncrement.getNorm());
 			
 			// Checking if increment is within the threshold, exist if yes
 			if(alphaIncrement.getNorm() < configs.getAlphaChangeThreshold()){
@@ -72,17 +77,14 @@ public class Utilities {
 			}
 			
 			// Updating the value of alpha; re-iterate until maximum iterations exhaust or update is small
-			RealVector normalizedInc = this.normalizeL2(alphaIncrement);
-			double learningRate = 0.001;
+			//RealVector normalizedInc = this.normalizeL2(alphaIncrement);
+			//double learningRate = 1.0;
 			
-			//newAlpha = newAlpha.add(normalizedInc.mapMultiply(learningRate));
-			newAlpha = newAlpha.subtract(normalizedInc.mapMultiply(learningRate));
-			
+			newAlpha = newAlpha.add(alphaIncrement);
+			//newAlpha = newAlpha.add(alphaIncrement.mapMultiply(learningRate));
 		}
 
 		System.out.println("NR iterations completed or exhausted");
-		//System.out.println(initAlpha);
-		//System.out.println(newAlpha + "\n\n\n\n");
 		return newAlpha;
 	}
 		
@@ -147,8 +149,9 @@ public class Utilities {
 		for(int i = 0 ; i < noTopics; i++){
 			diGammaDocTerm = 0;
 			for(int j = 0; j < noDocuments; j++){
-				diGammaDocTerm += this.diGamma(gamma.get(j).getEntry(i)) - diGammaDocSum;
+				diGammaDocTerm += this.diGamma(gamma.get(j).getEntry(i));
 			}
+			diGammaDocTerm -= diGammaDocSum;
 			
 			gradComponent = noDocuments * (diGammaAlphaSum - this.diGamma(alpha.getEntry(i))) + diGammaDocTerm;
 			gradient.setEntry(i, gradComponent);
@@ -160,7 +163,7 @@ public class Utilities {
 	public RealVector computeHessianDiag(RealVector alpha, int noDocuments){
 		int noTopics = alpha.getDimension();
 		
-		// heddian diagonal
+		// hessian diagonal
 		RealVector hessianDiag = new ArrayRealVector(noTopics);  
 		for(int i = 0; i < noTopics; i++){
 			hessianDiag.setEntry(i, noDocuments * this.triGamma(alpha.getEntry(i)));

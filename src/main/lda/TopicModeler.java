@@ -56,7 +56,10 @@ public class TopicModeler {
 			System.out.println("Running inference on documents...");
 	
 			for(int i=0; i<nDocs; i++){
-				//System.out.format("Running inference on document : %d\n", i);
+				if(i%200 == 0){
+					System.out.format("Running inference on document : %d\n", i);
+				}
+				
 				likelihood += infBlock.infer(docs.get(i), model, conf);	
 			}
 

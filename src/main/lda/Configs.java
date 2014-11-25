@@ -41,7 +41,7 @@ public class Configs {
 		
 		// Parameters for NR method
 		this.setMaxNRIterations(1e4);
-		this.setAlphaChangeThreshold(1e-2);
+		this.setAlphaChangeThreshold(1e-5);
 	}
 	
 	// setters
