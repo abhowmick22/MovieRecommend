@@ -1,4 +1,4 @@
-# Script to sort the vocabulary; can be used to add additional rules later.
+# function to sort the vocabulary; can be used to add additional rules later.
 import sys;
 
 # Reading processed summaries and vocabulary 

@@ -13,3 +13,5 @@ commons-math3-3.3/*
 .classpath
 .metadata
 src/.metadata
+*.pyc
+

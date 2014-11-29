@@ -66,7 +66,7 @@ public class EMTest {
 		model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 
 		// Debugging - getting the number of words for each topic
-		model.getTopicWords(10);
+		model.getTopicWords(30);
 		if(true) return;
 
 		// Write out the file to a dump
