@@ -23,9 +23,10 @@ public class EMTest {
 	public static void main(String[] args){
 		
 		// Path to the file
-		String corpusPath = "data/summariesTrain_majorremoved.txt";
+		//String corpusPath = "data/summariesTrain_debug_nostemming.txt";
+		String corpusPath = "data/summaries_debug_big_nostemming.txt";		
 		//String corpusPath = "data/summaries_debug_big_nostemming.txt";
-		String vocabPath = "data/sortedVocab_majorremoved.txt";
+		String vocabPath = "data/sortedVocab_nostemming.txt";
 
 		Corpus movieSummaries;
 		Vocabulary movieVocab;
@@ -49,34 +50,17 @@ public class EMTest {
 		model.initModel(movieSummaries, conf, movieVocab);
 		System.out.println("Created the model!");
 
-		//Creating the file to read the documents from
-		File modelDump = new File("src/tests/ldaTests/modelDump.txt");
-		PrintWriter writer = null;
-		try {
-			writer = new PrintWriter(modelDump, "UTF-8");
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
 		// Model the corpus
 		model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 
-		// Debugging - getting the number of words for each topic
-		model.getTopicWords(30);
-		if(true) return;
+		// Dumping the model and log files along with messages for human interpretation
+		model.dumpLogFile("src/tests/ldaTests/logDumpMethod.txt", "Logfile dumped from method");
+		model.dumpModeltoFile("src/tests/ldaTests/modelDumpMethod.txt", "Model file dumped from method");
 
-		// Write out the file to a dump
-		writer.println("After ESTIMATION \n----------------\n\n");
-		writer.println("Hyperparameters:\n\n");
-		writer.println("Initial alpha: " + model.getAlpha());
-		writer.println("Initial beta: " + model.getBeta());
-		writer.println("Variational parameters:\n\n");
-		writer.println("Initial gamma: " + model.getGamma());
-		writer.println("Initial phi: " + model.getPhi());
+		// Debugging - getting the number of words for each topic
+		//model.getTopicWords(30);
+		//if(true) return;
+
 
 	}
 	/************************************************************/

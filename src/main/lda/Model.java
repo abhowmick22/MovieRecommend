@@ -1,5 +1,9 @@
 package main.lda;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -162,6 +166,71 @@ public class Model {
 		
 		return topWords;
 	}
+	
+	// Method to dump model into a text file
+	public void dumpModeltoFile(String filename, String message){
+		File modelDump = new File(filename);
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(modelDump, "UTF-8");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		// Write out the file to a dump
+		// First line message - for human inference
+		writer.println(message);
+		// Second line is the number of topics and number of documents
+		writer.println(this.nbrTopics + ' ' + this.corpus.getNbrDocs() + '\n');
+		//Alpha
+		writer.println(alpha);
+		
+		//Beta 
+		writer.println(beta);
+		
+		System.out.format("Model dumped at : %s\n", filename);
+	}
+	
+	// Method to dump log file:
+	// Contains alpha, beta, gammas and phis for all the movies
+	public void dumpLogFile(String filename, String message){
+		File modelDump = new File(filename);
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(modelDump, "UTF-8");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		// Write out the file to a dump
+		// First line message - for human inference
+		writer.println(message);
+		// Second line is the number of topics and number of documents
+		writer.println(this.nbrTopics + ' ' + this.corpus.getNbrDocs() + '\n');
+		//Alpha
+		writer.println(alpha);
+		
+		//Beta 
+		writer.println(beta);
+		
+		// Gamma
+		writer.println(gamma);
+		
+		// Phi
+		writer.println(phi);
+		
+		System.out.format("Logfile dumped at : %s\n", filename);
+	}
+	
+	// Method to read dumped model from a text file
 	
 	// setters
 	public void setNbrTopics(int n){
