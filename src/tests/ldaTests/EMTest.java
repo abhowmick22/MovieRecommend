@@ -24,10 +24,14 @@ public class EMTest {
 		
 		// Path to the file
 		//String corpusPath = "data/summariesTrain_debug_nostemming.txt";
-		String corpusPath = "data/summaries_debug_big_nostemming.txt";		
+		//String corpusPath = "data/summaries_debug_big_nostemming.txt";		
 		//String corpusPath = "data/summaries_debug_big_nostemming.txt";
-		String vocabPath = "data/sortedVocab_nostemming.txt";
+		//String vocabPath = "data/sortedVocab_nostemming.txt";
 
+		// Testing with full fledged, all words
+		String corpusPath = "data/summaryFeatures_nostemming_cleaned_debug.txt";
+		String vocabPath = "data/cleanedVocab_nostemming_allwords.txt";
+		
 		Corpus movieSummaries;
 		Vocabulary movieVocab;
 		Model model;

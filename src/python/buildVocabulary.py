@@ -1,6 +1,9 @@
 # Script to take processed summaries, dump them as a feature vector of indices with respect to the vocabulary
 import sys;
 import re;
+import nltk
+import string
+from nltk.corpus import stopwords
 
 # Reading processed summaries and vocabulary 
 summaryFile = open('../../data/processed_summaries_nostemming.txt', 'r');
@@ -27,6 +30,12 @@ iterId = 0;
 
 # Dictionary based on first letter for faster checking
 dictionary = {};
+
+# Removing stop words
+stopWords = stopwords.words("english");
+# Converting characters to remove coding effects
+stopWords = [word.replace(u'\u2014',u'-') for word in stopWords]
+stopWords = [word.encode('ascii', 'ignore') for word in stopWords]
 
 for i in xrange(97,123):
     dictionary[chr(i)] = {};
@@ -61,6 +70,9 @@ for line in summaryLines:
                 acceptWord = False;
                 break;
         
+        if(word in stopWords):
+            continue;
+
         if(not acceptWord):
             continue;
 
@@ -77,9 +89,14 @@ for line in summaryLines:
 
 # Sorting dictionary and dumping them
 curLength = 0;
-for i in dictionary.keys():
+sortedKeys = dictionary.keys();
+sortedKeys.sort();
+
+for i in sortedKeys:
     dictKeys = dictionary[i].keys();
     dictKeys.sort();
+
+
     for j in xrange(0, len(dictKeys)):
         curLength += 1;
         sortedVocabFile.write(str(curLength) + ',' + str(dictKeys[j])+',' + str(dictionary[i][dictKeys[j]]) +'\n');

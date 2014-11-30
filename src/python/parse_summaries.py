@@ -9,12 +9,16 @@ from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
 
 inFile = open('plot_summaries.txt', 'r')
-outFile = open('processed_summaries_vocabtesting_testing.txt', 'w')
+outFile = open('../../data/processed_summaries_nostemming.txt', 'w')
 csvout = csv.writer(outFile, delimiter=',')
 
 # Generating list of punctuations and stopwords to compare the words against;
 punctuations = list(string.punctuation);
+
 stopWords = stopwords.words("english");
+# Converting characters to remove coding effects
+stopWords = [word.replace(u'\u2014',u'-') for word in stopWords]
+stopWords = [word.encode('ascii', 'ignore') for word in stopWords]
 
 # Initializing the stemmer for stemming words
 stemmer = SnowballStemmer("english", ignore_stopwords=True);
@@ -41,7 +45,7 @@ for line in inFile.readlines() :
     words = [word for word in words if word not in stopWords];
 
     # Stemming the words
-    words = [stemmer.stem(word) for word in words]
+    #words = [stemmer.stem(word) for word in words]
 
     # Converting characters to remove coding effects
     words = [word.replace(u'\u2014',u'-') for word in words]

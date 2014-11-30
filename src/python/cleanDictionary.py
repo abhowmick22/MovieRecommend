@@ -30,37 +30,74 @@ searchLetter = 'b';
 
 # Collecting words
 words = [];
-minCount = 2;
+minCount = 5;
+topPercentile = 0.05; #Top 5 percentile
 maxCount = 10000;
 
 # Counts of words
 counts = {};
+totalCount = 0;
+newVocabLines = [];
 
 for i in vocabLines:
     splits = i.split(',');
     
     # Add to the vocabulary only if count is within a range
-    if(int(splits[2]) > minCount and int(splits[2]) < maxCount):
+    if(int(splits[2]) > minCount):
         words.append(splits[1]);
         counts[splits[1]] = int(splits[2]);
+        totalCount += int(splits[2]);
+        # Adding it to another list for indexing
+        newVocabLines.append(i);
+
+# Sorting words
+sortedWords = sorted(counts.items(), key=operator.itemgetter(1));
+sortedWords.reverse();
+
+# Removing words that form topPercentile
+topCount = 0;
+topThreshold = topPercentile * totalCount;
+topWords = [];
+for i in sortedWords:
+    topCount += i[1];
+    if(topCount <= topThreshold):
+        topWords.append(i[0]);
+
+
+# Restructing the vocabulary and dumping it
+newVocabFile = open('../../data/cleanedVocab_nostemming_allwords.txt', 'wb');
+vocabCount = 0;
+for i in newVocabLines:
+    splits = i.split(',');
+
+    # if word is in the head, ignore
+    if(splits[1] in topWords):
+        continue;
+    
+    newVocabFile.write(str(vocabCount) + ',' + splits[1] + '\n');
+
+newVocabFile.close();
+
+'''searchLetter = 'b';
+for i in newVocabLines:
+    splits = i.split(',');
+
+    # if word is in the head, ignore
+    if(splits[1] in topWords):
+        continue;
 
     # Indexing
     curLetter = splits[1][0];
     if(curLetter == searchLetter):
-        index[searchLetter] = vocabLines.index(i);
+        index[searchLetter] = newVocabLines.index(i);
         searchLetter = chr(ord(searchLetter) + 1);
 
 # Appending a dummy entry for handling 'z' and its next ascii character '{'
 index['{'] = len(words);
 
-sortedWords = sorted(counts.items(), key=operator.itemgetter(1));
-sortedWords.reverse();
-print len(words)
-#print sortedWords[0:10]
-
-'''
+print index
 # Opening a file to dump feature for the movie plots
-featureFile = open('../../data/summaryFeatures_majorremoved.txt', 'wb');
+featureFile = open('../../data/summaryFeatures_nostemming_cleaned.txt', 'wb');
 
 # For each movie summary find the indices of words and dump them as feature vectors
 iterId = 0;
