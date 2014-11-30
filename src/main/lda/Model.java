@@ -185,12 +185,17 @@ public class Model {
 		// First line message - for human inference
 		writer.println(message);
 		// Second line is the number of topics and number of documents
-		writer.println(this.nbrTopics + ' ' + this.corpus.getNbrDocs() + '\n');
+		//writer.println(this.nbrTopics + ' ' + this.corpus.getNbrDocs() + '\n');
+		writer.format("%d %d\n\n", this.nbrTopics, this.corpus.getNbrDocs());
 		//Alpha
 		writer.println(alpha);
+		writer.println();
 		
 		//Beta 
-		writer.println(beta);
+		for(int i = 0; i < beta.getRowDimension(); i++){
+			RealVector row = beta.getRowVector(i);
+			writer.println(row);
+		}
 		
 		System.out.format("Model dumped at : %s\n", filename);
 	}
@@ -214,18 +219,35 @@ public class Model {
 		// First line message - for human inference
 		writer.println(message);
 		// Second line is the number of topics and number of documents
-		writer.println(this.nbrTopics + ' ' + this.corpus.getNbrDocs() + '\n');
+		//writer.println(this.nbrTopics + ' ' + this.corpus.getNbrDocs() + '\n');
+		writer.format("%d %d\n\n", this.nbrTopics, this.corpus.getNbrDocs());
+		
 		//Alpha
 		writer.println(alpha);
+		writer.println();
 		
 		//Beta 
-		writer.println(beta);
+		for(int i = 0; i < beta.getRowDimension(); i++){
+			RealVector row = beta.getRowVector(i);
+			writer.println(row);
+		}
+		writer.println();
 		
 		// Gamma
-		writer.println(gamma);
+		for(int i = 0; i < gamma.size(); i++){
+			RealVector docGamma = gamma.get(i);
+			writer.println(docGamma);
+		}
+		writer.println();
 		
 		// Phi
-		writer.println(phi);
+		for(int i = 0; i < phi.size(); i++){
+			for(int j = 0; j < phi.get(i).getRowDimension(); j++){
+				RealVector row = phi.get(i).getRowVector(j); 
+				writer.println(row);
+			}
+			writer.println();
+		}
 		
 		System.out.format("Logfile dumped at : %s\n", filename);
 	}
