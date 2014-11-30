@@ -253,7 +253,10 @@ public class Model {
 	}
 	
 	// Method to read dumped model from a text file
-	v
+	public void readModelFromFile(String modelpath){
+		
+		
+	} 
 	
 	// setters
 	public void setNbrTopics(int n){
