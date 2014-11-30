@@ -79,13 +79,16 @@ for i in newVocabLines:
 
 newVocabFile.close();
 
-'''searchLetter = 'b';
+searchLetter = 'b';
+words = [];
 for i in newVocabLines:
     splits = i.split(',');
 
     # if word is in the head, ignore
     if(splits[1] in topWords):
         continue;
+    
+    words.append(splits[1]);
 
     # Indexing
     curLetter = splits[1][0];
@@ -94,10 +97,9 @@ for i in newVocabLines:
         searchLetter = chr(ord(searchLetter) + 1);
 
 # Appending a dummy entry for handling 'z' and its next ascii character '{'
-index['{'] = len(words);
-
-print index
+index['{'] = vocabCount;
 # Opening a file to dump feature for the movie plots
+
 featureFile = open('../../data/summaryFeatures_nostemming_cleaned.txt', 'wb');
 
 # For each movie summary find the indices of words and dump them as feature vectors
@@ -132,4 +134,4 @@ for line in summaryLines:
     if(len(feature) > 0):
         featureFile.write(str(movieId) + ', ' +  str(feature) + '\n');
 
-featureFile.close()'''
+featureFile.close()
