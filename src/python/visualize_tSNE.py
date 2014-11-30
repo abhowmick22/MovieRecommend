@@ -162,7 +162,8 @@ if args.features == "tfidf":
 			labels.append(movieName + "\n" + genre)
 
 		vectors = TfidfVectorizer().fit_transform(data)
-
+		numTopics = len(data[0])
+		print numTopics
 # if features are to be obtained from the lda variational parameters
 elif args.features == "lda" :
 
@@ -171,15 +172,13 @@ elif args.features == "lda" :
 		g.readline();		# read the first line / useless
 		line = g.readline()	# second line containing metadata
 		numTopics = line.split(' ')[0]
-		numDocs = line.split(' ')[1]
+		numDocs = int(line.split(' ')[1])
 
-		if numDocs > args.number:
-			numDocs = args.number			# visualize only the number that is requested
+		if numDocs > int(args.number):
+			numDocs = int(args.number)		# visualize only the number that is requested
 
 		g.readline()						# read blank line
-		g.readline()						# read phi
-		g.readline()						# read blank line
-		
+		print numDocs	
 		labels = []	
 		vectors = []
 		colors = []
@@ -241,14 +240,18 @@ elif args.features == "lda" :
 			v = []
 			for elem in elems:
 				e = elem.strip().strip("{}")
-				print str(len(vectors)) + " " + str(len(v)) + " string is " + e
+				#print e
+				#print str(len(vectors)) + " " + str(len(v)) + " string is " + e
 				v.append(float(e))		
 
 			vectors.append(v)
 
 # Now use these vectors for tSNE
+if int(numTopics) < 50 :
+	X_reduced = vectors
+else:
+	X_reduced = TruncatedSVD(n_components=50, random_state=0).fit_transform(vectors)
 
-X_reduced = TruncatedSVD(n_components=50, random_state=0).fit_transform(vectors)
 X_embedded = TSNE(n_components=2, perplexity=30, verbose=2).fit_transform(X_reduced)
 
 
