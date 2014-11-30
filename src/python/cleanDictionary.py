@@ -75,6 +75,7 @@ for i in newVocabLines:
         continue;
     
     newVocabFile.write(str(vocabCount) + ',' + splits[1] + '\n');
+    vocabCount += 1;
 
 newVocabFile.close();
 
