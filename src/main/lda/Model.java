@@ -1,7 +1,10 @@
 package main.lda;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -196,8 +199,10 @@ public class Model {
 			RealVector row = beta.getRowVector(i);
 			writer.println(row);
 		}
+		writer.println();
 		
 		System.out.format("Model dumped at : %s\n", filename);
+		writer.close();
 	}
 	
 	// Method to dump log file:
@@ -253,9 +258,77 @@ public class Model {
 	}
 	
 	// Method to read dumped model from a text file
-	public void readModelFromFile(String modelpath){
+	public void readModelFromFile(String modelPath){
+		File modelFile = new File(modelPath);
 		
+		// Reading and opening the file
+		try {
+			// Reader initialization for text reading
+			BufferedReader reader = new BufferedReader(new FileReader(modelFile));
+			String text = null;
+
+			//First line
+			text = reader.readLine();
+			if(text != null)
+				System.out.println("=========================");
+				System.out.format("Reading file with comment : %s\n", text);
+			
+			// Second line to get the dimension of matrices
+			text = reader.readLine();
+			int noTopics = 0, noDocs = 0;
+			if(text != null){
+				String[] secondLine = text.split(" ");
+				
+				noTopics = Integer.parseInt(secondLine[0]); 
+				noDocs = Integer.parseInt(secondLine[1]);
+				
+				System.out.format("Number of (topics, documents) : (%d %d)\n", noTopics, noDocs); 
+			}
+			
+			// Empty line
+			text = reader.readLine();
+			
+			System.out.println("Loading alpha!");
+			// Get alpha
+			text = reader.readLine();
+			this.alpha = new ArrayRealVector(noTopics);
+			String[] subStrings = text.substring(1, text.length() - 1).split("; ");
+			
+			for(int i = 0; i < noTopics; i++)
+				this.alpha.setEntry(i, Double.parseDouble(subStrings[i]));
+			
+			
+			//Empty line
+			text = reader.readLine();
+			
+			System.out.println("Loading beta!");
+			// Reading gamma
+			int noWords = this.vocabulary.getVocabSize();
+			RealVector betaLine = new ArrayRealVector(noWords);
+			
+			for(int i = 0; i < noTopics; i++){
+				text = reader.readLine();
+				subStrings = text.substring(1, text.length() - 1).split("; ");
+				
+				// Parsing them as doubles
+				for(int j = 0; j < noWords; j++)
+					betaLine.setEntry(j, Double.parseDouble(subStrings[j]));
+				
+				// Set this beta row vector in its place
+				this.beta.setRowVector(i, betaLine);
+			}
+
+			reader.close();
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 		
+		System.out.println("Model loaded succesfully!");
+		System.out.println("=========================");
 	} 
 	
 	// setters
