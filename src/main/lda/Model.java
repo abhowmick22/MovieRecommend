@@ -223,7 +223,7 @@ public class Model {
 		writer.format("%d %d\n\n", this.nbrTopics, this.corpus.getNbrDocs());
 		
 		//Alpha
-		writer.println(alpha);
+		/*writer.println(alpha);
 		writer.println();
 		
 		//Beta 
@@ -231,7 +231,7 @@ public class Model {
 			RealVector row = beta.getRowVector(i);
 			writer.println(row);
 		}
-		writer.println();
+		writer.println();*/
 		
 		// Gamma
 		for(int i = 0; i < gamma.size(); i++){
