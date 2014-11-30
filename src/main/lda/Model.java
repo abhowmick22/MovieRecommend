@@ -331,6 +331,19 @@ public class Model {
 		System.out.println("=========================");
 	} 
 	
+	public double[] getTopicEstimate(){
+		
+		double[] estimate = new double[this.nbrTopics];
+		
+		// placeholder
+		for(int i=0;i<this.nbrTopics;i++)
+			estimate[i] = 0.0;
+		
+		
+		return estimate;
+	}
+	
+	
 	// setters
 	public void setNbrTopics(int n){
 		this.nbrTopics = n;
