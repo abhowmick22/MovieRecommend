@@ -98,7 +98,6 @@ f = open('plot_summaries.txt', 'r');
 
 
 # if asked to do tfidf 
-
 if args.features == "tfidf":
 		data = []
 		movies = []

@@ -29,7 +29,7 @@ public class Model {
 	// Corpus from which this is learned
 	private Corpus corpus;
 	
-	// nbr of topics
+	// number of topics
 	private int nbrTopics;
 	
 	// words per topic
@@ -331,14 +331,54 @@ public class Model {
 		System.out.println("=========================");
 	} 
 	
-	public double[] getTopicEstimate(){
+	// get the topic estimate vector for a movie with movieLensId
+	// will return vector of all zeros if movie summary not found, this is ok
+	// since it will still work with PMF that calls this method
+	public double[] getTopicEstimate (int movieLensId){
 		
 		double[] estimate = new double[this.nbrTopics];
-		
-		// placeholder
+		// default
 		for(int i=0;i<this.nbrTopics;i++)
 			estimate[i] = 0.0;
 		
+		int wikiId = 0;
+		
+		// read the IDMap file and get the wikipedia movie id
+		File IDmap = new File("data/IDmap.csv");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(IDmap));
+			String text = null;
+			
+			
+			while ((text = reader.readLine()) != null) {
+				int delimitPos = text.indexOf(",");
+		    	wikiId = Integer.parseInt(text.substring(0, delimitPos));
+		    	
+		    	String subText = text.substring(delimitPos + 1, text.length()-1);
+		    	String[] tokens = subText.split(",");
+		    	int mLensId = Integer.parseInt(tokens[0].trim()); 
+				
+		    	if(mLensId == movieLensId){
+		    		break;
+		    	}
+			}
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// get the docIndex from the map
+		int docIndex = this.corpus.getMovieToIndexMap().get(wikiId);
+		
+		// get the corresponding entry from gamma
+		estimate = this.gamma.get(docIndex).toArray();
 		
 		return estimate;
 	}

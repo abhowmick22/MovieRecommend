@@ -44,6 +44,9 @@ public class ModelTest {
 		// Reading from the file
 		model.readModelFromFile("src/tests/ldaTests/modelDumpMethod.txt");
 		
+		double[] estimates = model.getTopicEstimate(973);
+		System.out.println(estimates);
+		
 	}
 	/***************************************************************/
 

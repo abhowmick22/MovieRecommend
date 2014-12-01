@@ -3,6 +3,7 @@ package main.lda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -14,6 +15,11 @@ import java.io.BufferedReader;
  */
 
 public class Corpus {
+	
+	// This is the map from wikipedia movie id to the index in docs, gamma, phi etc
+	// this is populated when reaidng the corpus
+	private ConcurrentHashMap<Integer, Integer> movieToIndexMap;
+	
 	// Number of documents in the corpus
 	private int nbrDocs;
 	
@@ -44,8 +50,11 @@ public class Corpus {
 	public Corpus(File data){
 		System.out.println("Reading the corpus...");
 		
+		
+		this.movieToIndexMap = new ConcurrentHashMap<Integer, Integer>();
 		// Opening the file and reading each document
-		try {
+		try {	
+			
 			// Reader initialization for text reading
 		    BufferedReader reader = new BufferedReader(new FileReader(data));
 		    String text = null;
@@ -59,8 +68,7 @@ public class Corpus {
 		    while ((text = reader.readLine()) != null) {
 		    	// Identifying movieId and features part in the text
 		    	int delimitPos = text.indexOf(",");
-		    	int movieId = Integer.parseInt(text.substring(0, delimitPos-1));
-
+		    	int movieId = Integer.parseInt(text.substring(0, delimitPos));
 		    	// Extracting the numerical features
 		    	// ASSUMPTION : we have '"[' following delimitPos and ']"' at the end
 		    	String subText = text.substring(delimitPos + 3, text.length()-1);
@@ -79,7 +87,9 @@ public class Corpus {
 		    	// Creating the movie document object
 		    	Document movieDocument = new Document(features, movieId, movieCount);
 		    	this.documents.add(movieDocument);
-		    	movieCount ++;
+		    	
+		    	this.movieToIndexMap.put(movieId, movieCount);
+		    	movieCount++;
 		    }
 		   
 		    // Closing the file
@@ -96,6 +106,10 @@ public class Corpus {
 		this.nbrDocs = this.documents.size(); 
 		
 		System.out.println("Successfully read corpus!");
+	}
+	
+	public ConcurrentHashMap<Integer, Integer> getMovieToIndexMap(){
+		return this.movieToIndexMap;
 	}
 
 }
