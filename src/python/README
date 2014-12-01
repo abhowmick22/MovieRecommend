@@ -1,0 +1,82 @@
+################################################################
+    README for Pre-processing vocaulary
+################################################################
+
+Input to the pre-processing pipeline:
+
+(A) plot_summaries.txt
+    List of all the movie summaries in the raw form. This is used
+    for vocabulary extraction.
+
+(B) plot_summaries_train.txt
+    Subset of all the summaries used for training LDA.
+
+(C) plot_summaries_test.txt
+    Subset of all the summaries used for testing LDA.
+
+################################################################
+All files are dumped or read from following folders:
+
+(a) ../../data/
+    + plot_summaries.txt 
+    + plot_summaries_train.txt
+    + plot_summaries_test.txt
+    + IDmap.csv
+
+(b) ../../data/nostemming/
+    + processed_summaries.txt
+    + raw_vocabulary.txt
+    + clean_vocabulary.txt
+    + summaryfeatures.txt
+
+(c) ../../data/stemming/
+    + similar to (b) above
+################################################################
+Pre-processing consists of following steps:
+
+(I) parseSummaries:
+    Input : plot_summaries.txt / plot_summaries_train.txt / plot_summaries_test.txt
+    Output: processed_summaries.txt / processed_summaries_train.txt / processed_summaries_test.txt
+
+    This takes in the summaries (all, training, testing), does 
+    some NLP based processing, dumps meaningful words in the output
+    file i.e. for all the summaries.
+
+################################################################
+(II) buildVocabulary:
+    Input: processed_summaries.txt
+    Output: raw_vocabulary.txt (format: <id>,<word>,<count>)
+
+    Using processed summaries of all the movies, generates a vocabulary
+    and dumps them in raw_vocabulary.
+
+################################################################
+(III) cleanVocabulary:
+    Input: raw_vocabulary.txt
+    Output: clean_vocabulary.txt (format: <id>, <word>)
+
+    Based on some heuristics and counts, the head and tail of vocabulary
+    is cleaned giving rise to more meaninful set of words to represent
+    summaries.
+
+################################################################
+(IV) dumpFeatures:
+    Input: processed_summaries.txt 
+            clean_vocabulary.txt
+    Output: summaryfeatures.txt 
+
+    Comparing and dealing with numbers is easier than words themselves. With 
+    vocabulary file acting as an index, processed summaries are dumped as 
+    features based on the cleaned vocabulary.
+
+################################################################
+(V) seperateTrainAndTest:
+    Input: summaryfeatures.txt 
+            IDmap.csv
+
+    Output: summaryfeatures_train.txt, summaryfeature_test.txt
+
+    Comparing the two databases, train and test are seperated out. Movies
+    present in both the datases are dumped in train and others in test.
+    This goes into the JAVA component along with cleaned_vocabulary.txt.
+################################################################

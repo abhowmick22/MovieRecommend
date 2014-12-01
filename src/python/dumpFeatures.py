@@ -3,8 +3,8 @@ import sys;
 import re;
 
 # Reading processed summaries and vocabulary 
-summaryFile = open('../../data/processed_summaries_nostemming.txt', 'r');
-vocabFile = open('../../data/sortedVocab_majorremoved.txt', 'r');
+summaryFile = open('../../data/nostemming/processed_summaries.txt', 'r');
+vocabFile = open('../../data/nostemming/clean_vocabulary.txt', 'r');
 #vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
 
 # Checking for existance of files
@@ -44,7 +44,7 @@ for i in vocabLines:
 index['{'] = len(words);
 
 # Opening a file to dump feature for the movie plots
-featureFile = open('../../data/summaryFeatures_majorremoved.txt', 'wb');
+featureFile = open('../../data/nostemming/summaryfeatures.txt', 'wb');
 
 # For each movie summary find the indices of words and dump them as feature vectors
 iterId = 0;
