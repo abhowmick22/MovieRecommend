@@ -2,6 +2,7 @@ package main.lda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /*
  * This is the main module that models the corpus, using variational
@@ -56,12 +57,19 @@ public class TopicModeler {
 			likelihood = 0;
 			//System.out.println("Running inference on documents...");
 	
-			for(int i=0; i<nDocs; i++){
-				//if(i%200 == 0){
-					//System.out.format("Running inference on document : %d\n", i);
-				//}
+			// TODO: Choose batches of docs
+			List<Document> batch = new ArrayList<Document>();
+			int batchSize = 1;
+			int b=0;
+			Random rand = new Random();
+			
+			//for(int i=0; i<nDocs; i++){
+			for(int i=0; i<batchSize; i++){
+				b = rand.nextInt(nDocs);
+				System.out.format("Running inference on document : %d\n", b);
 				
-				likelihood += infBlock.infer(docs.get(i), model, conf);	
+				likelihood += infBlock.infer(docs.get(b), model, conf);
+				//likelihood += infBlock.infer(docs.get(i), model, conf);	
 			}
 
 			System.out.println(likelihood);

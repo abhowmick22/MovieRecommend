@@ -25,8 +25,8 @@ public class EMTest {
 		// Path to the file
 
 		// Testing with full fledged, all words
-		String corpusPath = "data/stemming/summaryfeatures.txt";
-		String vocabPath = "data/stemming/clean_vocabulary.txt";
+		String corpusPath = "data/nostemming/summaryfeatures.txt";
+		String vocabPath = "data/nostemming/clean_vocabulary.txt";
 		
 		Corpus movieSummaries;
 		Vocabulary movieVocab;
@@ -54,8 +54,8 @@ public class EMTest {
 		model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 
 		// Dumping the model and log files along with messages for human interpretation
-		model.dumpLogFile("data/stemming/logDumpMethod.txt", "Logfile dumped from method");
-		model.dumpModeltoFile("data/stemming/modelDumpMethod.txt", "Model file dumped from method");
+		model.dumpLogFile("data/nostemming/logDumpMethod.txt", "Logfile dumped from method");
+		model.dumpModeltoFile("data/nostemming/modelDumpMethod.txt", "Model file dumped from method");
 
 		// Debugging - getting the number of words for each topic
 		//model.getTopicWords(30);

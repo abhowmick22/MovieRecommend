@@ -127,8 +127,10 @@ public class Utilities {
 		
 		// Computing some constant terms 
 		double alphaElemSum = 0;
-		for(int i = 0; i < noTopics; i++)
-			alphaElemSum += alpha.getEntry(i);			
+		for(int i = 0; i < noTopics; i++){
+			System.out.println("alpha entry has become " + alpha.getEntry(i));
+			alphaElemSum += alpha.getEntry(i);
+		}
 		
 		double diGammaAlphaSum = this.diGamma(alphaElemSum);
 		
@@ -138,7 +140,6 @@ public class Utilities {
 			
 			for(int j = 0; j < noTopics; j++)
 				gammaSum += gamma.get(i).getEntry(j);
-			
 			diGammaDocSum += this.diGamma(gammaSum);
 		}
 		
@@ -153,6 +154,7 @@ public class Utilities {
 			}
 			diGammaDocTerm -= diGammaDocSum;
 			
+			System.out.println("alpha entry - " + alpha.getEntry(i));
 			gradComponent = noDocuments * (diGammaAlphaSum - this.diGamma(alpha.getEntry(i))) + diGammaDocTerm;
 			gradient.setEntry(i, gradComponent);
 		}
@@ -238,6 +240,7 @@ public class Utilities {
 	
 	// This is the taylor approximation of the first derivative of the log gamma function
 	public double diGamma(double input){
+		//System.out.println(input);
 		return Gamma.digamma(input);
 	}
 	

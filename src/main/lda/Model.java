@@ -105,7 +105,6 @@ public class Model {
 	}
 	
 	// method to return the top K words from each topic
-	// TODO : Implement this method
 	public List<List<String> > getTopicWords(int wordsPerTopic){
 		
 		//List of top words for each topic;
@@ -159,13 +158,9 @@ public class Model {
 		// Printing the top words
 		for(int i = 0; i < topWords.size(); i++){
 			System.out.println(topWords.get(i));
-			//System.out.println(topWordVals.get(i));
+			System.out.println(topWordVals.get(i));
 			//System.out.println("\n");
 		}
-		
-		//System.out.println(topWords);
-		//System.out.println(topWordVals);
-		//System.out.println("\n\n");
 		
 		return topWords;
 	}
