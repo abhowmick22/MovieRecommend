@@ -8,8 +8,8 @@ import csv, codecs, cStringIO
 from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
 
-inFile = open('../../data/plot_summaries_train.txt', 'r')
-outFile = open('../../data/stemming/processed_summaries_train.txt', 'w')
+inFile = open('../../data/plot_summaries_1.txt', 'r')
+outFile = open('../../data/nostemming/processed_summaries_1.txt', 'w')
 csvout = csv.writer(outFile, delimiter=',')
 
 # Generating list of punctuations and stopwords to compare the words against;
@@ -45,7 +45,7 @@ for line in inFile.readlines() :
     words = [word for word in words if word not in stopWords];
 
     # Stemming the words
-    words = [stemmer.stem(word) for word in words]
+    #words = [stemmer.stem(word) for word in words]
 
     # Converting characters to remove coding effects
     words = [word.replace(u'\u2014',u'-') for word in words]

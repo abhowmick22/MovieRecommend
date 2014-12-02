@@ -94,7 +94,7 @@ parser.add_argument("-n", dest ='number',
 args = parser.parse_args()
 
 # use our movie summaries 
-f = open('plot_summaries.txt', 'r');
+f = open('../../data/plot_summaries_test.txt', 'r');
 
 
 # if asked to do tfidf 

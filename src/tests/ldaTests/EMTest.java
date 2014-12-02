@@ -1,20 +1,11 @@
 package tests.ldaTests;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-
-import org.apache.commons.math3.special.Gamma;
-
 import main.lda.Configs;
 import main.lda.Corpus;
-import main.lda.EstimatorBlock;
-import main.lda.InferenceBlock;
 import main.lda.Model;
 import main.lda.TopicModeler;
 import main.lda.Vocabulary;
-import main.lda.Document;
 
 //Class to test the EM algorithm for LDA analysis
 public class EMTest {
@@ -25,8 +16,8 @@ public class EMTest {
 		// Path to the file
 
 		// Testing with full fledged, all words
-		String corpusPath = "data/nostemming/summaryfeatures.txt";
-		String vocabPath = "data/nostemming/clean_vocabulary.txt";
+		String corpusPath = "data/nostemming/summaryfeatures_1.txt";
+		String vocabPath = "data/nostemming/clean_vocabulary_1.txt";
 		
 		Corpus movieSummaries;
 		Vocabulary movieVocab;
@@ -54,8 +45,8 @@ public class EMTest {
 		model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 
 		// Dumping the model and log files along with messages for human interpretation
-		model.dumpLogFile("data/nostemming/logDumpMethod.txt", "Logfile dumped from method");
-		model.dumpModeltoFile("data/nostemming/modelDumpMethod.txt", "Model file dumped from method");
+		model.dumpLogFile("data/nostemming/logDumpMethod_1.txt", "Logfile dumped from method");
+		model.dumpModeltoFile("data/nostemming/modelDumpMethod_1.txt", "Model file dumped from method");
 
 		// Debugging - getting the number of words for each topic
 		//model.getTopicWords(30);

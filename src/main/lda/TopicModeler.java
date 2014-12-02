@@ -63,13 +63,13 @@ public class TopicModeler {
 			int b=0;
 			Random rand = new Random();
 			
-			//for(int i=0; i<nDocs; i++){
-			for(int i=0; i<batchSize; i++){
-				b = rand.nextInt(nDocs);
-				System.out.format("Running inference on document : %d\n", b);
+			for(int i=0; i<nDocs; i++){
+			//for(int i=0; i<batchSize; i++){
+				//b = rand.nextInt(nDocs);
+				System.out.format("Running inference on document : %d\n", i);
 				
-				likelihood += infBlock.infer(docs.get(b), model, conf);
-				//likelihood += infBlock.infer(docs.get(i), model, conf);	
+				//likelihood += infBlock.infer(docs.get(b), model, conf);
+				likelihood += infBlock.infer(docs.get(i), model, conf);	
 			}
 
 			System.out.println(likelihood);

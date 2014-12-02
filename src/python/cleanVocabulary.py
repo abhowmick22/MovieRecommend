@@ -4,8 +4,8 @@ import re;
 import operator;
 
 # Reading processed summaries and vocabulary 
-summaryFile = open('../../data/stemming/processed_summaries_train.txt', 'r');
-vocabFile = open('../../data/stemming/raw_vocabulary.txt', 'r');
+summaryFile = open('../../data/nostemming/processed_summaries_1.txt', 'r');
+vocabFile = open('../../data/nostemming/raw_vocabulary_1.txt', 'r');
 #vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
 
 # Checking for existance of files
@@ -65,7 +65,7 @@ for i in sortedWords:
 
 
 # Restructing the vocabulary and dumping it
-newVocabFile = open('../../data/stemming/clean_vocabulary.txt', 'wb');
+newVocabFile = open('../../data/nostemming/clean_vocabulary_1.txt', 'wb');
 vocabCount = 0;
 for i in newVocabLines:
     splits = i.split(',');
