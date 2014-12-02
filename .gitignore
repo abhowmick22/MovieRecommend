@@ -3,6 +3,9 @@
 # Satwik local ignores
 # Binaries created locally
 bin/
+src/tests/ldaTests/modelDumpMethod.txt
+src/tests/ldaTests/logDumpMethod.txt
+src/tests/ldaTests/modelDump.txt
 
 #Library used for algebra
 la4j-0.4.9/*
