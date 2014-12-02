@@ -6,7 +6,7 @@ import string
 from nltk.corpus import stopwords
 
 # Reading processed summaries and vocabulary 
-summaryFile = open('../../data/nostemming/processed_summaries.txt', 'r');
+summaryFile = open('../../data/stemming/processed_summaries_train.txt', 'r');
 #vocabFile = open('../../data/sortedVocab_majorremoved.txt', 'r');
 #vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
 
@@ -22,7 +22,7 @@ summaryLines = [s.rstrip("\n\r") for s in summaryFile.readlines()]
 summaryFile.close();
 
 # Opening a file to dump feature for the movie plots
-sortedVocabFile = open('../../data/nostemming/raw_vocabulary.txt', 'wb');
+sortedVocabFile = open('../../data/stemming/raw_vocabulary.txt', 'wb');
 
 # For each movie summary find the indices of words and dump them as feature vectors
 iterId = 0;

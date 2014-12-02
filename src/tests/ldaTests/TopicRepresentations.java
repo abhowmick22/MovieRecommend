@@ -17,8 +17,8 @@ public class TopicRepresentations {
 	public static void main(String[] args){
 		
 				// Path to the file
-				String corpusPath = "data/summaries_debug_big_nostemming.txt";
-				String vocabPath = "data/cleanedVocab_nostemming_allwords.txt";
+				String corpusPath = "data/nostemming/summaryfeatures.txt";
+				String vocabPath = "data/nostemming/clean_vocabulary.txt";
 				
 				Corpus movieSummaries;
 				Vocabulary movieVocab;
@@ -38,7 +38,7 @@ public class TopicRepresentations {
 				model.initModel(movieSummaries, conf, movieVocab);
 		
 				// Reading from the file
-				model.readModelFromFile("src/tests/ldaTests/modelDumpMethod.txt");
+				model.readModelFromFile("data/nostemming/modelDumpMethod.txt");
 				
 				
 				List<List<String> > topics = model.getTopicWords(10);

@@ -4,8 +4,8 @@ import re;
 import operator;
 
 # Reading processed summaries and vocabulary 
-summaryFile = open('../../data/nostemming/processed_summaries.txt', 'r');
-vocabFile = open('../../data/nostemming/raw_vocabulary.txt', 'r');
+summaryFile = open('../../data/stemming/processed_summaries_train.txt', 'r');
+vocabFile = open('../../data/stemming/raw_vocabulary.txt', 'r');
 #vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
 
 # Checking for existance of files
@@ -65,7 +65,7 @@ for i in sortedWords:
 
 
 # Restructing the vocabulary and dumping it
-newVocabFile = open('../../data/nostemming/clean_vocabulary.txt', 'wb');
+newVocabFile = open('../../data/stemming/clean_vocabulary.txt', 'wb');
 vocabCount = 0;
 for i in newVocabLines:
     splits = i.split(',');
@@ -100,7 +100,7 @@ for i in newVocabLines:
 index['{'] = vocabCount;
 # Opening a file to dump feature for the movie plots
 
-featureFile = open('../../data/summaryFeatures_nostemming_cleaned.txt', 'wb');
+featureFile = open('../../data/summaryFeatures_stemming_cleaned.txt', 'wb');
 
 # For each movie summary find the indices of words and dump them as feature vectors
 iterId = 0;

@@ -15,8 +15,8 @@ public class ModelTest {
 	/************************************************************/
 	public static void main(String[] args){
 		// Path to the file
-		String corpusPath = "data/summaries_debug_big_nostemming.txt";
-		String vocabPath = "data/sortedVocab_nostemming.txt";
+		String corpusPath = "data/nostemming/summaryfeatures.txt";
+		String vocabPath = "data/nostemming/clean_vocabulary.txt";
 		
 		Corpus movieSummaries;
 		Vocabulary movieVocab;

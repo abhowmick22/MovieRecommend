@@ -1,5 +1,5 @@
 ################################################################
-    README for Pre-processing vocaulary
+    README for Pre-processing vocabulary
 ################################################################
 
 Input to the pre-processing pipeline:
@@ -15,7 +15,7 @@ Input to the pre-processing pipeline:
     Subset of all the summaries used for testing LDA.
 
 ################################################################
-All files are dumped or read from following folders:
+All files are dumped to or read from following folders:
 
 (a) ../../data/
     + plot_summaries.txt 
@@ -74,9 +74,9 @@ Pre-processing consists of following steps:
     Input: summaryfeatures.txt 
             IDmap.csv
 
-    Output: summaryfeatures_train.txt, summaryfeature_test.txt
+    Output: summaryfeatures_train.txt, summaryfeatures_test.txt
 
-    Comparing the two databases, train and test are seperated out. Movies
+    Comparing the two databases, train and test are separated out. Movies
     present in both the datases are dumped in train and others in test.
     This goes into the JAVA component along with cleaned_vocabulary.txt.
 ################################################################

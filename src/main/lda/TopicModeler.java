@@ -50,14 +50,15 @@ public class TopicModeler {
 		
 		while((iters < maxIters) && (convergence > emConv)){
 
+			System.out.println("Running iteration " + iters);
 			// E-step for each document
 			// update the variational parameters in the model
 			likelihood = 0;
-			System.out.println("Running inference on documents...");
+			//System.out.println("Running inference on documents...");
 	
 			for(int i=0; i<nDocs; i++){
 				//if(i%200 == 0){
-					System.out.format("Running inference on document : %d\n", i);
+					//System.out.format("Running inference on document : %d\n", i);
 				//}
 				
 				likelihood += infBlock.infer(docs.get(i), model, conf);	

@@ -19,9 +19,9 @@ public class EstimatorTest {
 	/************************************************************/
 	public static void main(String[] args){
 		// Path to the file
-		String corpusPath = "data/summariesTrain.txt";
+		String corpusPath = "data/nostemming/summaryfeatures.txt";
 		//String corpusPath = "data/summaries_debug.txt";
-		String vocabPath = "data/sortedVocab.txt";
+		String vocabPath = "data/nostemming/clean_vocabulary.txt";
 
 		Corpus movieSummaries;
 		Vocabulary movieVocab;
@@ -31,7 +31,7 @@ public class EstimatorTest {
 		//Creating the file to read the documents from
 		File documentFile = new File(corpusPath);
 		File vocabFile = new File(vocabPath);
-		File modelDump = new File("src/tests/ldaTests/modelDump.txt");
+		File modelDump = new File("data/nostemming/modelDump.txt");
 		PrintWriter writer = null;
 		try {
 			writer = new PrintWriter(modelDump, "UTF-8");
@@ -52,31 +52,33 @@ public class EstimatorTest {
 		Configs conf = new Configs();
 		conf.setNbrTopics(10);
 
-		//();
 		
 		// Initialize the model
 		model.initModel(movieSummaries, conf, movieVocab);
 		System.out.println("Created the model!");
 		writer.println("After INIT \n----------------\n\n");
 		writer.println("Hyperparameters:\n\n");
-		writer.println("Initial alpha: " + model.getAlpha());
-		writer.println("Initial beta: " + model.getBeta());
+		//writer.println("Initial alpha: " + model.getAlpha());
+		//writer.println("Initial beta: " + model.getBeta());
 		writer.println("Variational parameters:\n\n");
-		writer.println("Initial gamma: " + model.getGamma());
-		writer.println("Initial phi: " + model.getPhi());
-
+		
+		//writer.println("Initial gamma: " + model.getGamma());
+		//writer.println("Initial phi: " + model.getPhi());
+		
 		// Do the estimation given current model, i.e. initial
 		est.estimate(movieSummaries, model, conf);
 
 		// Write out the file to a dump
 		writer.println("After ESTIMATION \n----------------\n\n");
 		writer.println("Hyperparameters:\n\n");
-		writer.println("Initial alpha: " + model.getAlpha());
-		writer.println("Initial beta: " + model.getBeta());
+		//writer.println("Initial alpha: " + model.getAlpha());
+		//writer.println("Initial beta: " + model.getBeta());
 		writer.println("Variational parameters:\n\n");
-		writer.println("Initial gamma: " + model.getGamma());
-		writer.println("Initial phi: " + model.getPhi());
-
+		//writer.println("Initial gamma: " + model.getGamma());
+		//writer.println("Initial phi: " + model.getPhi());
+		
+		writer.flush();
+		
 	}
 	/************************************************************/
 }

@@ -375,10 +375,10 @@ public class Model {
 		}
 		
 		// get the docIndex from the map
-		int docIndex = this.corpus.getMovieToIndexMap().get(wikiId);
+		Integer docIndex = this.corpus.getMovieToIndexMap().get(wikiId);
 		
 		// get the corresponding entry from gamma
-		estimate = this.gamma.get(docIndex).toArray();
+		if(!docIndex.equals(null))	estimate = this.gamma.get(docIndex).toArray();
 		
 		return estimate;
 	}

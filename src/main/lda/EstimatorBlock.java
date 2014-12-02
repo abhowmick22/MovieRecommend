@@ -23,7 +23,6 @@ public class EstimatorBlock {
 		int vocabSize = model.getVocabSize();
 		int nbrDocs = corpus.getNbrDocs();
 		int nbrWords;
-		double b = 0;
 		List<Document> documents = corpus.getDocs();
 		Document doc;
 		RealVector alpha = model.getAlpha();

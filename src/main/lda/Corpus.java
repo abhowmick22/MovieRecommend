@@ -45,7 +45,7 @@ public class Corpus {
 	}
 	
 	/************************************************************/
-	// Constructor, takes in the file path and
+	// Constructor, takes in the file path to summary features and
 	// populates all the members
 	public Corpus(File data){
 		System.out.println("Reading the corpus...");
