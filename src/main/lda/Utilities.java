@@ -51,6 +51,7 @@ public class Utilities {
 			
 			// Obtaining the gradient 
 			gradient = this.computeGradient(newAlpha, gamma);
+
 			//gradient = this.normalizeL2(gradient);
 			//System.out.println("Gradient : " + gradient);
 			//System.out.println("Gradient Magnitude:" + gradient.getNorm() + " " + gamma.size());
@@ -64,6 +65,12 @@ public class Utilities {
 			hessianConst = this.computeHessianConstant(newAlpha);
 			//System.out.println("Constant : " + hessianDiag);
 			//System.out.format("Hessian constant norm: %f\n", hessianConst);
+			
+			// Obtaining the hessian diagonal
+			hessianDiag = this.computeHessianDiag(newAlpha, gamma.size());
+			
+			// Obtaining the hessian constant
+			hessianConst = this.computeHessianConstant(newAlpha);
 			
 			// Obtaining the increment in alpha
 			alphaIncrement = this.computeNRStep(hessianDiag, hessianConst, gradient);
