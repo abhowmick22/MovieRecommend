@@ -38,7 +38,7 @@ public class TopicRepresentations {
 				model.initModel(movieSummaries, conf, movieVocab);
 		
 				// Reading from the file
-				model.readModelFromFile("data/nostemming/modelDumpMethod.txt");
+				model.readModelFromFile("data/nostemming/modelDump_entire.txt");
 				
 				
 				List<List<String> > topics = model.getTopicWords(10);
