@@ -48,37 +48,23 @@ public class Utilities {
 		
 		// Limiting the number of iterations
 		for(int i = 0; i < configs.getMaxNRIterations(); i++){
-			
+					
 			// Obtaining the gradient 
 			gradient = this.computeGradient(newAlpha, gamma);
 
 			//gradient = this.normalizeL2(gradient);
-			//System.out.println("Gradient : " + gradient);
-			//System.out.println("Gradient Magnitude:" + gradient.getNorm() + " " + gamma.size());
 			
 			// Obtaining the Hessian diagonal
 			hessianDiag = this.computeHessianDiag(newAlpha, gamma.size());
-			//System.out.println("Diagonal : " + hessianDiag);
-			//System.out.format("Hessian diagonal norm: %f\n", hessianDiag.getNorm());
 			
 			// Obtaining the Hessian constant
-			hessianConst = this.computeHessianConstant(newAlpha);
-			//System.out.println("Constant : " + hessianDiag);
-			//System.out.format("Hessian constant norm: %f\n", hessianConst);
-			
-			// Obtaining the hessian diagonal
-			hessianDiag = this.computeHessianDiag(newAlpha, gamma.size());
-			
-			// Obtaining the hessian constant
 			hessianConst = this.computeHessianConstant(newAlpha);
 			
 			// Obtaining the increment in alpha
 			alphaIncrement = this.computeNRStep(hessianDiag, hessianConst, gradient);
-			//System.out.println("Increment : " + alphaIncrement + "\n");
-			//System.out.println("Increment magnitude: " + alphaIncrement.getNorm());
 			
 			// Checking if increment is within the threshold, exist if yes
-			if(alphaIncrement.getNorm() < configs.getAlphaChangeThreshold()){
+			if(alphaIncrement.getNorm()/initAlpha.getNorm() < configs.getAlphaChangeThreshold()){
 				System.out.println("NR iterations converged after " + i + " steps!");
 				break;
 			}
@@ -88,12 +74,146 @@ public class Utilities {
 			//double learningRate = 1.0;
 			
 			newAlpha = newAlpha.add(alphaIncrement);
-			//newAlpha = newAlpha.add(alphaIncrement.mapMultiply(learningRate));
-		}
+			
+			
+			//System.out.println("Alpha : " + newAlpha);
+			
+			//Checking if any of the values of updated values of alpha is negative, if yes retry with smaller alpha init
+			/*for(int j = 0; j < newAlpha.getDimension(); j++){
+				if(newAlpha.getEntry(j) < 0){
+					// Re-try with smaller value of initAlpha
+					System.out.println("Using a smaller initial estimate for alpha\n\n");
+					return performNR(configs, initAlpha.mapDivide(2.0), gamma);
+				}
+			}*/
+			
+			//newAlpha = newAlpha.add(alphaIncrements.mapMultiply(learningRate));
+			
+			// Debug messages
+			//System.out.println("Mag: " + gradient.getNorm() + " " + gradient);
+			//System.out.println("Gradient Magnitude:" + gradient.getNorm() + " " + gamma.size());
+			//System.out.println("Diagonal : " + hessianDiag);
+			//System.out.format("Hessian diagonal norm: %f\n", hessianDiag.getNorm());
+			//System.out.println("Constant : " + hessianDiag);
+			//System.out.format("Hessian constant norm: %f\n", hessianConst);
+			//System.out.println("Increment : " + alphaIncrement + "\n");
+			//System.out.println("Increment magnitude: " + alphaIncrement.getNorm());
+			
+			}
 
 		System.out.println("NR iterations completed or exhausted");
 		return newAlpha;
 	}
+	
+	// Newton Raphson implemented as given in matlab package
+	RealVector newtonRaphson(Configs configs, RealVector initAlpha, List<RealVector> gamma){
+		// Extracting number of topics and documents
+		int noTopics = initAlpha.getDimension();
+		int noDocs = gamma.size();
+		
+		// Compute iteration independent terms
+		RealVector gradient = new ArrayRealVector(noTopics);
+		
+		RealVector gammaTopicTerm = new ArrayRealVector(noTopics);
+		//For each document
+		double docTopicSum;
+		double previousTerm, updatedTerm;
+		for(int i = 0; i < noDocs; i++){
+			docTopicSum = 0;
+			//Get the sum of gammas for that document and all topics
+			for(int j = 0; j < noTopics; j++)
+				docTopicSum += gamma.get(i).getEntry(j);
+			
+			docTopicSum = this.diGamma(docTopicSum);
+			
+			// Contribution to each topic
+			for(int j = 0; j < noTopics; j++){
+				previousTerm = gammaTopicTerm.getEntry(j);
+				updatedTerm = previousTerm + this.diGamma(gamma.get(i).getEntry(j)) - docTopicSum;
+				gammaTopicTerm.setEntry(j, updatedTerm);	
+			}
+		}
+		
+		RealVector iterAlpha = initAlpha.copy();
+		
+		////////////////////////////////////////////////////////////////////////////////
+		// Running the NR iteration
+		double alphaSum;
+		RealVector previousAlpha = new ArrayRealVector(noTopics);
+		RealVector hessianVector = new ArrayRealVector(noTopics);
+
+		double hessianScalar;
+		
+		//for(int i = 0; i < configs.getMaxNRIterations(); i++){
+		for(int i = 0; i < 2; i++){
+			System.out.println("Alpha : " + iterAlpha);
+			
+			alphaSum = 0;
+			//Summing the elements of iterAlpha
+			for(int j = 0; j < noTopics; j++)
+				alphaSum += iterAlpha.getEntry(j); 
+			
+		
+			// Evaluating the gradient
+			double gradTerm = 0;
+			for(int j = 0; j < noTopics; j++){
+				gradTerm = noDocs * (this.diGamma(alphaSum) 
+						- this.diGamma(iterAlpha.getEntry(j))) 
+						+ gammaTopicTerm.getEntry(j);
+				
+				gradient.setEntry(j, gradTerm);
+			}
+			
+			// Evaluating the hessian vector component
+			for(int j = 0; j < noTopics; j++){
+				hessianVector.setEntry(j, -1.0/this.triGamma(alphaSum));
+			}
+			
+			// Evaluating the hessian scalar component
+			// Computing hessianVector sum of elements and numerator of hessianScalar
+			hessianScalar = 0; 
+			double sumHessianVector = 0;
+			for(int j = 0; j < noTopics; j++){
+				sumHessianVector += hessianVector.getEntry(j);
+				hessianScalar += hessianVector.getEntry(j) * gradient.getEntry(j);
+			}
+			
+			hessianScalar = hessianScalar / (sumHessianVector + 1/this.triGamma(alphaSum));
+			
+			// Updating alpha using NR rule
+			double newAlphaComp = 0;
+			for(int j = 0; j < noTopics; j++){
+				newAlphaComp = iterAlpha.getEntry(j) 
+						+ hessianVector.getEntry(j) * (gradient.getEntry(j) - hessianScalar ) / noDocs;
+				
+				
+				// Checking if any of the elements of alpha is negative
+				if(newAlphaComp < 0){
+					System.out.println("Re-starting with scaled down version of alpha");
+					// Re-start with scaled down value of initAlpha, if yes
+					return newtonRaphson(configs, initAlpha.mapDivide(10.0), gamma);
+				}
+				
+				// Else update the element of alpha
+				iterAlpha.setEntry(j, newAlphaComp);
+			}
+				
+			// Check for convergence based on increment
+			if(iterAlpha.subtract(previousAlpha).getNorm() / iterAlpha.getNorm() < configs.getEmConvergence()){
+				// Return current alpha and exit the method
+				System.out.format("Exiting NR method after %d iterations \n", i);
+				return iterAlpha;
+			}
+			
+			// Update the previous value of alpha for next iteration 
+			previousAlpha = iterAlpha.copy();
+		}
+		
+		System.out.println("Exiting NR method after exhausting iterations!");
+		
+		return previousAlpha;
+	}
+	
 		
 	/*
 	 * Methods specific to Newton Raphson
@@ -135,11 +255,12 @@ public class Utilities {
 		// Computing some constant terms 
 		double alphaElemSum = 0;
 		for(int i = 0; i < noTopics; i++){
-			System.out.println("alpha entry has become " + alpha.getEntry(i));
+			//System.out.println("alpha entry has become " + alpha.getEntry(i));
 			alphaElemSum += alpha.getEntry(i);
 		}
 		
 		double diGammaAlphaSum = this.diGamma(alphaElemSum);
+		
 		
 		double diGammaDocSum = 0;
 		for (int i = 0; i < noDocuments; i++){
@@ -147,8 +268,11 @@ public class Utilities {
 			
 			for(int j = 0; j < noTopics; j++)
 				gammaSum += gamma.get(i).getEntry(j);
+			
+			//System.out.format("%f %f\n", gammaSum, 1.0f);
 			diGammaDocSum += this.diGamma(gammaSum);
 		}
+		
 		
 		// Computing the gradient value
 		RealVector gradient = new ArrayRealVector(noTopics);
@@ -161,7 +285,6 @@ public class Utilities {
 			}
 			diGammaDocTerm -= diGammaDocSum;
 			
-			System.out.println("alpha entry - " + alpha.getEntry(i));
 			gradComponent = noDocuments * (diGammaAlphaSum - this.diGamma(alpha.getEntry(i))) + diGammaDocTerm;
 			gradient.setEntry(i, gradComponent);
 		}
@@ -280,7 +403,7 @@ public class Utilities {
 			colDimension = input.getRowDimension();
 			sum = new ArrayRealVector(colDimension);
 			for (int i=0; i<rowDimension; i++)
-				sum = sum.add(input.getRowVector(i));
+				sum = sum.add(input.getRowVector(i));   
 		}
 		
 		return sum;

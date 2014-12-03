@@ -57,31 +57,28 @@ public class TopicModeler {
 			likelihood = 0;
 			//System.out.println("Running inference on documents...");
 	
-			// TODO: Choose batches of docs
-			List<Document> batch = new ArrayList<Document>();
-			int batchSize = 1;
-			int b=0;
-			Random rand = new Random();
-			
+			// Runs for all the documens (runs wihtout error)
 			for(int i=0; i<nDocs; i++){
-			//for(int i=0; i<batchSize; i++){
-				//b = rand.nextInt(nDocs);
-				System.out.format("Running inference on document : %d\n", i);
+				if(i%100 == 0) 
+					System.out.format("Running inference on document : %d\n", i);
 				
-				//likelihood += infBlock.infer(docs.get(b), model, conf);
-				likelihood += infBlock.infer(docs.get(i), model, conf);	
+				infBlock.inferDocument(docs.get(i), model, conf);
+				//likelihood += infBlock.infer(docs.get(i), model, conf);	
 			}
-
-			System.out.println(likelihood);
-			//System.out.println(likelihood);
-			//System.out.println("\n\n\n");
+			
+			System.out.format("Likelihood : %f \n\nRunning estimation!\n" , likelihood);
+			
 			// M-step
+			
+			//System.out.println("\n\nAlpha before : " + model.getAlpha());
 			estBlock.estimate(corpus, model, conf);
-
+			//System.out.println("Alpha after : " + model.getAlpha() + "\n\n");
+			
 			// calculate and check for convergence
-			convergence = Math.abs((likelihood - prevLikelihood) / prevLikelihood); 
-			prevLikelihood = likelihood;
+			//convergence = Math.abs((likelihood - prevLikelihood) / prevLikelihood); 
+			//prevLikelihood = likelihood;
 			iters++;
+			break;
 		}
 		
 		return model;

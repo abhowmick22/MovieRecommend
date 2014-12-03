@@ -75,6 +75,7 @@ public class InferenceBlock {
 			//System.out.println(gamma + " \n" + iters);
 			// TODO : Reflect changes back in the model
 			// Update the model
+			//System.out.println("Gamma sum : " + gamma.);
 			model.setGammaSingle(gamma, docIndex);
 			model.setPhiSingle(phi, docIndex);
 			
@@ -165,5 +166,64 @@ public class InferenceBlock {
 		}
 		
 		return likelihood;
+	}
+	
+	// Inference per document 
+	// Matlab based simpler / faster implementation
+	public void inferDocument(Document doc, Model model, Configs conf){
+		// Returns the real vector that can be used to update beta	
+		
+		// Initializing parameters and variables
+		// This is the variational inference algorithm in the LDA paper
+		int docIndex = doc.getDocId();
+		int nTops = model.getNbrTopics();
+		int nWords = doc.getDocSize();
+		
+		List<Integer> words = doc.getWordIds();
+		Utilities utils = new Utilities();
+		RealVector gammaIncrement;
+		
+		
+		// Get alpha and beta
+		RealVector alpha = model.getAlpha();
+		RealMatrix beta = model.getBeta();
+
+		// Initialize phi
+		RealMatrix phi = new Array2DRowRealMatrix(nTops, nWords);
+		phi = phi.scalarAdd(1.0/(double) nTops);
+
+		// Initialize gamma
+		RealVector gamma = new ArrayRealVector(nTops, nWords/(double)nTops);
+		gamma = alpha.add(gamma);
+
+		// Convergence
+		for(int iters = 0; iters < conf.getVarIters(); iters++){
+			int wordindex;
+			RealVector phiCol;
+			for(int n = 0; n < nWords; n++){
+				wordindex = words.get(n);
+
+				phiCol = phi.getColumnVector(n);
+				for(int i = 0; i<nTops; i++){
+					phiCol.setEntry(i, (beta.getEntry(i, wordindex) *
+							Math.exp(utils.diGamma(gamma.getEntry(i)))));
+				}
+				// normalize phiCol and set it back to phi
+				phi.setColumn(n, utils.normalize(phiCol.toArray()));
+			}
+
+			// update \gamma
+			gammaIncrement = utils.matSumAlongDim(phi, 2);
+			
+			// Checking for convergence and breaking if met
+			if(gammaIncrement.getNorm() / gamma.getNorm() < conf.getVarConvergence()){
+				break;
+			}
+			gamma = alpha.add(gammaIncrement);			
+		}
+		
+		// Update the model
+		model.setGammaSingle(gamma, docIndex);
+		model.setPhiSingle(phi, docIndex);
 	}
 }

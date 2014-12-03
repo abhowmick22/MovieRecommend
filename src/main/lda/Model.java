@@ -64,15 +64,22 @@ public class Model {
 		Utilities utils = new Utilities();
 		phi = new ArrayList<RealMatrix>();
 		gamma = new ArrayList<RealVector>();
+
+		// Random number generator with some seed
+		Random rand = new Random(10701);
 		
-		// initialize alpha, with all values set to 1
-		this.alpha = new ArrayRealVector(this.nbrTopics, (double) 2.0);
+		// initialize alpha, with all values set to 2 (or random)
+		this.alpha = new ArrayRealVector(this.nbrTopics, 2.0);
+		// Assigning random values to alphas
+		//for(int i = 0; i < this.nbrTopics; i++){
+		//	this.alpha.setEntry(i, rand.nextDouble());
+		//}
+
 		// initialize beta
 		this.beta = new Array2DRowRealMatrix(this.nbrTopics, this.wordsPerTopic);
 		
-		// init the values of beta, by randomizing and normalizing over the rows
-		Random rand = new Random(10701);
 		double[] row;
+		// init the values of beta, by randomizing and normalizing over the rows
 		for(int i=0; i<beta.getRowDimension(); i++){
 			for(int j=0; j<beta.getColumnDimension(); j++){
 				beta.setEntry(i, j, rand.nextDouble());
@@ -80,6 +87,13 @@ public class Model {
 			
 			row = beta.getRow(i);
 			row = utils.normalize(row);
+			
+			// Checking if the rows are actually normalized
+			double sum = 0;
+			for(int j = 0; j < beta.getColumnDimension(); j++){
+				sum += row[j];
+			}					
+			
 			beta.setRow(i, row);
 		}	
 		
@@ -94,7 +108,7 @@ public class Model {
 			
 			// Initialize gamma for each document
 			RealVector gammaSingle = new ArrayRealVector(nbrTopics);
-			
+		
 			this.phi.add(phiSingle);
 			this.gamma.add(gammaSingle);
 			

@@ -61,8 +61,9 @@ public class EstimatorBlock {
 
 
 		// Estimate alpha by Newton-Raphson iterations
-		//System.out.println("ip alpha " + alpha + " \n");
-		//System.out.println("ip gamma " + model.getGamma() + " \n");
+		
+		System.out.println("Entering NR iterations");
+		//alpha = utils.newtonRaphson(conf, alpha, model.getGamma());
 		alpha = utils.performNR(conf, alpha, model.getGamma());
 		//System.out.println("gamma " + model.getGamma() + " \n");
 		//System.out.println("alpha " + alpha + " \n");

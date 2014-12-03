@@ -40,8 +40,8 @@ public class Configs {
 		this.emConvergence = 1e-2;
 		
 		// Parameters for NR method
-		this.setMaxNRIterations(1e4);
-		this.setAlphaChangeThreshold(1e-5);
+		this.setMaxNRIterations(1e3);
+		this.setAlphaChangeThreshold(1e-6);
 	}
 	
 	// setters
