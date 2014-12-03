@@ -32,7 +32,9 @@ public class EstimatorBlock {
 		Utilities utils = new Utilities();
 		
 		// estimate beta
-		RealMatrix beta = new Array2DRowRealMatrix(nbrTopics, vocabSize);
+		//RealMatrix beta = new Array2DRowRealMatrix(nbrTopics, vocabSize);
+		//Using the previous beta from the model
+		RealMatrix beta = model.getBeta();
 		
 		// For each document
 		for(int docId = 0; docId < nbrDocs; docId++){

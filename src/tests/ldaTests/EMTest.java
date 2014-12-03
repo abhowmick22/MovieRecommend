@@ -35,7 +35,7 @@ public class EMTest {
 
 		// Create the configs
 		Configs conf = new Configs();
-		conf.setNbrTopics(20);
+		conf.setNbrTopics(10);
 
 		// Initialize the model
 		model.initModel(movieSummaries, conf, movieVocab);
@@ -46,11 +46,11 @@ public class EMTest {
 		model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 
 		// Dumping the model and log files along with messages for human interpretation
-		//model.dumpLogFile("data/nostemming/logDumpMethod_1.txt", "Logfile dumped from method");
-		//model.dumpModeltoFile("data/nostemming/modelDumpMethod_1.txt", "Model file dumped from method");
+		model.dumpLogFile("data/nostemming/logFile_entire.txt", "Logfile dumped from method");
+		model.dumpModeltoFile("data/nostemming/modelDump_entire.txt", "Model file dumped from method");
 
 		// Debugging - getting the number of words for each topic
-		//model.getTopicWords(30);
+		model.getTopicWords(10);
 		//if(true) return;
 
 

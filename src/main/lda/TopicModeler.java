@@ -51,7 +51,7 @@ public class TopicModeler {
 		
 		while((iters < maxIters) && (convergence > emConv)){
 
-			System.out.println("Running iteration " + iters);
+			//System.out.println("Running iteration " + iters);
 			// E-step for each document
 			// update the variational parameters in the model
 			likelihood = 0;
@@ -66,7 +66,7 @@ public class TopicModeler {
 				//likelihood += infBlock.infer(docs.get(i), model, conf);	
 			}
 			
-			System.out.format("Likelihood : %f \n\nRunning estimation!\n" , likelihood);
+			//System.out.format("Likelihood : %f \n\nRunning estimation!\n" , likelihood);
 			
 			// M-step
 			
@@ -78,7 +78,11 @@ public class TopicModeler {
 			//convergence = Math.abs((likelihood - prevLikelihood) / prevLikelihood); 
 			//prevLikelihood = likelihood;
 			iters++;
-			break;
+			
+			// Printing gamma values for a particular document 
+			//System.out.println("Gamma : " + model.getGamma().get(1));
+			//System.out.println("Gamma : " + model.getGamma().get(2));
+			//System.out.println("Gamma : " + model.getGamma().get(3) + "\n\n");
 		}
 		
 		return model;

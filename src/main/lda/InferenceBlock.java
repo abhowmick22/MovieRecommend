@@ -196,6 +196,7 @@ public class InferenceBlock {
 		RealVector gamma = new ArrayRealVector(nTops, nWords/(double)nTops);
 		gamma = alpha.add(gamma);
 
+		
 		// Convergence
 		for(int iters = 0; iters < conf.getVarIters(); iters++){
 			int wordindex;

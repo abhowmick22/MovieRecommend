@@ -73,8 +73,8 @@ public class Utilities {
 			//RealVector normalizedInc = this.normalizeL2(alphaIncrement);
 			//double learningRate = 1.0;
 			
+			//newAlpha = newAlpha.subtract(alphaIncrement);
 			newAlpha = newAlpha.add(alphaIncrement);
-			
 			
 			//System.out.println("Alpha : " + newAlpha);
 			
@@ -83,7 +83,7 @@ public class Utilities {
 				if(newAlpha.getEntry(j) < 0){
 					// Re-try with smaller value of initAlpha
 					System.out.println("Using a smaller initial estimate for alpha\n\n");
-					return performNR(configs, initAlpha.mapDivide(2.0), gamma);
+					return performNR(configs, initAlpha.mapMultiply(10.0), gamma);
 				}
 			}*/
 			
@@ -144,8 +144,8 @@ public class Utilities {
 
 		double hessianScalar;
 		
-		//for(int i = 0; i < configs.getMaxNRIterations(); i++){
-		for(int i = 0; i < 2; i++){
+		for(int i = 0; i < configs.getMaxNRIterations(); i++){
+		//for(int i = 0; i < 2; i++){
 			System.out.println("Alpha : " + iterAlpha);
 			
 			alphaSum = 0;
@@ -184,14 +184,14 @@ public class Utilities {
 			double newAlphaComp = 0;
 			for(int j = 0; j < noTopics; j++){
 				newAlphaComp = iterAlpha.getEntry(j) 
-						+ hessianVector.getEntry(j) * (gradient.getEntry(j) - hessianScalar ) / noDocs;
-				
+						- hessianVector.getEntry(j) * (gradient.getEntry(j) - hessianScalar ) / noDocs;
 				
 				// Checking if any of the elements of alpha is negative
 				if(newAlphaComp < 0){
-					System.out.println("Re-starting with scaled down version of alpha");
+					System.out.format("Re-starting with scaled down version of alpha : %f\n", newAlphaComp);
 					// Re-start with scaled down value of initAlpha, if yes
-					return newtonRaphson(configs, initAlpha.mapDivide(10.0), gamma);
+					//return newtonRaphson(configs, initAlpha.mapDivide(10.0), gamma);
+					return newtonRaphson(configs, new ArrayRealVector(noTopics, 0.1), gamma);
 				}
 				
 				// Else update the element of alpha
@@ -199,7 +199,7 @@ public class Utilities {
 			}
 				
 			// Check for convergence based on increment
-			if(iterAlpha.subtract(previousAlpha).getNorm() / iterAlpha.getNorm() < configs.getEmConvergence()){
+			if(iterAlpha.add(previousAlpha).getNorm() / iterAlpha.getNorm() < configs.getEmConvergence()){
 				// Return current alpha and exit the method
 				System.out.format("Exiting NR method after %d iterations \n", i);
 				return iterAlpha;

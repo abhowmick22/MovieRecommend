@@ -70,11 +70,15 @@ public class Model {
 		
 		// initialize alpha, with all values set to 2 (or random)
 		this.alpha = new ArrayRealVector(this.nbrTopics, 2.0);
+		
 		// Assigning random values to alphas
-		//for(int i = 0; i < this.nbrTopics; i++){
-		//	this.alpha.setEntry(i, rand.nextDouble());
-		//}
-
+		for(int i = 0; i < this.nbrTopics; i++){
+			this.alpha.setEntry(i, rand.nextDouble());
+		}
+		
+		this.alpha = new ArrayRealVector(utils.normalize(this.alpha.toArray()));
+		
+		
 		// initialize beta
 		this.beta = new Array2DRowRealMatrix(this.nbrTopics, this.wordsPerTopic);
 		
@@ -87,12 +91,6 @@ public class Model {
 			
 			row = beta.getRow(i);
 			row = utils.normalize(row);
-			
-			// Checking if the rows are actually normalized
-			double sum = 0;
-			for(int j = 0; j < beta.getColumnDimension(); j++){
-				sum += row[j];
-			}					
 			
 			beta.setRow(i, row);
 		}	
