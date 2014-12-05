@@ -23,9 +23,9 @@ public class PosteriorAnalysis {
 	
 	/************************************************************/
 	public static void main(String[] args){
-		//enter corpus path to file containing only training summaries (35,000)
-		String corpusPathTrain = "data/summaries_debug_big_nostemming.txt";		
-		String vocabPath = "data/sortedVocab_nostemming.txt";
+		//enter corpus path to file containing only training summaries (36,000)
+		String corpusPathTrain = "data/nostemming/summaryfeatures_train.txt";		
+		String vocabPath = "data/nostemming/clean_vocabulary_train.txt";
 		
 		Corpus movieSummariesTrain;
 		Vocabulary movieVocab;
@@ -43,7 +43,7 @@ public class PosteriorAnalysis {
 
 		// Create the configs
 		Configs conf = new Configs();
-		conf.setNbrTopics(20);
+		conf.setNbrTopics(10);
 
 		// Initialize the model
 		model.initModel(movieSummariesTrain, conf, movieVocab);
@@ -52,14 +52,14 @@ public class PosteriorAnalysis {
 		model = tm.modelCorpus(movieSummariesTrain, conf, movieVocab);
 
 		// Dumping the model and log files along with messages for human interpretation
-		model.dumpLogFile("src/tests/ldaTests/logDumpMethod.txt", "Logfile dumped from method");
-		model.dumpModeltoFile("src/tests/ldaTests/modelDumpMethod.txt", "Model file dumped from method");
+		model.dumpLogFile("data/nostemming/logFile_train.txt", "Logfile dumped from method");
+		model.dumpModeltoFile("data/nostemming/modelDump_train.txt", "Model file dumped from method");
 
 		// LDA learning done, now to do hold-out testing
 		//enter corpus path to file containing test summaries (5,000)
-		String corpusPathTest = "data/summaries_debug_big_nostemming.txt";
+		String corpusPathTest = "data/nostemming/summaryfeatures_test.txt";
 		Corpus movieSummariesTest;
-		movieSummariesTest = new Corpus(new File(corpusPathTrain));
+		movieSummariesTest = new Corpus(new File(corpusPathTest));
 		InferenceBlock inf = new InferenceBlock();;
 		
 		// choose the doc to do inference on
@@ -89,10 +89,10 @@ public class PosteriorAnalysis {
 		
 		// print out the top 4 topics in this document
 		List<List<String> > topWords = model.getTopicWords(10);
-		System.out.println("Topic 1 " + topWords.get(topTopicIndices[0]));
-		System.out.println("Topic 2 " + topWords.get(topTopicIndices[1]));
-		System.out.println("Topic 3 " + topWords.get(topTopicIndices[2]));
-		System.out.println("Topic 4 " + topWords.get(topTopicIndices[3]));
+		System.out.println("Topic 1 - " + topWords.get(topTopicIndices[0]));
+		System.out.println("Topic 2 - " + topWords.get(topTopicIndices[1]));
+		System.out.println("Topic 3 - " + topWords.get(topTopicIndices[2]));
+		System.out.println("Topic 4 - " + topWords.get(topTopicIndices[3]));
 		
 	}
 }

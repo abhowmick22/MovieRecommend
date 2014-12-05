@@ -94,7 +94,7 @@ parser.add_argument("-n", dest ='number',
 args = parser.parse_args()
 
 # use our movie summaries 
-f = open('../../data/plot_summaries_test.txt', 'r');
+f = open('../../data/plot_summaries.txt', 'r');
 
 
 # if asked to do tfidf 
@@ -167,7 +167,7 @@ if args.features == "tfidf":
 elif args.features == "lda" :
 
 		# open the features file
-		g = open('logDumpMethod.txt', 'r')
+		g = open('logFile_entire.txt', 'r')
 		g.readline();		# read the first line / useless
 		line = g.readline()	# second line containing metadata
 		numTopics = line.split(' ')[0]
@@ -177,7 +177,6 @@ elif args.features == "lda" :
 			numDocs = int(args.number)		# visualize only the number that is requested
 
 		g.readline()						# read blank line
-		print numDocs	
 		labels = []	
 		vectors = []
 		colors = []
