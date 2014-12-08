@@ -21,14 +21,10 @@ summaryFile.close();
 featureFile = open('../../data/gibbs/summaryfeatures.txt', 'wb');
 
 movieCount = 0;
-for line in summaryLines:
-    movieCount = movieCount + 1;
-
-# Printing the movie count in the first line
-featureFile.write(str(movieCount) + '\n');
 
 # For each movie summary find the indices of words and dump them as feature vectors
 iterId = 0;
+featureLines = [];
 for line in summaryLines:
     feature = '';
 
@@ -48,17 +44,33 @@ for line in summaryLines:
         if(len(i) < 1):
             continue;
 
-        startLetter = i[0];
-        # Word present in the vocabulary 
-        if(ord(startLetter) > 96 and ord(startLetter) < 123):
-            if(feature == ''):
-                feature = i;
+        # Checking for each letter to be alphabet
+        considerWord = True;
 
-            else:
-                feature = feature + ' ' + i;
-   
+        for letter in list(i):
+            # If any of the word is not alphabet, ignore the word
+            if(ord(letter) <= 96 or ord(letter) >= 123):
+                considerWord = False;
+                break;
+
+        # Continue with next word if not to be considered
+        if(considerWord == False):
+            continue;
+        
+        elif(feature == ''):
+            feature = i;
+
+        else:
+            feature = feature + ' ' + i;
+
     # Dumping the feature vector into the file, only if number of features using the curent dictionary is greater than 1
     if(len(feature) > 0):
-        featureFile.write(feature + '\n');
+        featureLines.append(feature + '\n');
+        movieCount = movieCount + 1;
 
+# Dumping in the file
+# Printing the movie count in the first line
+featureFile.write(str(movieCount) + '\n');
+for i in featureLines:
+    featureFile.write(i);
 featureFile.close()
