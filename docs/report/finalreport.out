@@ -3,6 +3,9 @@
 \BOOKMARK [2][-]{subsection.1.2}{Content Based Recommendation}{section.1}
 \BOOKMARK [1][-]{section.2}{Problem Definition}{}
 \BOOKMARK [1][-]{section.3}{Proposed Method}{}
+\BOOKMARK [2][-]{subsection.3.1}{Probabilistic Matrix Factorization}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Latent Dirichlet Allocation}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Collaborative Topic Regression}{section.3}
 \BOOKMARK [1][-]{section.4}{Experiments}{}
 \BOOKMARK [2][-]{subsection.4.1}{Headings: second level}{section.4}
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Headings: third level}{subsection.4.1}

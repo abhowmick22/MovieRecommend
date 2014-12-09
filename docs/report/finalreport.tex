@@ -2,6 +2,7 @@
 \usepackage{nips13submit_e,times}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{enumitem}
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -141,9 +142,9 @@ list of items \textit{V} = $\{v_{1}, v_{2} ... v_{n}\}$, where each user $u_{i}$
 has a list of items $I_{u_{i}}$ which he/she has given ratings for. For a given
 user $u_{a} \in \textit{U}$, we need to solve the following two tasks:
 
-\begin{itemize}
+\begin{itemize}[leftmargin=*]
 
-\item {\bf Prediction}: Estimate the predicted rating $P_{a_{j}}$ of an
+\item[] {\bf Prediction}: Estimate the predicted rating $P_{a_{j}}$ of an
 item $v_{j} \notin V_{u_{a}}$. The prediction task can be further split into
 two types: \textit{in-matrix prediciton} and \textit{out-of-matrix prediction}. 
 \textit{In-matrix prediction} is the problem of predicting ratings for items
@@ -151,7 +152,7 @@ that have already been rated by atleast twenty other users, whereas
 \textit{out-of-matrix prediction} makes predictions about those items that have
 very few or no ratings (less than 20).
 
-\item {\bf Recommendation}: Return a list of N items $I_{r} \in I \:\&\: I_{r} \cap I_{a} = \phi$, that the user will like most. This is simply a problem of
+\item[] {\bf Recommendation}: Return a list of N items $I_{r} \in I \:\&\: I_{r} \cap I_{a} = \phi$, that the user will like most. This is simply a problem of
 returning the items with highest predicted rating values.
 
 \end{itemize}
@@ -174,12 +175,15 @@ latent topic space (latent variables) to explain observed ratings and observed
 documents (observed variables), thus incorporating content information into a 
 collaborative filtering framework \cite{ctr}.
 
+\subsection{Probabilistic Matrix Factorization}
+
+
+\subsection{Latent Dirichlet Allocation}
 
 
 
 
-
-
+\subsection{Collaborative Topic Regression}
 
 
 
