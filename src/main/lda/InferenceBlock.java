@@ -183,19 +183,17 @@ public class InferenceBlock {
 		Utilities utils = new Utilities();
 		RealVector gammaIncrement;
 		
-		
 		// Get alpha and beta
 		RealVector alpha = model.getAlpha();
 		RealMatrix beta = model.getBeta();
 
 		// Initialize phi
 		RealMatrix phi = new Array2DRowRealMatrix(nTops, nWords);
-		phi = phi.scalarAdd(1.0/(double) nTops);
+		//phi = phi.scalarAdd(1.0/(double) nTops);
 
-		// Initialize gamma
-		RealVector gamma = new ArrayRealVector(nTops, nWords/(double)nTops);
-		gamma = alpha.add(gamma);
-
+		// Initialize gamma (these are without adding alphas) (following matlab implementation)
+		RealVector gamma = new ArrayRealVector(nTops, nWords/(double)nTops); // Alpha needs to be added
+		RealVector prevGamma = gamma;
 		
 		// Convergence
 		for(int iters = 0; iters < conf.getVarIters(); iters++){
@@ -207,22 +205,25 @@ public class InferenceBlock {
 				phiCol = phi.getColumnVector(n);
 				for(int i = 0; i<nTops; i++){
 					phiCol.setEntry(i, (beta.getEntry(i, wordindex) *
-							Math.exp(utils.diGamma(gamma.getEntry(i)))));
+							Math.exp(utils.diGamma(gamma.getEntry(i) + alpha.getEntry(i)))));
 				}
+				
 				// normalize phiCol and set it back to phi
 				phi.setColumn(n, utils.normalize(phiCol.toArray()));
 			}
 
 			// update \gamma
-			gammaIncrement = utils.matSumAlongDim(phi, 2);
+			gamma = utils.matSumAlongDim(phi, 2);
 			
 			// Checking for convergence and breaking if met
-			if(gammaIncrement.getNorm() / gamma.getNorm() < conf.getVarConvergence()){
+			if(gamma.subtract(prevGamma).getNorm() < conf.getVarConvergence()){
 				break;
 			}
-			gamma = alpha.add(gammaIncrement);			
+			prevGamma = gamma;
+			
 		}
 		
+		gamma = alpha.add(gamma);
 		// Update the model
 		model.setGammaSingle(gamma, docIndex);
 		model.setPhiSingle(phi, docIndex);

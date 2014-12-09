@@ -1,16 +1,16 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}
-\BOOKMARK [2][-]{subsection.1.1}{Collaborative Filtering and its shortcoming}{section.1}
-\BOOKMARK [2][-]{subsection.1.2}{Content Based Recommendation}{section.1}
-\BOOKMARK [2][-]{subsection.1.3}{Hybrid approach}{section.1}
-\BOOKMARK [1][-]{section.2}{General formatting instructions}{}
-\BOOKMARK [1][-]{section.3}{Headings: first level}{}
-\BOOKMARK [2][-]{subsection.3.1}{Headings: second level}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Headings: third level}{subsection.3.1}
-\BOOKMARK [1][-]{section.4}{Citations, figures, tables, references}{}
-\BOOKMARK [2][-]{subsection.4.1}{Citations within the text}{section.4}
-\BOOKMARK [2][-]{subsection.4.2}{Footnotes}{section.4}
-\BOOKMARK [2][-]{subsection.4.3}{Figures}{section.4}
-\BOOKMARK [2][-]{subsection.4.4}{Tables}{section.4}
-\BOOKMARK [1][-]{section.5}{Final instructions}{}
-\BOOKMARK [1][-]{section.6}{Preparing PostScript or PDF files}{}
-\BOOKMARK [2][-]{subsection.6.1}{Margins in LaTeX}{section.6}
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Motivation}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Collaborative Filtering and its shortcoming}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Content Based Recommendation}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Problem Definition}{}% 5
+\BOOKMARK [1][-]{section.4}{Proposed Method}{}% 6
+\BOOKMARK [1][-]{section.5}{Experiments}{}% 7
+\BOOKMARK [2][-]{subsection.5.1}{Headings: second level}{section.5}% 8
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Headings: third level}{subsection.5.1}% 9
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 10
+\BOOKMARK [1][-]{section.7}{Citations, figures, tables, references}{}% 11
+\BOOKMARK [2][-]{subsection.7.1}{Citations within the text}{section.7}% 12
+\BOOKMARK [2][-]{subsection.7.2}{Footnotes}{section.7}% 13
+\BOOKMARK [2][-]{subsection.7.3}{Figures}{section.7}% 14
+\BOOKMARK [2][-]{subsection.7.4}{Tables}{section.7}% 15
+\BOOKMARK [2][-]{subsection.7.5}{Margins in LaTeX}{section.7}% 16

@@ -38,7 +38,7 @@ public class EMTest {
 		conf.setNbrTopics(10);
 
 		// Initialize the model
-		model.initModel(movieSummaries, conf, movieVocab);
+		//model.initModel(movieSummaries, conf, movieVocab);
 	
 		System.out.println("Created the model!");
 
@@ -46,11 +46,11 @@ public class EMTest {
 		model = tm.modelCorpus(movieSummaries, conf, movieVocab);
 
 		// Dumping the model and log files along with messages for human interpretation
-		model.dumpLogFile("data/debug/logFile_debug.txt", "Logfile dumped from method");
-		model.dumpModeltoFile("data/debug/modelDump_debug.txt", "Model file dumped from method");
+		//model.dumpLogFile("data/debug/logFile_debug.txt", "Logfile dumped from method");
+		//model.dumpModeltoFile("data/debug/modelDump_debug.txt", "Model file dumped from method");
 
 		// Debugging - getting the number of words for each topic
-		model.getTopicWords(10);
+		//model.getTopicWords(10);
 		//if(true) return;
 
 

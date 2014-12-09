@@ -95,6 +95,12 @@ public class Model {
 			beta.setRow(i, row);
 		}	
 		
+		//this.dumpAlphaToFile("data/debug/alpha.txt");
+		//this.dumpBetaToFile("data/debug/beta.txt");
+		
+		//this.dumpAlphaToFile("/Users/skottur/Downloads/lda-0.2-matlab/alpha.txt");
+		//this.dumpBetaToFile("/Users/skottur/Downloads/lda-0.2-matlab/beta.txt");
+		
 		//int entries = 0; 
 		// Adding dummy phi and gamma for access later in the pipeline
 		for(int i = 0; i < this.corpus.getNbrDocs(); i++){
@@ -264,6 +270,58 @@ public class Model {
 		System.out.format("Logfile dumped at : %s\n", filename);
 	}
 	
+	// Method to dump Alpha to a file
+	public void dumpAlphaToFile(String filename){
+		File modelDump = new File(filename);
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(modelDump, "UTF-8");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//Alpha
+		for(int i = 0; i < alpha.getDimension()-1; i++){
+			writer.print(alpha.getEntry(i) + " ");
+		}
+		writer.print(alpha.getEntry(alpha.getDimension()-1) + '\n');
+		
+		System.out.format("Alpha dumped at : %s\n", filename);
+		
+		writer.close();
+	}
+	
+	// Method to dump beta to a file
+	public void dumpBetaToFile(String filename){
+		File modelDump = new File(filename);
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(modelDump, "UTF-8");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		//Beta 
+		for(int i = 0; i < beta.getRowDimension(); i++){
+			RealVector row = beta.getRowVector(i);
+			for(int j = 0; j < row.getDimension()-1; j++){
+				writer.print(row.getEntry(j) + " ");
+			}
+			writer.println(row.getEntry(row.getDimension()-1));
+		}
+
+		writer.close();
+		System.out.format("Beta dumped at : %s\n", filename);
+	}
+
 	// Method to read dumped model from a text file
 	public void readModelFromFile(String modelPath){
 		File modelFile = new File(modelPath);

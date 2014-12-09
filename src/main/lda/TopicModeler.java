@@ -50,15 +50,14 @@ public class TopicModeler {
 		List<Document> docs = corpus.getDocs();
 		
 		while((iters < maxIters) && (convergence > emConv)){
-
-			//System.out.println("Running iteration " + iters);
+			System.out.println("Running iteration " + iters);
 			// E-step for each document
 			// update the variational parameters in the model
 			likelihood = 0;
-			//System.out.println("Running inference on documents...");
+			System.out.println("Running inference on documents...");
 	
 			// Runs for all the documens (runs wihtout error)
-			for(int i=0; i<nDocs; i++){
+			for(int i = 0; i<nDocs; i++){
 				if(i%100 == 0) 
 					System.out.format("Running inference on document : %d\n", i);
 				
@@ -66,6 +65,7 @@ public class TopicModeler {
 				//likelihood += infBlock.infer(docs.get(i), model, conf);	
 			}
 			
+			//model.dumpLogFile("/Users/skottur/Downloads/lda-0.2-matlab/inferenceInter.txt", "First iteration dumping");
 			//System.out.format("Likelihood : %f \n\nRunning estimation!\n" , likelihood);
 			
 			// M-step
@@ -78,11 +78,6 @@ public class TopicModeler {
 			//convergence = Math.abs((likelihood - prevLikelihood) / prevLikelihood); 
 			//prevLikelihood = likelihood;
 			iters++;
-			
-			// Printing gamma values for a particular document 
-			//System.out.println("Gamma : " + model.getGamma().get(1));
-			//System.out.println("Gamma : " + model.getGamma().get(2));
-			//System.out.println("Gamma : " + model.getGamma().get(3) + "\n\n");
 		}
 		
 		return model;
