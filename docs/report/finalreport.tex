@@ -71,7 +71,12 @@ to other domains.
 \subsection{Collaborative Filtering and its shortcoming}
 
 Traditional collaborative filtering makes use of interactions between users and 
-items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent factor models, directly characterize both users and items by latent factors. Such collaborative filtering methods suffer from the 'cold start' problem, that is they are unable to recommend movies in the absence of rating patterns. In fact, in the domain of music, it has been observed \cite{} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well. We would like to be able to recommend movies that are in this long tail. 
+items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent
+factor models, directly characterize both users and items by latent factors. We focus on factor based models as they are more accurate than neighbourhood based 
+methods. However, all collaborative filtering methods suffer from the 'cold 
+start' problem, that is 
+they are unable to recommend movies in the absence of rating patterns. In fact, 
+in the domain of music, it has been observed \cite{music-long-tail} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well. We would like to be able to recommend movies that are in this long tail. 
 
 
 %Traditional collaborative filtering techniques make use of usage patterns, 
@@ -91,11 +96,18 @@ items. They may be broadly classified into two categories - neighbourhood method
 
 \subsection{Content Based Recommendation}
 
-Content-based recommendation addresses the
-'cold start' problem associated with collaborative filtering. One approach is to 
-use topic modeling on movie plot summaries to identify latent themes/topics. We can learn 
-topic representations for each item (a vector of topic proportions) and use them as item
-latent factor vectors in the latent-factor model.
+Content-based recommendation addresses the 'cold start' problem associated with 
+collaborative filtering, where certain items do not have any rating information 
+and hence the corresponding item vectors consist of all zeroes (we use 
+zeroes to represent missing ratings in the rating matrix). One approach is to 
+use topic modeling on movie plot summaries to identify latent themes/topics. We 
+can learn topic representations for each item (a vector of topic proportions) 
+and add them to the item vectors in the latent-factor model. Such topic 
+representations of movie items are also useful outside the domain
+of movie recommendation. Interpretability of topics may help in explaining 
+recommendations to users, effective content programming and ad targeting based
+on user profiles \cite{fLDA}. 
+ 
 %A simple way is to make
 %recommendations based on movie metadata such as genre, actors, language etc. 
 %However, this approach severely restricts the pool of movies from which new 
@@ -111,9 +123,10 @@ latent factor vectors in the latent-factor model.
 
 \section{Problem Definition}
 
-The problem we are trying to solve is to predict how highly a user will rate certain
-movies based on all users' rating histories and plot summaries for all movies. Using this,
-we come up with movie recommendations for a user. Specifically, 
+The problem we are trying to solve is to predict how highly a user will rate
+certain movies based on all users' rating histories and plot summaries for all
+movies. Using this, we come up with movie recommendations for a user. 
+Specifically, 
 
 \section{Proposed Method}
 \label{gen_inst}
@@ -240,7 +253,32 @@ Soma             &Cell body (contains cell nucleus) \\
 \end{center}
 \end{table}
 
-\sectioendations for generating PDF files whose fonts
+\section{Final instructions}
+
+Do not change any aspects of the formatting parameters in the style files.
+In particular, do not modify the width or length of the rectangle the text
+should fit into, and do not change font sizes (except perhaps in the
+\textbf{References} section; see below). Please note that pages should be
+numbered.
+
+\section{Preparing PostScript or PDF files}
+
+Please prepare PostScript or PDF files with paper size ``US Letter'', and
+not, for example, ``A4''. The -t
+letter option on dvips will produce US Letter files.
+
+Fonts were the main cause of problems in the past years. Your PDF file must
+only contain Type 1 or Embedded TrueType fonts. Here are a few instructions
+to achieve this.
+
+\begin{itemize}
+
+\item You can check which fonts a PDF files uses.  In Acrobat Reader,
+select the menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
+also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
+available out-of-the-box on most Linux machines.
+
+\item The IEEE has recommendations for generating PDF files whose fonts
 are also acceptable for NIPS. Please see
 \url{http://www.emfield.org/icuwb2010/downloads/IEEE-PDF-SpecV32.pdf}
 
