@@ -3,6 +3,8 @@
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{enumitem}
+\usepackage[]{algorithm2e}
+\usepackage{amsmath}
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -200,11 +202,39 @@ underlying topics.
 LDA has the underlying assumptions that the words in a document and documents
 in a corpus are exchangeable - i.e., the specific ordering of words and
 documents can be neglected. Now, De Finetti's representation theorem states that
-a collection of infinitely exhangeable random variables 
+a collection of infinitely exhangeable random variables are conditionally 
+independent and identically distributed, if they are conditioned on a random
+parameter that is drawn from some probability distribution. Now, the generative
+process of the LDA model is:
 
-The generative process of LDA is 
+\begin{algorithm}
+\For{each of the M documents {\bf w} in corpus D}{
+Choose $\theta$ $\sim$ Dirichlet($\alpha$)\;
+	\For{each of the N words $w_{n}$ in document {\bf w}}{
+	Choose a topic $z_{n}$ $\sim$ Multinomial($\theta$)\;
+	Choose word $w_{n}$ from $p(w_{n} | z_{n}, \beta)$, a multinomial
+	probability conditioned on topic $z_{n}$
+	}
+}
+\end{algorithm}
 
+Figure~\ref{lda-model} shows the graphical model representation of LDA, which is
+a three-level hierarchical model. We
+assume that the number of topic vectors k is fixed and the vocabulary size of
+the corpus to be modeled is V. Now, the word probabilities are parametrized
+by a k X V matrix $\beta$, each row of which represents the distribution of
+topics over words in the vocabulary. Also, $\alpha$ is a k-dimensional vector 
+which is a parameter for the Dirichlet random variable $\theta$. Given the
+parameters $\alpha$ and $\beta$, the joint distribution of the topic mixture
+$\theta$, the set of N topics {\bf z} and the set of N words {\bf w} is:
 
+\begin{equation} \label{eq1}
+p(\theta,{\bf w},{\bf z} | \alpha,\beta ) = p(\theta|\alpha)\prod_{n=1}^{N}p(z_{n}|\theta)p(w_{n}|z_{n},\beta) 
+\end{equation}
+
+(We make use of the representation theorem which states that the set of topics
+{\bf z} are independent conditioned on $\theta$ which is a random parameter of 
+a multinomial distribution).
 
 \subsection{Collaborative Topic Regression}
 
