@@ -42,13 +42,13 @@ public class Utilities {
 		double hessianConst;
 		
 		//New alpha
-		RealVector newAlpha = new ArrayRealVector(initAlpha.getDimension(), 2.0);
+		//RealVector newAlpha = new ArrayRealVector(initAlpha.getDimension(), 2.0);
+		RealVector newAlpha = initAlpha;
 		// Holder objects for the variables used in the algorithm 
 		RealVector gradient, hessianDiag, alphaIncrement;
 		
 		// Limiting the number of iterations
 		for(int i = 0; i < configs.getMaxNRIterations(); i++){
-					
 			// Obtaining the gradient 
 			gradient = this.computeGradient(newAlpha, gamma);
 
@@ -69,25 +69,17 @@ public class Utilities {
 				break;
 			}
 			
-			// Updating the value of alpha; re-iterate until maximum iterations exhaust or update is small
-			//RealVector normalizedInc = this.normalizeL2(alphaIncrement);
-			//double learningRate = 1.0;
-			
-			//newAlpha = newAlpha.subtract(alphaIncrement);
-			newAlpha = newAlpha.add(alphaIncrement);
-			
-			//System.out.println("Alpha : " + newAlpha);
+			// Updating alpha
+			newAlpha = newAlpha.subtract(alphaIncrement);
 			
 			//Checking if any of the values of updated values of alpha is negative, if yes retry with smaller alpha init
-			/*for(int j = 0; j < newAlpha.getDimension(); j++){
+			for(int j = 0; j < newAlpha.getDimension(); j++){
 				if(newAlpha.getEntry(j) < 0){
 					// Re-try with smaller value of initAlpha
 					System.out.println("Using a smaller initial estimate for alpha\n\n");
 					return performNR(configs, initAlpha.mapMultiply(10.0), gamma);
 				}
-			}*/
-			
-			//newAlpha = newAlpha.add(alphaIncrements.mapMultiply(learningRate));
+			}
 			
 			// Debug messages
 			//System.out.println("Mag: " + gradient.getNorm() + " " + gradient);
@@ -98,7 +90,7 @@ public class Utilities {
 			//System.out.format("Hessian constant norm: %f\n", hessianConst);
 			//System.out.println("Increment : " + alphaIncrement + "\n");
 			//System.out.println("Increment magnitude: " + alphaIncrement.getNorm());
-			System.out.println(newAlpha);
+			//System.out.println(newAlpha);
 			}
 
 		System.out.println("NR iterations completed or exhausted");
@@ -352,7 +344,7 @@ public class Utilities {
 		
 		// Looping to calculate product of inverse of hessian and gradient
 		for (int i = 0 ; i < dimensions; i++){
-			product.setEntry(i, (gradient.getEntry(i) - constantFactor) / hessianDiag.getEntry(i));
+			product.setEntry(i, -1 * (gradient.getEntry(i) - constantFactor) / hessianDiag.getEntry(i));
 		}
 		
 		return product;

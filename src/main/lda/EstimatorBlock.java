@@ -61,7 +61,6 @@ public class EstimatorBlock {
 		
 		// For each topic
 		for(int topicId = 0; topicId < nbrTopics; topicId++)
-		//System.out.println("Beta estimation: Topics done : " + i);
 		// Normalize the beta matrix along rows
 			beta.setRow(topicId, utils.normalize(beta.getRow(topicId)));
 
@@ -69,10 +68,7 @@ public class EstimatorBlock {
 		// Estimate alpha by Newton-Raphson iterations
 		
 		System.out.println("Entering NR iterations");
-		//alpha = utils.newtonRaphson(conf, alpha, model.getGamma());
 		alpha = utils.performNR(conf, alpha, model.getGamma());
-		//System.out.println("gamma " + model.getGamma() + " \n");
-		//System.out.println("alpha " + alpha + " \n");
 		
 		// Update the model
 		model.setBeta(beta);

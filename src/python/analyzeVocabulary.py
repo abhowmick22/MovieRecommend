@@ -3,8 +3,8 @@ import sys;
 import re;
 
 # Reading processed summaries and vocabulary 
-summaryFile = open('../../data/summaryFeatures_nostemming.txt', 'r');
-vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
+summaryFile = open('../../data/debug/summaryfeatures.txt', 'r');
+vocabFile = open('../../data/debug/clean_vocabulary.txt', 'r');
 
 # Checking for existance of files
 if(summaryFile == None or vocabFile == None):
@@ -59,8 +59,9 @@ for line in summaryLines:
 sortedWordId = sorted(xrange(len(counts)), key = lambda x: counts[x]);
 
 # Printing the top 10 words and frequencies
-noTopWords = len(sortedWordId);
-for i in xrange(1, noTopWords + 1):
-    if(counts[sortedWordId[-1*i]] == 0):
-        break;
-    print '%25s : %d' % (words[sortedWordId[-1*i]], counts[sortedWordId[-1*i]])
+noTopWords = 10;
+print(len([i for i in sortedWordId if counts[i] != 0]))
+#for i in xrange(1, noTopWords + 1):
+    #if(counts[sortedWordId[-1*i]] == 0):
+    #    break;
+    #print '%25s : %d' % (words[sortedWordId[-1*i]], counts[sortedWordId[-1*i]])

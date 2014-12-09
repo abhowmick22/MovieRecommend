@@ -35,7 +35,7 @@ public class Configs {
 			
 		this.nbrTopics = 100;
 		this.varIters = 20;
-		this.varConvergence = 1e-6;
+		this.varConvergence = 1e-2;
 		this.emIters = 10;
 		this.emConvergence = 1e-2;
 		
