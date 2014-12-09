@@ -179,7 +179,30 @@ collaborative filtering framework \cite{ctr}.
 
 
 \subsection{Latent Dirichlet Allocation}
+For a collection of text documents, a topic modeling algorithm extracts a set of
+`topics', where each `topic' is a distribution over words that occur in the
+documents. Words belonging to a topic are biased around a single theme. The
+topic model that we use for representation of documents is Latent Dirichlet 
+Allocation (LDA), which is a
+generative probabilistic graphical model for collections of discrete data \cite{lda}. Each document in the corpus is modeled as a finite mixture over a set of 
+underlying topics.
 
+%The tf-idf scheme \cite{tf-idf} reduces each document in a corpus to a vector 
+%of real numbers,
+%each of which represents a ratio of `term frequency' count to an `inverse 
+%document frequency' count (suitable normalized). However, this representation
+%is extremely high dimensional and captures very little intra and inter document
+%statistical structure. Latent Semantic Indexing (LSI) \cite{lsi} reduces the 
+%high dimensionality of the tf-idf term-document matrix through a singular value 
+%decomposition. However, this technique was replaced by a generative
+%probabilistic model which is the pLSI model (probabilistic LSI) \cite{}.  
+
+LDA has the underlying assumptions that the words in a document and documents
+in a corpus are exchangeable - i.e., the specific ordering of words and
+documents can be neglected. Now, De Finetti's representation theorem states that
+a collection of infinitely exhangeable random variables 
+
+The generative process of LDA is 
 
 
 
