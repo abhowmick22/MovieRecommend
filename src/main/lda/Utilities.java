@@ -42,7 +42,7 @@ public class Utilities {
 		double hessianConst;
 		
 		//New alpha
-		RealVector newAlpha = initAlpha;
+		RealVector newAlpha = new ArrayRealVector(initAlpha.getDimension(), 2.0);
 		// Holder objects for the variables used in the algorithm 
 		RealVector gradient, hessianDiag, alphaIncrement;
 		
@@ -98,7 +98,7 @@ public class Utilities {
 			//System.out.format("Hessian constant norm: %f\n", hessianConst);
 			//System.out.println("Increment : " + alphaIncrement + "\n");
 			//System.out.println("Increment magnitude: " + alphaIncrement.getNorm());
-			
+			System.out.println(newAlpha);
 			}
 
 		System.out.println("NR iterations completed or exhausted");

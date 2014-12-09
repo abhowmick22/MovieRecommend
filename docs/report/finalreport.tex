@@ -71,7 +71,7 @@ to other domains.
 \subsection{Collaborative Filtering and its shortcoming}
 
 Traditional collaborative filtering makes use of interactions between users and 
-items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent factor models, directly characterize both users and items by latent factors. Such collaborative filtering methods suffer from the 'cold start' problem, that is they are unable to recommend movies in the absence of rating patterns. In fact, in the domain of music, it has been observed \cite{} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well. We would like to be able to recommend movies that are in this long tail 
+items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent factor models, directly characterize both users and items by latent factors. Such collaborative filtering methods suffer from the 'cold start' problem, that is they are unable to recommend movies in the absence of rating patterns. In fact, in the domain of music, it has been observed \cite{} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well. We would like to be able to recommend movies that are in this long tail. 
 
 
 %Traditional collaborative filtering techniques make use of usage patterns, 
@@ -91,51 +91,29 @@ items. They may be broadly classified into two categories - neighbourhood method
 
 \subsection{Content Based Recommendation}
 
-The other main approach is content-based recommendation, that addresses the
-'cold start' problem of collaborative filtering. A simple way is to make
-recommendations based on movie metadata such as genre, actors, language etc. 
-However, this approach severely restricts the pool of movies from which new 
-recommendations can be made. It also leads to very predictable results, 
-since recommendations made on the basis of metadata alone resemble the results
-a user would have got through simple keyword searches.
+Content-based recommendation addresses the
+'cold start' problem associated with collaborative filtering. One approach is to 
+use topic modeling on movie plot summaries to identify latent themes/topics. We can learn 
+topic representations for each item (a vector of topic proportions) and use them as item
+latent factor vectors in the latent-factor model.
+%A simple way is to make
+%recommendations based on movie metadata such as genre, actors, language etc. 
+%However, this approach severely restricts the pool of movies from which new 
+%recommendations can be made. It also leads to very predictable results, 
+%since recommendations made on the basis of metadata alone resemble the results
+%a user would have got through simple keyword searches.
 
-A much more interesting approach is to identify similarities among movies 
-through latent themes extracted from information such as plot summaries. Topic 
-modeling can be used to describe movies in terms of such latent themes. Such an
-approach can allow the recommendation system to generalize to new movies that 
-have very little usage data.
+%gA much more interesting approach is to identify similarities among movies 
+%gthrough latent themes extracted from information such as plot summaries. Topic 
+%gmodeling can be used to describe movies in terms of such latent themes. Such an
+%gapproach can allow the recommendation system to generalize to new movies that 
+%ghave very little usage data.
 
 \section{Problem Definition}
 
-
-%% \subsection{Keywords for paper submission}
-%% Your NIPS paper can be submitted with any of the following keywords (more than one keyword is possible for each paper):
-
-%% \begin{verbatim}
-%% Bioinformatics
-%% Biological Vision
-%% Brain Imaging and Brain Computer Interfacing
-%% Clustering
-%% Cognitive Science
-%% Control and Reinforcement Learning
-%% Dimensionality Reduction and Manifolds
-%% Feature Selection
-%% Gaussian Processes
-%% Graphical Models
-%% Hardware Technologies
-%% Kernels
-%% Learning Theory
-%% Machine Vision
-%% Margins and Boosting
-%% Neural Networks
-%% Neuroscience
-%% Other Algorithms and Architectures
-%% Other Applications
-%% Semi-supervised Learning
-%% Speech and Signal Processing
-%% Text and Language Applications
-
-%% \end{verbatim}
+The problem we are trying to solve is to predict how highly a user will rate certain
+movies based on all users' rating histories and plot summaries for all movies. Using this,
+we come up with movie recommendations for a user. Specifically, 
 
 \section{Proposed Method}
 \label{gen_inst}
