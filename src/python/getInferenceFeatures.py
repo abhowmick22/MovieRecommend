@@ -71,6 +71,8 @@ for line in summaryLines:
 
 movieLensIdFile = open('../../data/gibbs/movieLensId.txt', 'wb');
 inferenceFile = open('../../data/gibbs/inferencefeatures.txt', 'wb');
+trainingFile = open('../../data/gibbs/trainingfeatures.txt', 'wb');
+
 # For each movie in the ratings, check for corresponding id in 
 movieCount = 0;
 infMovieSummaries = []; # Summaries of movies for which inference is possible
@@ -93,9 +95,25 @@ for i in xrange(0, len(infMovieIds)):
     inferenceFile.write(infMovieSummaries[i] + '\n');
 
 print 'Wrote %d movies for summary inference' % movieCount;
+
+# Writing the remaining files for training LDA
+trainCount = 0;
+trainSummaries = [];
+for i in summaries.keys():
+    if(i not in mapping.values()):
+        trainSummaries.append(summaries[i]);
+        trainCount = trainCount + 1;
     
+# writing training files back
+trainingFile.write(str(trainCount) + '\n');
+for i in trainSummaries:
+    trainingFile.write(i + '\n');
+
+print 'Wrote %d movies for summary LDA training' % trainCount;
 # Closing files
 ratingFile.close();
 mapFile.close();
 summaryFile.close();
-
+movieLensIdFile.close();
+inferenceFile.close();
+trainingFile.close();
