@@ -56,12 +56,13 @@ that the user has enjoyed in the past.
 
 \section{Introduction}
 
-Automatic movie/TV show recommendation is an important technology for streaming
-video services like Netflix, Hulu, HBO, Amazon etc. Not only video streaming 
+Recommender systems are an important technology for TV/movie streaming
+services like Netflix, Hulu, HBO, Amazon etc. Not only video streaming 
 services, but also audio/music streaming sites like Spotify, Pandora make heavy
 use of recommender systems. Indeed, any content management system that has large
 quantities of information (or the ability to extract such information) such as usage patterns, metadata, natural text etc can and should make use of 
-recommendation methods to provide services that help find items of interest. In 
+recommendation methods to help find items of interest. Collaborative filtering and content based approaches are the two main methods of solving the problem, 
+however each method has its pros and cons. In 
 the remaining parts of the paper, we limit ourselves to the problem of movie 
 recommendation, however most of the discussion/analysis can be generally applied
 to other domains.  
@@ -123,12 +124,31 @@ on user profiles \cite{fLDA}.
 
 \section{Problem Definition}
 
-The problem we are trying to solve is predict how highly a user will rate
-certain movies based on all users' rating histories and plot summaries for all
-movies. Making use of these predicted ratings, we come up with movie 
-recommendations for a user. Specifically, we are interested in observing how
-incorporation of item topic representations increases the prediction
-accuracy of factor models.
+Briefly, the problem we are trying to solve is predict how highly a user will 
+rate certain movies based on all users' rating histories and plot summaries for 
+all movies. Making use of these predicted ratings, we come up with movie 
+recommendations for a user. The problem can be formalized as follows 
+\cite{grouplens} :
+
+We are given a list of users \textit{U} = $\{u_{1}, u_{2} ... u_{m}\}$ and a 
+list of items \textit{V} = $\{v_{1}, v_{2} ... v_{n}\}$, where each user $u_{i}$
+has a list of items $I_{u_{i}}$ which he/she has given ratings for. For a given
+user $u_{a} \in \textit{U}$, we need to solve the following two tasks:
+
+\begin{itemize}
+
+\item {\bf Prediction}: Estimate the predicted rating $P_{a_{j}}$ of an
+item $v_{j} \notin V_{u_{a}}$. 
+
+\item {\bf Recommendation}: Return a list of N items $I_{r} \in I \:\&\: I_{r} \cap I_{a} = \phi$, that the user will like most. This is simply a problem of
+returning the items with highest predicted rating values.
+
+\end{itemize}
+
+Specifically, we are interested in observing how incorporation of item topic 
+representations increases the prediction accuracy of factor models. We would
+also like to analyse the latent themes of the items that are captured by the
+topic model.
 
 \section{Proposed Method}
 \label{gen_inst}
