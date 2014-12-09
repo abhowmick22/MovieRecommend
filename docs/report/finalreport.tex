@@ -20,23 +20,12 @@ Department of Computer Science\\
 Carnegie Mellon University\\
 Pittsburgh, PA 15213 \\
 \texttt{udbhavp@andrew.cmu.edu} \\
-\AND
+\And
 Satwik Kottur \\
 Department of Electrical Engineering\\
 Carnegie Mellon University\\
 Pittsburgh, PA 15213 \\
 \texttt{skottur@andrew.cmu.edu} \\
-%\And
-%Coauthor \\
-%Affiliation \\
-%Address \\
-%\texttt{email} \\
-%\And
-%Coauthor \\
-%Affiliation \\
-%Address \\
-%\texttt{email} \\
-%(if needed)\\
 }
 
 % The \author macro works with any number of authors. There are two commands
@@ -54,13 +43,12 @@ Pittsburgh, PA 15213 \\
 
 \begin{document}
 
-
 \maketitle
 
 \begin{abstract}
 Traditional collaborative filtering relies on reviews provided by viewers
 in the movie watching community to make recommendations to the user. In this
-work, we attempt to combine this approach with probabilistic topic modeling
+project, we attempt to combine this approach with probabilistic topic modeling
 techniques to make recommendations that consist not only of movies that are
 popular in the community, but also those that are similar in content to movies
 that the user has enjoyed in the past.  
@@ -70,29 +58,35 @@ that the user has enjoyed in the past.
 
 Automatic movie/TV show recommendation is an important technology for streaming
 video services like Netflix, Hulu, HBO, Amazon etc. Not only video streaming 
-services, but also audio/music streaming sites like Spotify, iTunes make heavy
+services, but also audio/music streaming sites like Spotify, Pandora make heavy
 use of recommender systems. Indeed, any content management system that has large
-quantities of information such as usage patterns, metadata, latent structures 
-or the ability to extract such information, can and should make use of 
-recommendation methods to provide services that help find items of interest. In the remaining parts of the paper, we limit ourselves to the domain of movie 
+quantities of information (or the ability to extract such information) such as usage patterns, metadata, natural text etc can and should make use of 
+recommendation methods to provide services that help find items of interest. In 
+the remaining parts of the paper, we limit ourselves to the problem of movie 
 recommendation, however most of the discussion/analysis can be generally applied
 to other domains.  
 
+\section{Motivation}
+
 \subsection{Collaborative Filtering and its shortcoming}
 
-Traditional collaborative filtering techniques make use of usage patterns, 
-or more specifically, movie reviews. Movie ratings provided by a user
-are used alongwith similar ratings by other users to build a model that captues the user's preferences. This model is then used to predict movies that the user
-may have an interest in. However, this method only works when sufficient usage
-data is available. New content that is available may not be possible to recommend in absence of sufficient usage data. This is known as the 'cold start' 
-problem.
+Traditional collaborative filtering makes use of interactions between users and 
+items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent factor models, directly characterize both users and items by latent factors. Such collaborative filtering methods suffer from the 'cold start' problem, that is they are unable to recommend movies in the absence of rating patterns. In fact, in the domain of music, it has been observed \cite{} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well. We would like to be able to recommend movies that are in this long tail 
 
-One strategy might be to randomly recommend newly arrived movies to users and record their responses, thus building up usage data. However, such an approach has
-a few shortcomings. Since an average user likes only a few types of movies, it 
-is more likely than not for the user to give a negative review to a randomly suggested movie. Getting a sufficient number of positive reviews may take a long
-time through this approach, and also user satisfaction decreases due to the 
-bad recommendations made by the system (assuming a random recommendation is more
-likely to be bad than good). 
+
+%Traditional collaborative filtering techniques make use of usage patterns, 
+%or more specifically, movie reviews. Movie ratings provided by a user
+%are used alongwith similar ratings by other users to build a model that captues the user's preferences. This model is then used to predict movies that the user
+%may have an interest in. However, this method only works when sufficient usage
+%data is available. New content that is available may not be possible to recommend in absence of sufficient usage data. This is known as the 'cold start' 
+%problem.
+%
+%One strategy might be to randomly recommend newly arrived movies to users and record their responses, thus building up usage data. However, such an approach has
+%a few shortcomings. Since an average user likes only a few types of movies, it 
+%is more likely than not for the user to give a negative review to a randomly suggested movie. Getting a sufficient number of positive reviews may take a long
+%time through this approach, and also user satisfaction decreases due to the 
+%bad recommendations made by the system (assuming a random recommendation is more
+%likely to be bad than good). 
 
 
 \subsection{Content Based Recommendation}
@@ -111,7 +105,7 @@ modeling can be used to describe movies in terms of such latent themes. Such an
 approach can allow the recommendation system to generalize to new movies that 
 have very little usage data.
 
-\subsection{Hybrid approach}
+\section{Problem Definition}
 
 
 %% \subsection{Keywords for paper submission}
@@ -143,7 +137,7 @@ have very little usage data.
 
 %% \end{verbatim}
 
-\section{General formatting instructions}
+\section{Proposed Method}
 \label{gen_inst}
 
 The text must be confined within a rectangle 5.5~inches (33~picas) wide and
@@ -168,7 +162,7 @@ there is only one co-author, list both author and co-author side by side.
 Please pay special attention to the instructions in section \ref{others}
 regarding figures, tables, acknowledgments, and references.
 
-\section{Headings: first level}
+\section{Experiments}
 \label{headings}
 
 First level headings are lower case (except for first word and proper nouns),
@@ -186,6 +180,9 @@ heading and 1/2~line space after the second level heading.
 Third level headings are lower case (except for first word and proper nouns),
 flush left, bold and in point size 10. One line space before the third level
 heading and 1/2~line space after the third level heading.
+
+\section{Conclusions}
+
 
 \section{Citations, figures, tables, references}
 \label{others}
@@ -265,31 +262,7 @@ Soma             &Cell body (contains cell nucleus) \\
 \end{center}
 \end{table}
 
-\section{Final instructions}
-Do not change any aspects of the formatting parameters in the style files.
-In particular, do not modify the width or length of the rectangle the text
-should fit into, and do not change font sizes (except perhaps in the
-\textbf{References} section; see below). Please note that pages should be
-numbered.
-
-\section{Preparing PostScript or PDF files}
-
-Please prepare PostScript or PDF files with paper size ``US Letter'', and
-not, for example, ``A4''. The -t
-letter option on dvips will produce US Letter files.
-
-Fonts were the main cause of problems in the past years. Your PDF file must
-only contain Type 1 or Embedded TrueType fonts. Here are a few instructions
-to achieve this.
-
-\begin{itemize}
-
-\item You can check which fonts a PDF files uses.  In Acrobat Reader,
-select the menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
-also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
-available out-of-the-box on most Linux machines.
-
-\item The IEEE has recommendations for generating PDF files whose fonts
+\sectioendations for generating PDF files whose fonts
 are also acceptable for NIPS. Please see
 \url{http://www.emfield.org/icuwb2010/downloads/IEEE-PDF-SpecV32.pdf}
 
