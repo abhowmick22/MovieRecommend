@@ -56,22 +56,34 @@ that the user has enjoyed in the past.
 
 \section{Introduction}
 
-Automatic movie/TV show recommendation is an important technology for streaming
-video services like Netflix, Hulu, HBO, Amazon etc. Not only video streaming 
-services, but also audio/music streaming sites like Spotify, Pandora make heavy
-use of recommender systems. Indeed, any content management system that has large
-quantities of information (or the ability to extract such information) such as usage patterns, metadata, natural text etc can and should make use of 
-recommendation methods to provide services that help find items of interest. In 
-the remaining parts of the paper, we limit ourselves to the problem of movie 
-recommendation, however most of the discussion/analysis can be generally applied
-to other domains.  
-
-\section{Motivation}
+Recommender systems are an important technology for TV/movie streaming
+services like Netflix, HBO, audio/music streaming sites like Spotify, 
+Pandora, news article feeds like Pulse, online retailers such as Amazon, Walmart
+etc. Indeed, any service provider or content management system that has large
+quantities of information (or the ability to extract such information) such as 
+usage patterns, browsing and click history, natural text descriptions etc can
+and should make use of recommendation methods to help find items of interest. 
+Among various information sources, data in the form of natural text is a 
+particularly rich and expressive source of information, however it is highly 
+unstructured in general. Topic models are used to extract latent structures
+from large volumes of unlabeled text, that can be used for analysis of 
+contents and in turn, aid end goals such as making recommendations. In
+particular, textual information such as movie plot summaries can be very
+helpful to improve the prediction performance of traditional movie
+recommendation based on collaborative filtering. In the remaining 
+part of this report, we limit ourselves to the study of how topic modeling of 
+large text corpora can help in the task of movie recommendation, however most 
+of the discussion/analysis can be applied to other domains.  
 
 \subsection{Collaborative Filtering and its shortcoming}
 
 Traditional collaborative filtering makes use of interactions between users and 
-items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent factor models, directly characterize both users and items by latent factors. Such collaborative filtering methods suffer from the 'cold start' problem, that is they are unable to recommend movies in the absence of rating patterns. In fact, in the domain of music, it has been observed \cite{} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well. We would like to be able to recommend movies that are in this long tail. 
+items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent
+factor models, directly characterize both users and items by latent factors. We focus on factor based models as they are more accurate than neighbourhood based 
+methods. However, all collaborative filtering methods suffer from the `cold 
+start' problem, that is 
+they are unable to recommend movies in the absence of rating patterns. In fact, 
+in the domain of music, it has been observed \cite{music-long-tail} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well and hence, would like to be able to recommend movies that are in this long tail. 
 
 
 %Traditional collaborative filtering techniques make use of usage patterns, 
@@ -91,11 +103,18 @@ items. They may be broadly classified into two categories - neighbourhood method
 
 \subsection{Content Based Recommendation}
 
-Content-based recommendation addresses the
-'cold start' problem associated with collaborative filtering. One approach is to 
-use topic modeling on movie plot summaries to identify latent themes/topics. We can learn 
-topic representations for each item (a vector of topic proportions) and use them as item
-latent factor vectors in the latent-factor model.
+Content-based recommendation addresses the `cold start' problem associated with 
+collaborative filtering, where certain items do not have any rating information 
+and hence the corresponding item vectors consist of all zeroes (we use 
+zeroes to represent missing ratings in the rating matrix). One approach is to 
+use topic modeling on movie plot summaries to identify latent themes/topics. We 
+can learn topic representations for each item (a vector of topic proportions) 
+and add them to the item vectors in the latent-factor model. Such topic 
+representations of movie items are also useful outside the domain
+of movie recommendation. Interpretability of topics may help in explaining 
+recommendations to users, effective content programming and ad targeting based
+on user profiles \cite{fLDA}. 
+ 
 %A simple way is to make
 %recommendations based on movie metadata such as genre, actors, language etc. 
 %However, this approach severely restricts the pool of movies from which new 
@@ -111,34 +130,60 @@ latent factor vectors in the latent-factor model.
 
 \section{Problem Definition}
 
-The problem we are trying to solve is to predict how highly a user will rate certain
-movies based on all users' rating histories and plot summaries for all movies. Using this,
-we come up with movie recommendations for a user. Specifically, 
+Briefly, the problem we are trying to solve is predict how highly a user will 
+rate certain movies based on all users' rating histories and plot summaries for 
+all movies. Making use of these predicted ratings, we come up with movie 
+recommendations for a user. The problem can be formalized as follows 
+\cite{grouplens} :
+
+We are given a list of users \textit{U} = $\{u_{1}, u_{2} ... u_{m}\}$ and a 
+list of items \textit{V} = $\{v_{1}, v_{2} ... v_{n}\}$, where each user $u_{i}$
+has a list of items $I_{u_{i}}$ which he/she has given ratings for. For a given
+user $u_{a} \in \textit{U}$, we need to solve the following two tasks:
+
+\begin{itemize}
+
+\item {\bf Prediction}: Estimate the predicted rating $P_{a_{j}}$ of an
+item $v_{j} \notin V_{u_{a}}$. The prediction task can be further split into
+two types: \textit{in-matrix prediciton} and \textit{out-of-matrix prediction}. 
+\textit{In-matrix prediction} is the problem of predicting ratings for items
+that have already been rated by atleast twenty other users, whereas 
+\textit{out-of-matrix prediction} makes predictions about those items that have
+very few or no ratings (less than 20).
+
+\item {\bf Recommendation}: Return a list of N items $I_{r} \in I \:\&\: I_{r} \cap I_{a} = \phi$, that the user will like most. This is simply a problem of
+returning the items with highest predicted rating values.
+
+\end{itemize}
+
+Specifically, we are interested in observing how incorporation of item topic 
+representations increases the prediction accuracy of factor models. We would
+also like to analyse the interpretability of the latent topics that are 
+captured by the topic model, however this will be just be a qualitative 
+analysis.
 
 \section{Proposed Method}
 \label{gen_inst}
 
-The text must be confined within a rectangle 5.5~inches (33~picas) wide and
-9~inches (54~picas) long. The left margin is 1.5~inch (9~picas).
-Use 10~point type with a vertical spacing of 11~points. Times New Roman is the
-preferred typeface throughout. Paragraphs are separated by 1/2~line space,
-with no indentation.
+We use Probabilistic Matrix Factorization (PMF) for collaborative filtering on 
+movie ratings and Latent Dirichlet Allocation (LDA) for topic modeling of the 
+corpus of movie plot summaries. We then combine the latent factor model learned
+through PMF and the topic model learned through LDA into a single
+collaborative topic regression model (CTR). A CTR model essentially uses the
+latent topic space (latent variables) to explain observed ratings and observed 
+documents (observed variables), thus incorporating content information into a 
+collaborative filtering framework \cite{ctr}.
 
-Paper title is 17~point, initial caps/lower case, bold, centered between
-2~horizontal rules. Top rule is 4~points thick and bottom rule is 1~point
-thick. Allow 1/4~inch space above and below title to rules. All pages should
-start at 1~inch (6~picas) from the top of the page.
 
-%The version of the paper submitted for review should have ``Anonymous Author(s)'' as the author of the paper.
 
-For the final version, authors' names are
-set in boldface, and each name is centered above the corresponding
-address. The lead author's name is to be listed first (left-most), and
-the co-authors' names (if different address) are set to follow. If
-there is only one co-author, list both author and co-author side by side.
 
-Please pay special attention to the instructions in section \ref{others}
-regarding figures, tables, acknowledgments, and references.
+
+
+
+
+
+
+
 
 \section{Experiments}
 \label{headings}
@@ -240,7 +285,32 @@ Soma             &Cell body (contains cell nucleus) \\
 \end{center}
 \end{table}
 
-\sectioendations for generating PDF files whose fonts
+\section{Final instructions}
+
+Do not change any aspects of the formatting parameters in the style files.
+In particular, do not modify the width or length of the rectangle the text
+should fit into, and do not change font sizes (except perhaps in the
+\textbf{References} section; see below). Please note that pages should be
+numbered.
+
+\section{Preparing PostScript or PDF files}
+
+Please prepare PostScript or PDF files with paper size ``US Letter'', and
+not, for example, ``A4''. The -t
+letter option on dvips will produce US Letter files.
+
+Fonts were the main cause of problems in the past years. Your PDF file must
+only contain Type 1 or Embedded TrueType fonts. Here are a few instructions
+to achieve this.
+
+\begin{itemize}
+
+\item You can check which fonts a PDF files uses.  In Acrobat Reader,
+select the menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
+also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
+available out-of-the-box on most Linux machines.
+
+\item The IEEE has recommendations for generating PDF files whose fonts
 are also acceptable for NIPS. Please see
 \url{http://www.emfield.org/icuwb2010/downloads/IEEE-PDF-SpecV32.pdf}
 
