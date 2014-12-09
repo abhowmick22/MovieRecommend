@@ -1,18 +1,17 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}
-\BOOKMARK [1][-]{section.2}{Motivation}{}
-\BOOKMARK [2][-]{subsection.2.1}{Collaborative Filtering and its shortcoming}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Content Based Recommendation}{section.2}
-\BOOKMARK [1][-]{section.3}{Problem Definition}{}
-\BOOKMARK [1][-]{section.4}{Proposed Method}{}
-\BOOKMARK [1][-]{section.5}{Experiments}{}
-\BOOKMARK [2][-]{subsection.5.1}{Headings: second level}{section.5}
-\BOOKMARK [3][-]{subsubsection.5.1.1}{Headings: third level}{subsection.5.1}
-\BOOKMARK [1][-]{section.6}{Conclusions}{}
-\BOOKMARK [1][-]{section.7}{Citations, figures, tables, references}{}
-\BOOKMARK [2][-]{subsection.7.1}{Citations within the text}{section.7}
-\BOOKMARK [2][-]{subsection.7.2}{Footnotes}{section.7}
-\BOOKMARK [2][-]{subsection.7.3}{Figures}{section.7}
-\BOOKMARK [2][-]{subsection.7.4}{Tables}{section.7}
-\BOOKMARK [1][-]{section.8}{Final instructions}{}
-\BOOKMARK [1][-]{section.9}{Preparing PostScript or PDF files}{}
-\BOOKMARK [2][-]{subsection.9.1}{Margins in LaTeX}{section.9}
+\BOOKMARK [2][-]{subsection.1.1}{Collaborative Filtering and its shortcoming}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{Content Based Recommendation}{section.1}
+\BOOKMARK [1][-]{section.2}{Problem Definition}{}
+\BOOKMARK [1][-]{section.3}{Proposed Method}{}
+\BOOKMARK [1][-]{section.4}{Experiments}{}
+\BOOKMARK [2][-]{subsection.4.1}{Headings: second level}{section.4}
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Headings: third level}{subsection.4.1}
+\BOOKMARK [1][-]{section.5}{Conclusions}{}
+\BOOKMARK [1][-]{section.6}{Citations, figures, tables, references}{}
+\BOOKMARK [2][-]{subsection.6.1}{Citations within the text}{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{Footnotes}{section.6}
+\BOOKMARK [2][-]{subsection.6.3}{Figures}{section.6}
+\BOOKMARK [2][-]{subsection.6.4}{Tables}{section.6}
+\BOOKMARK [1][-]{section.7}{Final instructions}{}
+\BOOKMARK [1][-]{section.8}{Preparing PostScript or PDF files}{}
+\BOOKMARK [2][-]{subsection.8.1}{Margins in LaTeX}{section.8}

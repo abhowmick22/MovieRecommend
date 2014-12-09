@@ -57,27 +57,33 @@ that the user has enjoyed in the past.
 \section{Introduction}
 
 Recommender systems are an important technology for TV/movie streaming
-services like Netflix, Hulu, HBO, Amazon etc. Not only video streaming 
-services, but also audio/music streaming sites like Spotify, Pandora make heavy
-use of recommender systems. Indeed, any content management system that has large
-quantities of information (or the ability to extract such information) such as usage patterns, metadata, natural text etc can and should make use of 
-recommendation methods to help find items of interest. Collaborative filtering and content based approaches are the two main methods of solving the problem, 
-however each method has its pros and cons. In 
-the remaining parts of the paper, we limit ourselves to the problem of movie 
-recommendation, however most of the discussion/analysis can be generally applied
-to other domains.  
-
-\section{Motivation}
+services like Netflix, HBO, audio/music streaming sites like Spotify, 
+Pandora, news article feeds like Pulse, online retailers such as Amazon, Walmart
+etc. Indeed, any service provider or content management system that has large
+quantities of information (or the ability to extract such information) such as 
+usage patterns, browsing and click history, natural text descriptions etc can
+and should make use of recommendation methods to help find items of interest. 
+Among various information sources, data in the form of natural text is a 
+particularly rich and expressive source of information, however it is highly 
+unstructured in general. Topic models are used to extract latent structures
+from large volumes of unlabeled text, that can be used for analysis of 
+contents and in turn, aid end goals such as making recommendations. In
+particular, textual information such as movie plot summaries can be very
+helpful to improve the prediction performance of traditional movie
+recommendation based on collaborative filtering. In the remaining 
+part of this report, we limit ourselves to the study of how topic modeling of 
+large text corpora can help in the task of movie recommendation, however most 
+of the discussion/analysis can be applied to other domains.  
 
 \subsection{Collaborative Filtering and its shortcoming}
 
 Traditional collaborative filtering makes use of interactions between users and 
 items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent
 factor models, directly characterize both users and items by latent factors. We focus on factor based models as they are more accurate than neighbourhood based 
-methods. However, all collaborative filtering methods suffer from the 'cold 
+methods. However, all collaborative filtering methods suffer from the `cold 
 start' problem, that is 
 they are unable to recommend movies in the absence of rating patterns. In fact, 
-in the domain of music, it has been observed \cite{music-long-tail} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well. We would like to be able to recommend movies that are in this long tail. 
+in the domain of music, it has been observed \cite{music-long-tail} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well and hence, would like to be able to recommend movies that are in this long tail. 
 
 
 %Traditional collaborative filtering techniques make use of usage patterns, 
@@ -97,7 +103,7 @@ in the domain of music, it has been observed \cite{music-long-tail} that the dis
 
 \subsection{Content Based Recommendation}
 
-Content-based recommendation addresses the 'cold start' problem associated with 
+Content-based recommendation addresses the `cold start' problem associated with 
 collaborative filtering, where certain items do not have any rating information 
 and hence the corresponding item vectors consist of all zeroes (we use 
 zeroes to represent missing ratings in the rating matrix). One approach is to 
@@ -147,8 +153,9 @@ returning the items with highest predicted rating values.
 
 Specifically, we are interested in observing how incorporation of item topic 
 representations increases the prediction accuracy of factor models. We would
-also like to analyse the latent themes of the items that are captured by the
-topic model.
+also like to analyse the interpretability of the latent topics that are 
+captured by the topic model, however this will be just be a qualitative 
+analysis.
 
 \section{Proposed Method}
 \label{gen_inst}
