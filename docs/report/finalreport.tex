@@ -5,6 +5,10 @@
 \usepackage{enumitem}
 \usepackage[]{algorithm2e}
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -208,38 +212,104 @@ parameter that is drawn from some probability distribution. Now, the generative
 process of the LDA model is:
 
 \begin{algorithm}
+initialize vocabulary from corpus, the size of which is V\;
+\For{each of the K topics k}{
+	Choose $\beta_{k,1:V}$ $\sim$ Exhangeable Dirichlet($\eta$) // Draw topic distributions\; 
+}
 \For{each of the M documents {\bf w} in corpus D}{
 Choose $\theta$ $\sim$ Dirichlet($\alpha$)\;
 	\For{each of the N words $w_{n}$ in document {\bf w}}{
 	Choose a topic $z_{n}$ $\sim$ Multinomial($\theta$)\;
-	Choose word $w_{n}$ from $p(w_{n} | z_{n}, \beta)$, a multinomial
+	Choose word $w_{n}$ from $p(w_{n} | z_{n}, \beta_{z_{n}})$, a multinomial
 	probability conditioned on topic $z_{n}$
 	}
 }
 \end{algorithm}
 
-Figure~\ref{lda-model} shows the graphical model representation of LDA, which is
+\begin{figure}[h]
+	\centering
+	\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
+	\begin{subfigure}[b]{0.45\textwidth}
+	\includegraphics[width=6cm,height=6cm,keepaspectratio]{lda-model.png}
+	\caption{True posterior distribution}
+	\label{fig:lda-model}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.5\textwidth}
+	\includegraphics[width=8cm,height=3cm,keepaspectratio]{lda-variational.png}
+	\caption{Variational posterior distribution}
+	\label{fig:lda-variational}
+	\end{subfigure}
+\caption{Graphical models of LDA, before and after variational approximation}
+\label{fig:models}
+\end{figure}
+
+
+Figure~\ref{fig:lda-model} shows the graphical model representation of LDA, which is
 a three-level hierarchical model. We
 assume that the number of topic vectors k is fixed and the vocabulary size of
 the corpus to be modeled is V. Now, the word probabilities are parametrized
-by a k X V matrix $\beta$, each row of which represents the distribution of
-topics over words in the vocabulary. Also, $\alpha$ is a k-dimensional vector 
+by a k X V random matrix $\beta$, each row of which represents the distribution 
+of topics over words in the vocabulary. Each row of $\beta$ is independently 
+drawn from an exchangeable Dirichlet distribution with parameter $\eta$.
+Also, $\alpha$ is a k-dimensional vector 
 which is a parameter for the Dirichlet random variable $\theta$. Given the
-parameters $\alpha$ and $\beta$, the joint distribution of the topic mixture
+parameters $\alpha$ and $\beta$ (which itself is a random matrix parametrized
+by $\eta$), the joint distribution of the topic mixture
 $\theta$, the set of N topics {\bf z} and the set of N words {\bf w} is:
 
 \begin{equation} \label{eq1}
 p(\theta,{\bf w},{\bf z} | \alpha,\beta ) = p(\theta|\alpha)\prod_{n=1}^{N}p(z_{n}|\theta)p(w_{n}|z_{n},\beta) 
 \end{equation}
 
-(We make use of the representation theorem which states that the set of topics
+We make use of the representation theorem which states that the set of topics
 {\bf z} are independent conditioned on $\theta$ which is a random parameter of 
-a multinomial distribution).
+a multinomial distribution. Next, we describe two important tasks for LDA, 
+namely inference and estimation:
+
+\begin{itemize}[leftmargin=*]
+
+\item[] {\bf Inference}: The inference task is to compute the posterior 
+distribution of the hidden variables given the observed variable {\bf w} (the 
+document), assuming we know the parameters $\alpha$ and $\beta$. (Note that 
+we treat $\beta$ as a fixed parameter for the following discussion)
+
+\begin{equation} \label{eq2}
+p(\theta,{\bf z} | {\bf w},\alpha,\beta ) = \frac{p(\theta,{\bf z}, {\bf w}|\alpha,\beta)}{p({\bf w}|\alpha,\beta)} 
+\end{equation}
+
+Computing this distribution is intractible and hence we use variational 
+approximate inference, as described by Blei et al. \cite{lda}. Simple 
+modifications to the LDA graphical model such as dropping edges between 
+$\theta$, {\bf z} and 
+{\bf w} and adding variational parameters lead us to variational model as in 
+Figure~\ref{fig:lda-variational}, which has the following variational distribution:
+ 
+\begin{equation} \label{eq3}
+q(\theta,{\bf z}|\gamma, \phi) = q(\theta|\gamma)\prod_{n=1}^{N}q(z_{n}|\phi_{n})
+\end{equation}
+
+The optimal values of the variational parameters ($\gamma^{*}$, $\phi^{*}$) are 
+obtained by minimizing the
+Kullback-Leibler (KL) divergence between the variational and true posterior
+distribution. By placing a Dirichlet prior on $\beta$, we get a separable 
+variational distribution, which yields the same expressions for $\gamma^{*}$, 
+$\phi^{*}$ and introduces a new variational parameter $\lambda$ which has a 
+similar expression as $\gamma$.
+
+\item[] {\bf Estimation}: We wish to find parameters $\alpha$ and $\eta$ that
+maximize the log-likelihood of observed data, however computing the likelihood
+is intractable. So, we use a variational EM procedure in which we alternatingly
+maximize a lower bound on the log-likelihood of data with respect to 
+variational parameters $\gamma$, $\phi$ and $\lambda$. This is the E-step. We 
+then maximize this lower bound with respect to the parameters $\alpha$ and 
+$\eta$, which comprises the M-step. The updates for both the parameters $\alpha$
+and $\eta$ are obtained using an efficient Newton-Raphson method in which 
+Hessian is inverted in linear time.
+
+\end{itemize}
 
 \subsection{Collaborative Topic Regression}
-
-
-
 
 
 \section{Experiments}
