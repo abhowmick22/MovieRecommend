@@ -3,8 +3,7 @@ import sys;
 import re;
 
 # Reading processed summaries and vocabulary 
-summaryFile = open('../../data/nostemming/processed_summaries.txt', 'r');
-#vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
+summaryFile = open('../../data/stemming/processed_summaries.txt', 'r');
 
 # Checking for existance of files
 if(summaryFile == None):

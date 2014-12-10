@@ -4,8 +4,8 @@ import re;
 import operator;
 
 # Reading processed summaries and vocabulary 
-summaryFile = open('../../data/nostemming/processed_summaries_1.txt', 'r');
-vocabFile = open('../../data/nostemming/raw_vocabulary_1.txt', 'r');
+summaryFile = open('../../data/stemming/processed_summaries.txt', 'r');
+vocabFile = open('../../data/stemming/raw_vocabulary.txt', 'r');
 #vocabFile = open('../../data/sortedVocab_nostemming.txt', 'r');
 
 # Checking for existance of files
@@ -65,7 +65,7 @@ for i in sortedWords:
 
 
 # Restructing the vocabulary and dumping it
-newVocabFile = open('../../data/nostemming/clean_vocabulary_1.txt', 'wb');
+newVocabFile = open('../../data/stemming/clean_vocabulary.txt', 'wb');
 vocabCount = 0;
 for i in newVocabLines:
     splits = i.split(',');
@@ -78,60 +78,3 @@ for i in newVocabLines:
     vocabCount += 1;
 
 newVocabFile.close();
-
-searchLetter = 'b';
-words = [];
-for i in newVocabLines:
-    splits = i.split(',');
-
-    # if word is in the head, ignore
-    if(splits[1] in topWords):
-        continue;
-    
-    words.append(splits[1]);
-
-    # Indexing
-    curLetter = splits[1][0];
-    if(curLetter == searchLetter):
-        index[searchLetter] = newVocabLines.index(i);
-        searchLetter = chr(ord(searchLetter) + 1);
-
-# Appending a dummy entry for handling 'z' and its next ascii character '{'
-index['{'] = vocabCount;
-# Opening a file to dump feature for the movie plots
-
-featureFile = open('../../data/summaryFeatures_stemming_cleaned.txt', 'wb');
-
-# For each movie summary find the indices of words and dump them as feature vectors
-iterId = 0;
-for line in summaryLines:
-    feature = [];
-
-    lineSplit = line.split(',');
-    movieId = int(lineSplit[0]);
-
-    # Debug message
-    iterId = iterId + 1;
-    if(iterId % 100 == 0):
-        print iterId
-
-    # Reading the set of words using regular expressions
-    string = re.findall(r'\[([^]]*)\]', line);
-    string = re.findall('\'([^\']*)\'', string[0]);
-
-    for i in string:
-        if(len(i) < 1):
-            continue;
-
-        startLetter = i[0];
-        # Word present in the vocabulary 
-        if(ord(startLetter) > 96 and ord(startLetter) < 123):
-            subWordList = words[index[startLetter]:index[chr(ord(startLetter)+1)]];
-            if(i in subWordList):
-                feature.append(index[startLetter] + subWordList.index(i));
-   
-    # Dumping the feature vector into the file, only if number of features using the curent dictionary is greater than 1
-    if(len(feature) > 0):
-        featureFile.write(str(movieId) + ', ' +  str(feature) + '\n');
-
-featureFile.close()

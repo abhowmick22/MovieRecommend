@@ -1,0 +1,11 @@
+LDA models training from Gibbs sampling with stemming for final evaluation and results
+
+Struture of folder is as follows
+
+38k/ 
+    LDA trained on only 38k movies that do not have ratings, training for CF is seens as inferenec for LDA
+
+42k/
+    LDA is trained using all the movies, apart from the 0.5k movies used for final testing
+
+Each folder has 15/, 25/, 40/ files that contain the LDA models and corresponding inference
