@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 15:37
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 17:27
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -314,29 +314,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box35
 \@float@everytoks=\toks23
 \@floatcapt=\box36
-) (./finalreport.aux)
-\openout1 = `finalreport.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 53.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
-File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-ABD: EveryShipout initializing macros
 (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
@@ -345,7 +323,70 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-Package hyperref Info: Link coloring OFF on input line 53.
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Package option `usenames' ignored on input line 216.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+(/usr/share/texmf-texlive/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2001/02/13 v0.1j Color table columns (DPC)
+
+(/usr/share/texmf-texlive/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen130
+\extrarowheight=\dimen131
+\NC@list=\toks24
+\extratabsurround=\skip56
+\backup@length=\skip57
+)
+\everycr=\toks25
+\minrowclearance=\skip58
+)
+LaTeX Info: Redefining \color on input line 702.
+\rownum=\count120
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+
+(/usr/share/texmf-texlive/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+(/usr/share/texmf/tex/latex/xcolor/svgnam.def
+File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
+)) (./finalreport.aux)
+\openout1 = `finalreport.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 55.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+ABD: EveryShipout initializing macros
+Package hyperref Info: Link coloring OFF on input line 55.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -353,10 +394,10 @@ Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count120
+\c@section@level=\count121
 )
-LaTeX Info: Redefining \ref on input line 53.
-LaTeX Info: Redefining \pageref on input line 53.
+LaTeX Info: Redefining \ref on input line 55.
+LaTeX Info: Redefining \pageref on input line 55.
  (./finalreport.out) (./finalreport.out)
 \@outlinefile=\write3
 \openout3 = `finalreport.out'.
@@ -364,85 +405,85 @@ LaTeX Info: Redefining \pageref on input line 53.
 \AtBeginShipoutBox=\box37
  (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count121
-\scratchdimen=\dimen130
+\scratchcounter=\count122
+\scratchdimen=\dimen132
 \scratchbox=\box38
-\nofMPsegments=\count122
-\nofMParguments=\count123
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count124
-\MPscratchDim=\dimen131
-\MPnumerator=\count125
-\everyMPtoPDFconversion=\toks25
+\nofMPsegments=\count123
+\nofMParguments=\count124
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen133
+\MPnumerator=\count126
+\everyMPtoPDFconversion=\toks27
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 56.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 58.
  (/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 59.
 
 
-LaTeX Warning: Citation `music-long-tail' on page 1 undefined on input line 95.
+LaTeX Warning: Citation `music-long-tail' on page 1 undefined on input line 97.
 
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `fLDA' on page 2 undefined on input line 125.
+LaTeX Warning: Citation `fLDA' on page 2 undefined on input line 127.
 
 
-LaTeX Warning: Citation `grouplens' on page 2 undefined on input line 146.
+LaTeX Warning: Citation `grouplens' on page 2 undefined on input line 148.
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 153.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 155.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 153.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 155.
 
 
-LaTeX Warning: Citation `ctr' on page 2 undefined on input line 184.
+LaTeX Warning: Citation `ctr' on page 2 undefined on input line 186.
 
 
-LaTeX Warning: Citation `lda' on page 2 undefined on input line 195.
+LaTeX Warning: Citation `lda' on page 2 undefined on input line 197.
 
 [2]
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
- line 229.
- <lda-model.png, id=118, 375.65344pt x 181.42781pt>
+ line 231.
+ <lda-model.png, id=122, 375.65344pt x 181.42781pt>
 File: lda-model.png Graphic file (type png)
  <use lda-model.png>
-<lda-variational.png, id=119, 240.9pt x 167.87718pt>
+<lda-variational.png, id=123, 240.9pt x 167.87718pt>
 File: lda-variational.png Graphic file (type png)
  <use lda-variational.png>
 
-LaTeX Warning: Citation `lda' on page 3 undefined on input line 285.
+LaTeX Warning: Citation `lda' on page 3 undefined on input line 287.
 
 [3 <./lda-model.png (PNG copy)> <./lda-variational.png (PNG copy)>]
 
-LaTeX Warning: Citation `ctr' on page 4 undefined on input line 317.
+LaTeX Warning: Citation `ctr' on page 4 undefined on input line 319.
 
 
-LaTeX Warning: Reference `sec:pmf' on page 4 undefined on input line 319.
+LaTeX Warning: Reference `sec:pmf' on page 4 undefined on input line 321.
 
-<ctr-gen-process.png, id=133, 295.1025pt x 227.34938pt>
+<ctr-gen-process.png, id=137, 295.1025pt x 227.34938pt>
 File: ctr-gen-process.png Graphic file (type png)
 
-<use ctr-gen-process.png> <ctr-model.png, id=134, 385.44pt x 207.02344pt>
+<use ctr-gen-process.png> <ctr-model.png, id=138, 385.44pt x 207.02344pt>
 File: ctr-model.png Graphic file (type png)
 
 <use ctr-model.png>
-Overfull \hbox (14.8412pt too wide) detected at line 366
+Overfull \hbox (14.8412pt too wide) detected at line 368
 \OMS/cmsy/m/n/10 L \OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10 u[]u[] \OMS/cmsy/m/
 n/10 ^^@ [] []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 ^^@ \OML/c
 mm/m/it/10 ^^R[]\OT1/cmr/m/n/10 )[](\OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 ^^@ \
@@ -453,43 +494,50 @@ v[]\OT1/cmr/m/n/10 )[]
  []
 
 
-LaTeX Warning: Citation `ctr' on page 4 undefined on input line 376.
+LaTeX Warning: Citation `ctr' on page 4 undefined on input line 378.
 
 [4 <./ctr-gen-process.png (PNG copy)> <./ctr-model.png (PNG copy)>]
 
-LaTeX Warning: Citation `nltk' on page 5 undefined on input line 436.
+LaTeX Warning: Citation `nltk' on page 5 undefined on input line 438.
 
 
-LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 447.
+LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 449.
 
 
-LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 456.
+LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 458.
 
 [5]
-Overfull \hbox (0.71367pt too wide) in paragraph at lines 466--481
+Overfull \hbox (1.51364pt too wide) in paragraph at lines 468--483
  [] 
  []
 
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 657--659
+
+Underfull \vbox (badness 2285) has occurred while \output is active []
+
+ [6]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 728--730
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 657--659
+Underfull \hbox (badness 10000) in paragraph at lines 728--730
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
-[8]
+[9]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 725.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 796.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 740.
- [9]
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 811.
+ [10]
 
-Package caption Warning: Unused \captionsetup[algorithm] on input line 12.
+Package caption Warning: Unused \captionsetup[algorithm] on input line 14.
 See the caption package documentation for explanation.
 
 (./finalreport.aux)
@@ -498,13 +546,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7309 strings out of 493848
- 105766 string characters out of 1152824
- 214526 words of memory out of 3000000
- 10408 multiletter control sequences out of 15000+50000
+ 7997 strings out of 493848
+ 114586 string characters out of 1152824
+ 242744 words of memory out of 3000000
+ 11075 multiletter control sequences out of 15000+50000
  31164 words of font info for 61 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,15n,38p,396b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,15n,38p,396b,585s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -521,9 +569,9 @@ exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
 -texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (9 pages, 320697 bytes).
+Output written on finalreport.pdf (10 pages, 323595 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 54 named destinations out of 1000 (max. 500000)
- 213 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 277 PDF objects out of 1000 (max. 8388607)
+ 57 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 

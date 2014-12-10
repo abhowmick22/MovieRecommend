@@ -9,6 +9,8 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \captionsetup[algorithm]{labelfont=rm,labelsep=period}
 
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
@@ -440,14 +442,14 @@ vocabulary. For ease of combining the summary and rating datasets, we
 created a map from the Wikipedia IDs to the Movielens IDs (by linking movie IDs 
 that have the same movie names). 
 
-\subsection{Evaluation of LDA}
+\subsection{Evaluation of LDA implementation}
 
-We evaluate the interpretability of latent topics discovered by our LDA
-implementation using two human evaluation tasks namely, \textit{word intrusion}
+Interpretability of latent topics discovered by a topic model can be 
+evaluated using two human evaluation tasks namely, \textit{word intrusion}
 and \textit{topic intrusion}, proposed by Chang, Blei et al \cite{tea-leaves}. 
 These tasks evaluate the quality of topics inferred by the model and the 
-assignment of topics to documents. We describe these tests in more detail and
-evaluate our LDA using these below:
+assignment of topics to documents. We briefly describe these tests and
+evaluate our LDA using similar notions below:
 
 \subsubsection{Word Intrusion}
 This test measures whether the topics inferred by the topic model correspond
@@ -455,10 +457,10 @@ to natural interpretations and contain words that are semantically close. An
 `intruder' is defined as a word that doesn't belong with the the others in a 
 group. The original task proposed in \cite{tea-leaves} consists of 
 building a set of words from a randomly chosen topic and injecting an `intruder'from some other topic. This set is then presented to a human subject to see if 
-the `intruder' is correctly identified within the presented set. For our 
-evaluation, we modify the test to just observe the proportion of `intruder' 
-words per topic. In the following table, we list out some of the topics 
-from our 15-topic LDA.
+the `intruder' word is correctly identified by the subject. For our 
+evaluation, we just observe the proportion of `intruder' words per topic. 
+In the following table, we list out some of the topics from our 15-topic LDA (
+each topic is color-coded).
 
 \begin{table}[h]
 \label{table:word-intrusion}
@@ -467,16 +469,16 @@ from our 15-topic LDA.
 %\multicolumn{1}{c}{\bf PART}  &\multicolumn{1}{c}{\bf DESCRIPTION}
 %\\ \hline \\
 Topic	& Terms	& Intruders \\ \hline
-1 & film, movi, stori, play, show, perform, charact, scene, music, star, follow,includ, peopl, around, end, song, first, band, act, role & follow, around, end, includ, first \\
-2 & polic, kill, murder, offic, prison, arrestm investig, man, gang, case,
-death, crime, one, drug, shoot, killer, crimin, detect, escap, suspect & offic, one, man \\
-3 & war, american, forc, state, soldier, armi, unit, order, offic, german,
-govern, british, world, command, general, men, captain, group, agent, militari & men \\
-4 & tell, go, ask, see, say, leav, back, day, get, call, goe, come, home, next,
-want, find, night, one, know, time & tell, go, ask ... \\
-5 & use, ship, destroy, island, human, earth, crew, attack, discov, world,
-control, escap, power, one, alien, monster, caus, find, time, rescu & use, one,
-caus, find \\ \hline 
+1 & \textcolor{red}{film, movi, stori, play, show, perform, charact, scene, music, star, follow,includ, peopl, around, end, song, first, band, act, role} & follow, around, end, includ, first \\
+2 & \textcolor{green}{polic, kill, murder, offic, prison, arrestm investig, man, gang, case, death, crime, one, drug, shoot, killer, crimin, detect, escap, suspect} & offic, one, man \\
+3 & \textcolor{cyan}{war, american, forc, state, soldier, armi, unit, order, offic, german,
+govern, british, world, command, general, men, captain, group, agent, militari} & men \\
+4 & \textcolor{yellow}{tell, go, ask, see, say, leav, back, day, get, call, goe, come, home, next,
+want, find, night, one, know, time} & tell, go, ask ... \\
+5 & \textcolor{blue}{use, ship, destroy, island, human, earth, crew, attack, discov, world,
+control, escap, power, one, alien, monster, caus, find, time, rescu} & use, one,
+caus, find \\ 
+6 & \textcolor{brown}{king, power, kill, find, use, one, evil, return, take, villag, save, princ, magic, howev, queen, order, fight, name, world, death} & find, use, one, take, howev \\ \hline 
 \end{tabular}
 \end{center}
 \caption{Topics identified by LDA and `intruders' per topic}
@@ -484,15 +486,84 @@ caus, find \\ \hline
 
 We see that our LDA is able to identify important movie `themes' such as 
 theatre/drama (topic 1), crime/violence (topic 2), war movies (topic 3), 
-adventure/fiction (topic 5). These topics have a few number of `intruders' (3 
-per topic on average). However, there are certain topics like topic 4, that are 
-too general to be useful, such topics have a large number of `intruders'.
+adventure/fiction (topic 5), history/drama (topic 6). 
+These topics have a few number of `intruders' (3 per topic on average). 
+However, there are certain topics like topic 4, that are too general to be 
+useful, such topics have a large number of `intruders'.
 
 \subsubsection{Topic Intrusion}
+The topic intrusion test measures how well a topic model assigns topics to
+documents. Similar to the word intrusion test, the topic intrusion test consists
+of building a set of topics that are assigned to a particular document alongwith
+an `intruder' topic. This set of topics is presented along with the document
+to a human subject to see if the `intruder' topic is correctly identified by the
+subject. For our evaluation, we present a sample processed movie plot summary 
+and highlight the topic mixture of this document by coloring the words that 
+belong to the topics assigned by LDA. 
 
+\begin{figure}[H]
+	\centering
+\textcolor{red}{film}
+\textcolor{brown}{courage} 
+	struck 
+	\textcolor{green}{reckless} 
+	freewheel 
+	\textcolor{brown}{arthur}
+	 \textcolor{red}{show}
+	  round 
+	  table
+	   \textcolor{brown}{symbol}
+	   life 
+	   \textcolor{cyan}{service}
+	    \textcolor{brown}{brotherhood} 
+	    \textcolor{brown}{guinevere} 
+	    \textcolor{cyan}{subsequent}
+	    \textcolor{green}{kidnap}
+	    \textcolor{green}{malagant}
+	    \textcolor{cyan}{men}
+	    \textcolor{cyan}{shoot} 
+	    \textcolor{brown}{crossbow} 
+	    \textcolor{brown}{battle}
+	     \textcolor{brown}{malagant} 
+	     \textcolor{green}{soldier}
+	      citizen 
+	      ensure
+	       \textcolor{brown}{lancelot}
+	        \textcolor{brown}{malagant}
+	         face 
+	         \textcolor{green}{disarm} 
+	         \textcolor{brown}{lancelot}
+	         \textcolor{cyan}{seize} 
+	         \textcolor{brown}{arthur}
+	          bodies
+	           float
+	            \textcolor{blue}{sea}
+	            set 
+	            \textcolor{red}{aflame}
+	\caption{Topic distribution for summary of `First Knight' (1995)}
+	\label{fig:topic-distr-sample}
+\end{figure}
+
+We see that the summary for the movie `First Knight' contains a large
+proportion of words belonging to topic 6 - history/drama(brown).
+The other significant topics contained in this are topic 2 - crime/violence
+(green) and topic 3 - war movies (cyan). We thus see that our LDA correctly 
+identifies the topics in the plot summary of `First Knight', a historical period
+war drama based on the life of King Arthur.
+
+\subsubsection{Visualization of movie corpus}
+LDA provides feature vectors for movie plot summaries in the form of topic
+proportions, and models the latent structure in the items belonging to the
+corpus. We try to identify this latent structure by visualizing the
+corpus using t-SNE, a dimensionality reduction tool that is used for the 
+visualization of high dimensional datasets. 
 
 
 \subsection{Prediction}
+
+
+
+
 
 
 \subsection{Recommendation}
