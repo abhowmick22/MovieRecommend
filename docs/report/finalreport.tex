@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\captionsetup[algorithm]{labelfont=rm,labelsep=period}
 
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
 
@@ -224,6 +225,7 @@ Choose $\theta$ $\sim$ Dirichlet($\alpha$)\;
 	probability conditioned on topic $z_{n}$
 	}
 }
+\caption{Generative process for LDA}
 \end{algorithm}
 
 \begin{figure}[h]
@@ -282,8 +284,7 @@ Computing this distribution is intractible and hence we use variational
 approximate inference, as described by Blei et al. \cite{lda}. Simple 
 modifications to the LDA graphical model such as dropping edges between 
 $\theta$, {\bf z} and 
-{\bf w} and adding variational parameters lead us to variational model as in 
-Figure~\ref{fig:lda-variational}, which has the following variational distribution:
+{\bf w} and adding variational parameters lead us to the variational model as inFigure~\ref{fig:lda-variational}, which has the following variational distribution:
  
 \begin{equation} \label{eq3}
 q(\theta,{\bf z}|\gamma, \phi) = q(\theta|\gamma)\prod_{n=1}^{N}q(z_{n}|\phi_{n})
