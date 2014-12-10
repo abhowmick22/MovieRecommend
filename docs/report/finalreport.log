@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 15:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 15:37
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -471,22 +471,22 @@ Overfull \hbox (0.71367pt too wide) in paragraph at lines 466--481
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 655--657
+Underfull \hbox (badness 10000) in paragraph at lines 657--659
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 655--657
+Underfull \hbox (badness 10000) in paragraph at lines 657--659
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
 [8]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 723.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 725.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 738.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 740.
  [9]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 12.
@@ -521,7 +521,7 @@ exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
 -texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (9 pages, 320583 bytes).
+Output written on finalreport.pdf (9 pages, 320697 bytes).
 PDF statistics:
  267 PDF objects out of 1000 (max. 8388607)
  54 named destinations out of 1000 (max. 500000)

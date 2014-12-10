@@ -443,8 +443,8 @@ that have the same movie names).
 \subsection{Evaluation of LDA}
 
 We evaluate the interpretability of latent topics discovered by our LDA
-implementation using two human evaluation tasks namely, {\textit word intrusion}
-and {\textit topic intrusion}, proposed by Chang, Blei et al \cite{tea-leaves}. 
+implementation using two human evaluation tasks namely, \textit{word intrusion}
+and \textit{topic intrusion}, proposed by Chang, Blei et al \cite{tea-leaves}. 
 These tasks evaluate the quality of topics inferred by the model and the 
 assignment of topics to documents. We describe these tests in more detail and
 evaluate our LDA using these below:
@@ -455,10 +455,10 @@ to natural interpretations and contain words that are semantically close. An
 `intruder' is defined as a word that doesn't belong with the the others in a 
 group. The original task proposed in \cite{tea-leaves} consists of 
 building a set of words from a randomly chosen topic and injecting an `intruder'from some other topic. This set is then presented to a human subject to see if 
-the `intruder' is correctly identified within the presented set. We modify the 
-test for our evaluation. We list out some of the topics from a 15-topic 
-LDA and identify the `intruders' in each topic and try to interpret themes
-represented by each of these topics.
+the `intruder' is correctly identified within the presented set. For our 
+evaluation, we modify the test to just observe the proportion of `intruder' 
+words per topic. In the following table, we list out some of the topics 
+from our 15-topic LDA.
 
 \begin{table}[h]
 \label{table:word-intrusion}
@@ -476,21 +476,21 @@ govern, british, world, command, general, men, captain, group, agent, militari &
 want, find, night, one, know, time & tell, go, ask ... \\
 5 & use, ship, destroy, island, human, earth, crew, attack, discov, world,
 control, escap, power, one, alien, monster, caus, find, time, rescu & use, one,
-caus, find \\ 
+caus, find \\ \hline 
 \end{tabular}
 \end{center}
 \caption{Topics identified by LDA and `intruders' per topic}
 \end{table}
 
-We see that our LDA is also able to identify important movie `themes' such as 
+We see that our LDA is able to identify important movie `themes' such as 
 theatre/drama (topic 1), crime/violence (topic 2), war movies (topic 3), 
-adventure/fiction (topic 5). However, there are certain topics that are too
-general  We observe that there are a small number of `intruders' per topic (3 on 
-average).We also see that some of the topics are too general to be useful.
-
-
+adventure/fiction (topic 5). These topics have a few number of `intruders' (3 
+per topic on average). However, there are certain topics like topic 4, that are 
+too general to be useful, such topics have a large number of `intruders'.
 
 \subsubsection{Topic Intrusion}
+
+
 
 \subsection{Prediction}
 
