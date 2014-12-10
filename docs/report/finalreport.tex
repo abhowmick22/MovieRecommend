@@ -399,23 +399,64 @@ r_{ij}^{*} \approx (u_{i}^{*})^{T}(\theta_{j}^{*})
 
 
 \section{Experiments}
-\label{headings}
 
-First level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 12. One line space before the first level
-heading and 1/2~line space after the first level heading.
+We present the results of our evaluations and analysis in this section. We
+denote the plain collaborative filtering model as CF ($v_{j}=\epsilon_{j}$), the
+collaborative topic regression model as CTR ($v_{j}=\epsilon_{j}+\theta_{j}$) 
+and the prediction model with just topic estimates as CTR-LDA 
+($v_{j}=\theta_{j}$), where $v_{j}$, $\epsilon_{j}$ and $\theta_{j}$ are the 
+latent vector, offset vector and topic estimate vector respectively for item j.
 
-\subsection{Headings: second level}
+\subsection{Dataset}
 
-Second level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 10. One line space before the second level
-heading and 1/2~line space after the second level heading.
+For Collaborative Filtering, we use the MovieLens 10M dataset
+\footnote{http://grouplens.org/datasets/movielens/}, which is a collection of 
+10 million movie ratings on 10,000 movies by 72,000 users. The dataset has been 
+pre-processed so that each user has rated at least 20 movies. This makes the 
+rating matrix very sparse (98.6\% sparse). The data is very well structured 
+and fits into memory. The range of the rating values is 1 - 5, in steps of 0.5.
 
-\subsubsection{Headings: third level}
+We use the CMU Movie Summary Corpus\footnote{http://www.ark.cs.cmu.edu/personas/} for generative topic modeling of the movie summaries. This
+corpus has plot summaries for 42,306 movies and associated metadata such as 
+genre, year of release, cast etc. Each movie is indexed by a Wikipedia Movie ID.
+We use only the plot summary text and none of the other metadata. 
 
-Third level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 10. One line space before the third level
-heading and 1/2~line space after the third level heading.
+The datasets are used in the following manner: we first find the set of movies 
+for which we have both plot summaries and user ratings - this common subset has
+approximately 5000 movies in total. Out of these, we choose 4400 movies and 
+collect their ratings, 80\% of which we use for training our CTR and CTR-LDA 
+models and 20\% for in-matrix prediction test. We use the remaining 600 movies
+from the common subset for out-matrix testing of CTR and CTR-LDA. We 
+separately train the topic model using nearly 37,000 movie summaries for
+which we do not have any user ratings. 
+
+Since the movie summaries are in the form of natural text, some preprocessing
+steps were necessary - namely tokenizing, upper-case to lower-case conversion,
+punctuation and stop-word removal and stemming. We used the python NLTK toolkit 
+\cite{nltk} for this. We extracted all words from the processed summaries and 
+built our vocabulary after sorting them lexicographically. Each document was 
+then represented as a vector of integers, each integer being an index into the 
+vocabulary. For ease of combining the summary and rating datasets, we 
+created a map from the Wikipedia IDs to the Movielens IDs (by linking movie IDs 
+that have the same movie names). 
+ 
+
+\subsection{Evaluation of LDA}
+
+
+
+\subsection{Prediction}
+
+
+\subsection{Recommendation}
+
+
+
+
+
+
+
+
 
 \section{Conclusions}
 
