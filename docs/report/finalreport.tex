@@ -354,6 +354,50 @@ model and generative process of CTR are given below:
 \label{fig:ctr}
 \end{figure} 
 
+\begin{itemize}[leftmargin=*]
+
+\item[] {\bf Parameter Estimation}: First, we train our LDA implementation on a separate training corpus and learn the model parameters $\alpha$ and $\beta$. 
+Now, the log likelihood of the data is given by:
+\begin{equation} \label{eq4}
+\mathcal{L} = \frac{-\lambda_{u}}{2}\sum_{i}u_{i}^{T}u_{i} -
+		\frac{\lambda_{v}}{2}\sum_{j}(v_{j}-\theta_{j})^{T}(v_{j}-\theta_{j})
+		+ \sum_{j}\sum_{n}log(\sum_{k}\theta_{jk}\beta_{k,w_{jn}})
+		- \sum_{i,j}\frac{1}{2\sigma^{2}}(r_{ij}-u_{i}^{T}v_{j})^{2}
+\end{equation}
+
+Computing the full posterior of $u_{i}$, $v_{j}$ and $\theta_{j}$ given
+parameter $\beta$ is intractable. Our approach is to maximize the likelihood
+function by co-ordinate ascent, iteratively optimizing the collaborative
+filterings {$u_{i}$, $v_{j}$} and topic proportions $\theta_{j}$. Given
+topic estimate $\theta_{j}$, setting the gradient of the log likelihood with 
+respect to $u_{i}$ and $v_{j}$ equal to zero gives us closed form update rules
+for the collaborative filtering variables. Similarly, in the next phase, we can
+optimize the topic estimate $\theta_{j}$ given $u_{i}$ and $v_{j}$. However,
+similar to the approach taken by Blei et al. \cite{ctr}, we simply set 
+$\theta_{j}$ equal to the topic estimate obtained from our LDA implementation,
+to save computation time without significant performance loss.\footnote{We 
+use the movies for which we have both ratings and plot summaries to learn
+the optimal parameters $u_{i=1:I}^{*}$, $v_{j=1:J}^{*}$, $\theta_{1:J}^{*}$,
+$\beta^{*}$. We also use include these movies in the training corpus of our 
+LDA.}
+
+\item[] {\bf Prediction} : We then use the learned parameters for prediction
+of movie ratings. For in-matrix prediction, we use the following approximation:
+
+\begin{equation} \label{eq5}
+r_{ij}^{*} \approx (u_{i}^{*})^{T}(\theta_{j}^{*}+\epsilon_{j}^{*}) = (u_{i}^{*})^{T}v_{j}^{*}
+\end{equation}
+
+For, out-of-matrix prediction, where the movie has no ratings available, we use 
+the following approximation:
+
+\begin{equation} \label{eq6}
+r_{ij}^{*} \approx (u_{i}^{*})^{T}(\theta_{j}^{*})
+\end{equation}
+
+\end{itemize}
+
+
 \section{Experiments}
 \label{headings}
 

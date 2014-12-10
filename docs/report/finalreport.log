@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 09:24
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 10:10
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -419,22 +419,14 @@ LaTeX Warning: Citation `lda' on page 2 undefined on input line 195.
 [2]
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
  line 229.
- <lda-model.png, id=92, 375.65344pt x 181.42781pt>
+ <lda-model.png, id=102, 375.65344pt x 181.42781pt>
 File: lda-model.png Graphic file (type png)
  <use lda-model.png>
-<lda-variational.png, id=93, 240.9pt x 167.87718pt>
+<lda-variational.png, id=103, 240.9pt x 167.87718pt>
 File: lda-variational.png Graphic file (type png)
  <use lda-variational.png>
 
-LaTeX Warning: Reference `fig:lda-model' on page 3 undefined on input line 251.
-
-
-
 LaTeX Warning: Citation `lda' on page 3 undefined on input line 285.
-
-
-LaTeX Warning: Reference `fig:lda-variational' on page 3 undefined on input lin
-e 288.
 
 [3 <./lda-model.png (PNG copy)> <./lda-variational.png (PNG copy)>]
 
@@ -443,38 +435,44 @@ LaTeX Warning: Citation `ctr' on page 4 undefined on input line 317.
 
 LaTeX Warning: Reference `sec:pmf' on page 4 undefined on input line 319.
 
-<ctr-gen-process.png, id=105, 295.1025pt x 227.34938pt>
+<ctr-gen-process.png, id=117, 295.1025pt x 227.34938pt>
 File: ctr-gen-process.png Graphic file (type png)
 
-<use ctr-gen-process.png> <ctr-model.png, id=106, 385.44pt x 207.02344pt>
+<use ctr-gen-process.png> <ctr-model.png, id=118, 385.44pt x 207.02344pt>
 File: ctr-model.png Graphic file (type png)
 
-<use ctr-model.png> [4 <./ctr-gen-process.png (PNG copy)> <./ctr-model.png (PNG
- copy)>]
+<use ctr-model.png>
+Overfull \hbox (14.8412pt too wide) detected at line 366
+\OMS/cmsy/m/n/10 L \OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10 u[]u[] \OMS/cmsy/m/
+n/10 ^^@ [] []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 ^^@ \OML/c
+mm/m/it/10 ^^R[]\OT1/cmr/m/n/10 )[](\OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 ^^@ \
+OML/cmm/m/it/10 ^^R[]\OT1/cmr/m/n/10 ) + [] [] \OML/cmm/m/it/10 log\OT1/cmr/m/n
+/10 ([] \OML/cmm/m/it/10 ^^R[]^^L[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ [] []
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 u[]
+v[]\OT1/cmr/m/n/10 )[]
+ []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
 
+LaTeX Warning: Citation `ctr' on page 4 undefined on input line 376.
 
-Underfull \vbox (badness 2189) has occurred while \output is active []
-
- [5]
+[4 <./ctr-gen-process.png (PNG copy)> <./ctr-model.png (PNG copy)>] [5]
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 525--527
+Underfull \hbox (badness 10000) in paragraph at lines 569--571
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 525--527
+Underfull \hbox (badness 10000) in paragraph at lines 569--571
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
 [7]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 593.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 637.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 608.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 652.
  [8]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 12.
@@ -489,32 +487,32 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 7290 strings out of 493848
- 105549 string characters out of 1152824
- 213526 words of memory out of 3000000
- 10400 multiletter control sequences out of 15000+50000
+ 7295 strings out of 493848
+ 105563 string characters out of 1152824
+ 215526 words of memory out of 3000000
+ 10402 multiletter control sequences out of 15000+50000
  31164 words of font info for 61 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,15n,38p,396b,585s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{table.1} has been referenced but does not exist, 
-replaced by a fixed one
-
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/u
-crr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/shar
-e/texmf-texlive/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fon
-ts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/u
-tmri8a.pfb>
-Output written on finalreport.pdf (8 pages, 272812 bytes).
+ 38i,15n,38p,396b,443s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
+/cmmi5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-t
+exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
+/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
+fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
+-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on finalreport.pdf (8 pages, 313310 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 43 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 241 PDF objects out of 1000 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 
