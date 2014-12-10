@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{float}
 \captionsetup[algorithm]{labelfont=rm,labelsep=period}
 
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
@@ -312,6 +313,46 @@ Hessian is inverted in linear time.
 
 \subsection{Collaborative Topic Regression}
 
+The Collaborative Topic Regression (CTR) model combines a topic model such as
+LDA with traditional collaborative filtering \cite{ctr}. This is done by
+combining both the latent topic vector and observed ratings to describe the
+item latent vector in the factor model of Section~\ref{sec:pmf}. The graphical
+model and generative process of CTR are given below:
+
+%\begin{algorithm}
+%\For{each user i}{
+%	Draw user latent vector $u_{i}$ $\sim$ $\mathcal{N}(0,\sigma^{2}\lambda_{u}^{-1}I_{K}$)\; 
+%}
+%\For{each item j}{
+%	Draw topic proportions $\theta_{j}$ $\sim$ Dirichlet($\alpha$)\;
+%	Draw item latent offset $\epsilon_{j}$ $\sim$ $\mathcal(N)(0, \sigma^{2}\lambda_{v}^{-1}I_{K})$\;
+%	Set item latent vector as $v_{j} = \epsilon_{j} + \theta_{j}$\;
+%	\For{each word $w_{jn}$}{
+%		Draw a topic assignment $z_{jn}$ $\sim$ Multinomial($\theta$)\;
+%		Draw word $w_{jn}$ $\sim$ Multinomial($\beta_{z_{jn}}$)\;
+%	}
+%}
+%\For{each user-item pair (i,j)}{
+%	Draw the rating $r_{ij}$ $\sim$ $\mathcal{N}(u_{i}^{T}v_{j}, \sigma^{2}I)$\;
+%}
+%\end{algorithm}
+\begin{figure}[h]
+	\centering
+	\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
+	\begin{subfigure}[b]{0.45\textwidth}
+	\includegraphics[width=6cm,height=6cm,keepaspectratio]{ctr-gen-process.png}
+	\caption{Generative process of CTR}
+	\label{fig:ctr-gen}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.45\textwidth}
+	\includegraphics[width=6cm,height=8cm,keepaspectratio]{ctr-model.png}
+	\caption{Graphical model of CTR}
+	\label{fig:ctr-model}
+	\end{subfigure}
+\caption{Generative process and model of CTR}
+\label{fig:ctr}
+\end{figure} 
 
 \section{Experiments}
 \label{headings}
