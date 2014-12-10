@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 14:51
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 15:20
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -465,23 +465,28 @@ LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 447.
 
 LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 456.
 
-[5] [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 647--649
+[5]
+Overfull \hbox (0.71367pt too wide) in paragraph at lines 466--481
+ [] 
+ []
+
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 655--657
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 647--649
+Underfull \hbox (badness 10000) in paragraph at lines 655--657
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
 [8]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 715.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 723.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 730.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 738.
  [9]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 12.
@@ -491,9 +496,6 @@ See the caption package documentation for explanation.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  7309 strings out of 493848
@@ -502,7 +504,7 @@ Here is how much of TeX's memory you used:
  10408 multiletter control sequences out of 15000+50000
  31164 words of font info for 61 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,15n,38p,396b,443s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,15n,38p,396b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -519,7 +521,7 @@ exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
 -texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (9 pages, 319876 bytes).
+Output written on finalreport.pdf (9 pages, 320583 bytes).
 PDF statistics:
  267 PDF objects out of 1000 (max. 8388607)
  54 named destinations out of 1000 (max. 500000)
