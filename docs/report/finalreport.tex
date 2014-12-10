@@ -439,11 +439,48 @@ then represented as a vector of integers, each integer being an index into the
 vocabulary. For ease of combining the summary and rating datasets, we 
 created a map from the Wikipedia IDs to the Movielens IDs (by linking movie IDs 
 that have the same movie names). 
- 
 
 \subsection{Evaluation of LDA}
 
+We evaluate the interpretability of latent topics discovered by our LDA
+implementation using two human evaluation tasks namely, {\textit word intrusion}
+and {\textit topic intrusion}, proposed by Chang, Blei et al \cite{tea-leaves}. 
+These tasks evaluate the quality of topics inferred by the model and the 
+assignment of topics to documents. We describe these tests in more detail and
+evaluate our LDA using these below:
 
+\subsubsection{Word Intrusion}
+This test measures whether the topics inferred by the topic model correspond
+to natural interpretations and contain words that are semantically close. An
+`intruder' is defined as a word that doesn't belong with the the others in a 
+group. The original task proposed in \cite{tea-leaves} consists of 
+building a set of words from a randomly chosen topic and injecting an `intruder'from some other topic. This set is then presented to a human subject to see if 
+the `intruder' is correctly identified within the presented set. We modify the 
+test for our evaluation. We just list out the topics from a 15-topic 
+LDA and identify the `intruders' in each topic and try to interpret themes
+represented by each of these topics.
+
+\begin{table}[h]
+\label{table:word-intrusion}
+\begin{center}
+\begin{tabular}{lll}
+%\multicolumn{1}{c}{\bf PART}  &\multicolumn{1}{c}{\bf DESCRIPTION}
+%\\ \hline \\
+Topic	& Terms	& Intruders \\ \hline
+1 & war,king,soldiers,milk & milk \\
+2 & dracula, witch, scary, happy & happy \\
+\end{tabular}
+\end{center}
+\caption{Topics identified by LDA and `intruders' per topic}
+\end{table}
+
+We observe that there are a small number of `intruders' per topic (5 on 
+average). We see that our LDA is also able to identify important movie `themes'
+ such as, ... We also see that some of the topics are too general to be useful.
+
+
+
+\subsubsection{Topic Intrusion}
 
 \subsection{Prediction}
 

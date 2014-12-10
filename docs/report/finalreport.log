@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 12:26
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 14:51
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -419,10 +419,10 @@ LaTeX Warning: Citation `lda' on page 2 undefined on input line 195.
 [2]
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
  line 229.
- <lda-model.png, id=110, 375.65344pt x 181.42781pt>
+ <lda-model.png, id=118, 375.65344pt x 181.42781pt>
 File: lda-model.png Graphic file (type png)
  <use lda-model.png>
-<lda-variational.png, id=111, 240.9pt x 167.87718pt>
+<lda-variational.png, id=119, 240.9pt x 167.87718pt>
 File: lda-variational.png Graphic file (type png)
  <use lda-variational.png>
 
@@ -435,10 +435,10 @@ LaTeX Warning: Citation `ctr' on page 4 undefined on input line 317.
 
 LaTeX Warning: Reference `sec:pmf' on page 4 undefined on input line 319.
 
-<ctr-gen-process.png, id=125, 295.1025pt x 227.34938pt>
+<ctr-gen-process.png, id=133, 295.1025pt x 227.34938pt>
 File: ctr-gen-process.png Graphic file (type png)
 
-<use ctr-gen-process.png> <ctr-model.png, id=126, 385.44pt x 207.02344pt>
+<use ctr-gen-process.png> <ctr-model.png, id=134, 385.44pt x 207.02344pt>
 File: ctr-model.png Graphic file (type png)
 
 <use ctr-model.png>
@@ -460,26 +460,28 @@ LaTeX Warning: Citation `ctr' on page 4 undefined on input line 376.
 LaTeX Warning: Citation `nltk' on page 5 undefined on input line 436.
 
 
-Underfull \vbox (badness 4981) has occurred while \output is active []
+LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 447.
 
- [5]
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 610--612
+
+LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 456.
+
+[5] [6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 647--649
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--612
+Underfull \hbox (badness 10000) in paragraph at lines 647--649
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 678.
 [8]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 715.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 693.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 730.
  [9]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 12.
@@ -489,15 +491,18 @@ See the caption package documentation for explanation.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 7301 strings out of 493848
- 105617 string characters out of 1152824
- 213526 words of memory out of 3000000
- 10403 multiletter control sequences out of 15000+50000
+ 7309 strings out of 493848
+ 105766 string characters out of 1152824
+ 214526 words of memory out of 3000000
+ 10408 multiletter control sequences out of 15000+50000
  31164 words of font info for 61 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,15n,38p,396b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,15n,38p,396b,443s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -514,9 +519,9 @@ exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
 -texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (9 pages, 317538 bytes).
+Output written on finalreport.pdf (9 pages, 319876 bytes).
 PDF statistics:
- 258 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 267 PDF objects out of 1000 (max. 8388607)
+ 54 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 
