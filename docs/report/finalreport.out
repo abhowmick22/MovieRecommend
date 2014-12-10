@@ -1,17 +1,20 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{Collaborative Filtering and its shortcoming}{section.1}% 2
-\BOOKMARK [2][-]{subsection.1.2}{Content Based Recommendation}{section.1}% 3
-\BOOKMARK [1][-]{section.2}{Problem Definition}{}% 4
-\BOOKMARK [1][-]{section.3}{Proposed Method}{}% 5
-\BOOKMARK [1][-]{section.4}{Experiments}{}% 6
-\BOOKMARK [2][-]{subsection.4.1}{Headings: second level}{section.4}% 7
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Headings: third level}{subsection.4.1}% 8
-\BOOKMARK [1][-]{section.5}{Conclusions}{}% 9
-\BOOKMARK [1][-]{section.6}{Citations, figures, tables, references}{}% 10
-\BOOKMARK [2][-]{subsection.6.1}{Citations within the text}{section.6}% 11
-\BOOKMARK [2][-]{subsection.6.2}{Footnotes}{section.6}% 12
-\BOOKMARK [2][-]{subsection.6.3}{Figures}{section.6}% 13
-\BOOKMARK [2][-]{subsection.6.4}{Tables}{section.6}% 14
-\BOOKMARK [1][-]{section.7}{Final instructions}{}% 15
-\BOOKMARK [1][-]{section.8}{Preparing PostScript or PDF files}{}% 16
-\BOOKMARK [2][-]{subsection.8.1}{Margins in LaTeX}{section.8}% 17
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [2][-]{subsection.1.1}{Collaborative Filtering and its shortcoming}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{Content Based Recommendation}{section.1}
+\BOOKMARK [1][-]{section.2}{Problem Definition}{}
+\BOOKMARK [1][-]{section.3}{Proposed Method}{}
+\BOOKMARK [2][-]{subsection.3.1}{Probabilistic Matrix Factorization}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Latent Dirichlet Allocation}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Collaborative Topic Regression}{section.3}
+\BOOKMARK [1][-]{section.4}{Experiments}{}
+\BOOKMARK [2][-]{subsection.4.1}{Headings: second level}{section.4}
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Headings: third level}{subsection.4.1}
+\BOOKMARK [1][-]{section.5}{Conclusions}{}
+\BOOKMARK [1][-]{section.6}{Citations, figures, tables, references}{}
+\BOOKMARK [2][-]{subsection.6.1}{Citations within the text}{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{Footnotes}{section.6}
+\BOOKMARK [2][-]{subsection.6.3}{Figures}{section.6}
+\BOOKMARK [2][-]{subsection.6.4}{Tables}{section.6}
+\BOOKMARK [1][-]{section.7}{Final instructions}{}
+\BOOKMARK [1][-]{section.8}{Preparing PostScript or PDF files}{}
+\BOOKMARK [2][-]{subsection.8.1}{Margins in LaTeX}{section.8}
