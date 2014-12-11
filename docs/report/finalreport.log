@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 23:17
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 23:31
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -520,27 +520,11 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 747--748
 [][] 
  []
 
-<CTR-in-matrix-parameter.png, id=195, 1208.515pt x 687.56876pt>
-File: CTR-in-matrix-parameter.png Graphic file (type png)
-
-<use CTR-in-matrix-parameter.png>
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 752--753
-[][] 
- []
-
-<CTR-out-matrix-parameter.png, id=196, 1192.455pt x 686.565pt>
-File: CTR-out-matrix-parameter.png Graphic file (type png)
-
-<use CTR-out-matrix-parameter.png>
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 757--758
-[][] 
- []
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./finalreport.bbl [9]) [10 <./CF-parameter.png> <./LDA-in-matrix-parameter.png
-> <./CTR-in-matrix-parameter.png> <./CTR-out-matrix-parameter.png>]
+(./finalreport.bbl [9] [10 <./CF-parameter.png> <./LDA-in-matrix-parameter.png>
+]) [11]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 15.
 See the caption package documentation for explanation.
@@ -551,10 +535,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8024 strings out of 493848
- 115463 string characters out of 1152824
+ 8015 strings out of 493848
+ 115157 string characters out of 1152824
  247744 words of memory out of 3000000
- 11089 multiletter control sequences out of 15000+50000
+ 11081 multiletter control sequences out of 15000+50000
  24501 words of font info for 53 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  41i,19n,38p,728b,512s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -573,9 +557,9 @@ hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-t
 exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (10 pages, 1253784 bytes).
+Output written on finalreport.pdf (11 pages, 1199444 bytes).
 PDF statistics:
- 283 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 200 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 284 PDF objects out of 1000 (max. 8388607)
+ 66 named destinations out of 1000 (max. 500000)
+ 190 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -60,10 +60,10 @@ Pittsburgh, PA 15213 \\
 		}
 		\For{each item j}{
 			Draw topic proportions $\theta_{j}$ $\sim$ Dirichlet($\alpha$)\;
-			Draw item latent offset $\epsilon_{j}$ $\sim$ $\mathcal(N)(0, \sigma^{2}\lambda_{v}^{-1}I_{K})$\;
+			Draw item latent offset $\epsilon_{j}$ $\sim$ $\mathcal{N}(0, \sigma^{2}\lambda_{v}^{-1}I_{K})$\;
 			Set item latent vector as $v_{j} = \epsilon_{j} + \theta_{j}$\;
 			\For{each word $w_{jn}$}{
-				Draw a topic assignment $z_{jn}$ $\sim$ Multinomial($\theta$)\;
+				Draw a topic assignment $z_{jn}$ $\sim$ Mult($\theta$)\;
 				Draw word $w_{jn}$ $\sim$ Multinomial($\beta_{z_{jn}}$)\;
 			}
 		}
@@ -77,8 +77,8 @@ Pittsburgh, PA 15213 \\
 \maketitle
 
 \begin{abstract}
-Traditional collaborative filtering relies on reviews provided by viewers
-in the movie watching community to make recommendations to the user. In this
+Traditional collaborative filtering relies on ratings provided by viewers
+in the movie-watching community to make recommendations to the user. In this
 project, we attempt to combine this approach with probabilistic topic modeling
 techniques to make recommendations that consist not only of movies that are
 popular in the community, but also those that are similar in content to movies
@@ -738,43 +738,73 @@ than CF, implying that just content-based prediction performs worse than ratings
 \begin{figure}[h]
 	\centering
 	%\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
-	\begin{subfigure}[b]{0.49\textwidth}
+	\begin{subfigure}[b]{\textwidth}
 	\fbox{\includegraphics[width=\textwidth]{CF-parameter.png}}
-	\caption{Vanilla Collaborative filtering}
+	\caption{CF model}
 	\end{subfigure}
 	~
-	\begin{subfigure}[b]{0.49\textwidth}
+	\begin{subfigure}[b]{\textwidth}
 	\fbox{\includegraphics[width=\textwidth]{LDA-in-matrix-parameter.png}}
-	\caption{Vanilla Collaborative filtering}
+	\caption{LDA-in model}
 	\end{subfigure}
 	\\
 	\begin{subfigure}[b]{0.49\textwidth}
 	\fbox{\includegraphics[width=\textwidth]{CTR-in-matrix-parameter.png}}
-	\caption{Indian movies are clustered together}
+	\caption{CTR-in model}
 	\end{subfigure}
 	~	
 	\begin{subfigure}[b]{0.49\textwidth}
 	\fbox{\includegraphics[width=\textwidth]{CTR-out-matrix-parameter.png}}
-	\caption{Indian movies are clustered together}
+	\caption{CTR-out model}
 	\end{subfigure}
-\caption{Regularization and RMSE errors for training and testing}
+\caption{RMSE Train and Test errors for CF, CTR-LDA-in, CTR-in-matrix, CTR-out-matrix models}
 \label{fig:models}
 \end{figure}
 
-Figure~\ref{fig:models} plots the performance of the various models as a function of the regularization parameter 
+Figure~\ref{fig:models} plots the performance of the various models as a function of $\lambda_{v}$, which is a collabrative filtering variable in CTR. In the 
+above plots, the blue curve is the train error while the green curve represents
+the test error. $\lambda_{v}$ acts as the regularization parameter for the item
+latent factor vector, we see that as $\lambda_{v}$ increases, we avoid over-fitting and our train error goes up, while the test error goes down. The optimal 
+value of $\lambda_{v}$ is , ...
 
 
 \subsection{Recommendation}
 
+We have done a qualitative analysis of the movies recommended by the 
+Collaborative Filter model. We calculated the user biases and overall average 
+rating. We used the sum of the two values as the threshold 
+for deciding which movies the user "liked". Some of the genres of the movies that came up after filtering with the threshold were: \\
+horror sci-fi, drama thriller, drama horror, action drama scifi thriller, action, adventure scifi, comedy romance drama
+
+Each item in the above list represents the mixture of genres for individual movies. 
+
+And some of the recommendations that the Collaborative Filtering model came up with were:
+
+adventure, drama mystery crime, action thriller adventure, animation children fantasy musical
+
+We can see from these recommended genres that although Collaborative Filtering makes relevant recommendations, 
+it does not seem to be able to recommend movies of widely different genres. For example, in this case, although the user 
+seemed to like comedy, romance and drama movies, Collaborative Filtering did not seem to be recommending these kinds of movies.
+We found this to be a general pattern in the recommendations made by Collaborative Filtering.
+
+On the other hand, Collaborative Topic Regression did not seem to suffer from this problem. One of the examples we found was in 
+a case where the user "liked" a set of movies of these genres:
+
+comedy drama romance, comedy drama, drama romance, drama, action thriller, action adventure mystery thriller, comedy, action adventure romance thriller, action drama thriller
+
+and the genres suggested by CTR were:
+
+drama romance, comedy drama, comedy drama romance, drama, comedy, action adventure thriller, comedy romance, action adventure comedy romance thriller
+
+We can see that CTR came up with a movie suggestion that combined the "likes" of the user.
+The user "liked" separate action/adventure/thriller and comedy/romance movies and CTR could come up with a suggestion of a movie which combined all these genres.
 
 \section{Conclusions}
 We used a Collaborative Topic Regression model, which combines topic modeling
 with traditional collaborative filtering, to recommend movies based on both
 item content and user ratings from the community. We implement our own version
 of Latent Dirichlet Allocation for topic modeling of the corpus of movie
-summaries and combine . We see that the CTR model  
-
-
+summaries and combine . We see that the CTR model usually gives better predicted ratings than the CF model. We also observed that the CTR model more realistically captures the likings of a user and makes a wider variety of recommendations, as opposed to CF, whose recommendations don't seem to span a wide variety of genres.   
 
 \bibliography{ref}
 \end{document}
