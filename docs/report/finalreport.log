@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 19:15
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 19:37
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -463,36 +463,43 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 
 LaTeX Warning: Citation `ctr' on page 2 undefined on input line 186.
 
+<pmf_graphical_model.png, id=115, 337.26pt x 364.86313pt>
+File: pmf_graphical_model.png Graphic file (type png)
 
-LaTeX Warning: Citation `lda' on page 2 undefined on input line 197.
+<use pmf_graphical_model.png> [2] [3 <./pmf_graphical_model.png (PNG copy)>]
 
-[2]
+LaTeX Warning: Citation `lda' on page 4 undefined on input line 241.
+
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
- line 231.
- <lda-model.png, id=122, 375.65344pt x 181.42781pt>
+ line 275.
+<lda-model.png, id=134, 375.65344pt x 181.42781pt>
 File: lda-model.png Graphic file (type png)
  <use lda-model.png>
-<lda-variational.png, id=123, 240.9pt x 167.87718pt>
+<lda-variational.png, id=135, 240.9pt x 167.87718pt>
 File: lda-variational.png Graphic file (type png)
  <use lda-variational.png>
+[4 <./lda-model.png (PNG copy)> <./lda-variational.png (PNG copy)>]
 
-LaTeX Warning: Citation `lda' on page 3 undefined on input line 287.
-
-[3 <./lda-model.png (PNG copy)> <./lda-variational.png (PNG copy)>]
-
-LaTeX Warning: Citation `ctr' on page 4 undefined on input line 319.
+LaTeX Warning: Citation `lda' on page 5 undefined on input line 331.
 
 
-LaTeX Warning: Reference `sec:pmf' on page 4 undefined on input line 321.
+LaTeX Warning: Citation `ctr' on page 5 undefined on input line 363.
 
-<ctr-gen-process.png, id=137, 295.1025pt x 227.34938pt>
+
+LaTeX Warning: Reference `sec:pmf' on page 5 undefined on input line 365.
+
+<ctr-gen-process.png, id=146, 295.1025pt x 227.34938pt>
 File: ctr-gen-process.png Graphic file (type png)
 
-<use ctr-gen-process.png> <ctr-model.png, id=138, 385.44pt x 207.02344pt>
+<use ctr-gen-process.png> <ctr-model.png, id=147, 385.44pt x 207.02344pt>
 File: ctr-model.png Graphic file (type png)
 
 <use ctr-model.png>
-Overfull \hbox (14.8412pt too wide) detected at line 368
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (14.8412pt too wide) detected at line 412
 \OMS/cmsy/m/n/10 L \OT1/cmr/m/n/10 = [] [] \OML/cmm/m/it/10 u[]u[] \OMS/cmsy/m/
 n/10 ^^@ [] []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 ^^@ \OML/c
 mm/m/it/10 ^^R[]\OT1/cmr/m/n/10 )[](\OML/cmm/m/it/10 v[] \OMS/cmsy/m/n/10 ^^@ \
@@ -503,70 +510,74 @@ v[]\OT1/cmr/m/n/10 )[]
  []
 
 
-LaTeX Warning: Citation `ctr' on page 4 undefined on input line 378.
+LaTeX Warning: Citation `ctr' on page 5 undefined on input line 422.
 
-[4 <./ctr-gen-process.png (PNG copy)> <./ctr-model.png (PNG copy)>]
+[5] [6 <./ctr-gen-process.png (PNG copy)> <./ctr-model.png (PNG copy)>]
 
-LaTeX Warning: Citation `nltk' on page 5 undefined on input line 438.
-
-
-LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 449.
+LaTeX Warning: Citation `nltk' on page 7 undefined on input line 482.
 
 
-LaTeX Warning: Citation `tea-leaves' on page 5 undefined on input line 458.
+LaTeX Warning: Citation `tea-leaves' on page 7 undefined on input line 493.
 
-[5]
-Overfull \hbox (1.51364pt too wide) in paragraph at lines 468--483
+
+LaTeX Warning: Citation `tea-leaves' on page 7 undefined on input line 502.
+
+
+Overfull \hbox (1.51364pt too wide) in paragraph at lines 512--527
  [] 
  []
 
+[7]
 
-LaTeX Warning: Citation `tSNE' on page 6 undefined on input line 559.
+LaTeX Warning: Citation `tSNE' on page 8 undefined on input line 603.
 
-
-Underfull \vbox (badness 2285) has occurred while \output is active []
-
- [6]
-<lda-tsne.png, id=169, 1175.1102pt x 641.0349pt>
+<lda-tsne.png, id=180, 1175.1102pt x 641.0349pt>
 File: lda-tsne.png Graphic file (type png)
  <use lda-tsne.png>
-Overfull \hbox (8.60284pt too wide) in paragraph at lines 565--566
+Overfull \hbox (8.60284pt too wide) in paragraph at lines 609--610
 [][] 
  []
 
-<indian-movies.png, id=171, 833.1125pt x 625.33624pt>
+<indian-movies.png, id=182, 833.1125pt x 625.33624pt>
 File: indian-movies.png Graphic file (type png)
  <use indian-movies.png>
-Overfull \hbox (8.59956pt too wide) in paragraph at lines 571--572
+Overfull \hbox (8.59956pt too wide) in paragraph at lines 615--616
 [][] 
  []
 
-<close-movies.jpg, id=172, 702.625pt x 574.145pt>
+<close-movies.jpg, id=183, 702.625pt x 574.145pt>
 File: close-movies.jpg Graphic file (type jpg)
  <use close-movies.jpg>
-Overfull \hbox (8.6063pt too wide) in paragraph at lines 577--578
+Overfull \hbox (8.6063pt too wide) in paragraph at lines 621--622
 [][] 
  []
 
-[7 <./lda-tsne.png> <./indian-movies.png> <./close-movies.jpg>] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 760--762
+
+LaTeX Warning: Reference `fig:close-movies.jpg' on page 8 undefined on input li
+ne 640.
+
+[8 <./lda-tsne.png> <./indian-movies.png> <./close-movies.jpg>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 810--812
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 760--762
+Underfull \hbox (badness 10000) in paragraph at lines 810--812
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
-[9]
+[11]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 828.
- [10]
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 878.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 843.
- [11]
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 893.
+ [12]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 14.
 See the caption package documentation for explanation.
@@ -580,13 +591,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8020 strings out of 493848
- 114980 string characters out of 1152824
- 242744 words of memory out of 3000000
- 11092 multiletter control sequences out of 15000+50000
+ 8031 strings out of 493848
+ 115212 string characters out of 1152824
+ 243744 words of memory out of 3000000
+ 11099 multiletter control sequences out of 15000+50000
  31164 words of font info for 61 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,15n,38p,396b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,15n,38p,517b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -603,9 +614,9 @@ exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
 -texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (11 pages, 1163186 bytes).
+Output written on finalreport.pdf (12 pages, 1204134 bytes).
 PDF statistics:
- 291 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
- 236 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 303 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
+ 249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

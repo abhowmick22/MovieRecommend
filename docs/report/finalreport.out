@@ -4,6 +4,7 @@
 \BOOKMARK [1][-]{section.2}{Problem Definition}{}
 \BOOKMARK [1][-]{section.3}{Proposed Method}{}
 \BOOKMARK [2][-]{subsection.3.1}{Probabilistic Matrix Factorization}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Gradient descent}{subsection.3.1}
 \BOOKMARK [2][-]{subsection.3.2}{Latent Dirichlet Allocation}{section.3}
 \BOOKMARK [2][-]{subsection.3.3}{Collaborative Topic Regression}{section.3}
 \BOOKMARK [1][-]{section.4}{Experiments}{}
