@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{multirow}
 \usepackage{float}
 \usepackage{color}
 %\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
@@ -727,17 +728,25 @@ as well.
 \label{fig:models}
 \end{figure}
 
-% Table of RMSE (training and testing) wrt number of topics
-%\begin{table}
-%	\centering
-%	\begin{tabular}{|c|cc|cc|cc|}
-%	\hline
-%	& \
-%	
-%	\end{tabular}
-%	\caption{Training and testing error for different number of latent topics}
-%	\label{tab:topic-error-variation}
-%\end{table}
+%Table of RMSE (training and testing) wrt number of topics
+\begin{table}
+	\centering
+	\begin{tabular}{|c|cccc|cccc|}
+	\hline
+	No. of topics & \multicolumn{4}{ |c| }{Training} & \multicolumn{4}{ |c| }{Testing}\\	
+	\hline
+	 & CF & LDA-in & CTR-in & CTR-out & CF & LDA-in & CTR-in & CTR-out \\	
+	&&&&&&&&\\
+	15 & 0.915 & 0.912 & 0.912 & 0.912 & 1.140 & 1.370 & 1.029 & 1.167 \\
+	&&&&&&&&\\
+	25 & 0.915 & 0.913 & 0.913 & 0.912 & 1.140 & 1.303 & 1.039 & 1.136 \\
+	&&&&&&&&\\
+	40 & 0.914 & 0.914 & 0.913 & 0.913 & 1.138 & 1.271 & 1.052 & 1.148 \\
+	\hline
+	\end{tabular}
+	\caption{Training and testing error for different number of latent topics}
+	\label{tab:topic-error-variation}
+\end{table}
 
 
 \subsection{Recommendation}
