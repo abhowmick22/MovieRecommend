@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 23:04
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 23:17
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -363,15 +363,14 @@ File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 )
 (/usr/share/texmf/tex/latex/xcolor/svgnam.def
 File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
-)) (./finalreport.aux)
-Runaway argument?
-{\contentsline {table}{\numberline {1}{\ignorespaces Topics i 
-! File ended while scanning use of \@writefile.
-<inserted text> 
-                \par 
-l.75 \begin{document}
-                     
-? 
+)) (./finalreport.aux
+
+LaTeX Warning: Label `fig:models' multiply defined.
+
+
+LaTeX Warning: Label `fig:models' multiply defined.
+
+)
 \openout1 = `finalreport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
@@ -389,7 +388,7 @@ LaTeX Font Info:    ... okay on input line 75.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
 LaTeX Font Info:    ... okay on input line 75.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 75.
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+ (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ABD: EveryShipout initializing macros
@@ -437,23 +436,13 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 79.
 
-
-LaTeX Warning: Citation `music-long-tail' on page 1 undefined on input line 117
-.
-
-
-LaTeX Warning: Citation `fLDA' on page 1 undefined on input line 149.
-
-
 Underfull \vbox (badness 6608) has occurred while \output is active []
 
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Citation `grouplens' on page 2 undefined on input line 170.
-
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 177.
+
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
@@ -461,161 +450,114 @@ File: omsptm.fd
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 177.
 
-
-LaTeX Warning: Citation `ctr' on page 2 undefined on input line 208.
-
-<pmf_graphical_model.png, id=13, 337.26pt x 364.86313pt>
+<pmf_graphical_model.png, id=88, 337.26pt x 364.86313pt>
 File: pmf_graphical_model.png Graphic file (type png)
 
 <use pmf_graphical_model.png> [2] [3 <./pmf_graphical_model.png (PNG copy)>]
-
-LaTeX Warning: Citation `lda' on page 4 undefined on input line 276.
-
 Package hyperref Info: bookmark level for unknown algocf defaults to 0 on input
  line 309.
-<lda-model.png, id=46, 375.65344pt x 181.42781pt>
+
+<lda-model.png, id=120, 375.65344pt x 181.42781pt>
 File: lda-model.png Graphic file (type png)
  <use lda-model.png>
-<lda-variational.png, id=47, 240.9pt x 167.87718pt>
+<lda-variational.png, id=121, 240.9pt x 167.87718pt>
 File: lda-variational.png Graphic file (type png)
  <use lda-variational.png>
-[4 <./lda-model.png (PNG copy)> <./lda-variational.png (PNG copy)>]
+Underfull \vbox (badness 1248) has occurred while \output is active []
 
-LaTeX Warning: Citation `lda' on page 5 undefined on input line 367.
-
-
-LaTeX Warning: Citation `ctr' on page 5 undefined on input line 399.
-
-<ctr-model.png, id=61, 385.44pt x 207.02344pt>
+ [4 <./lda-model.png (PNG copy)> <./lda-variational.png (PNG copy)>]
+<ctr-model.png, id=137, 385.44pt x 207.02344pt>
 File: ctr-model.png Graphic file (type png)
- <use ctr-model.png> [5 <./ctr-model.png (PNG copy)>]
-
-LaTeX Warning: Citation `ctr' on page 6 undefined on input line 476.
-
-
-LaTeX Warning: Citation `nltk' on page 6 undefined on input line 535.
-
-[6]
-
-LaTeX Warning: Citation `tea-leaves' on page 7 undefined on input line 546.
-
-
-LaTeX Warning: Citation `tea-leaves' on page 7 undefined on input line 555.
-
-
+ <use ctr-model.png> [5]
+[6 <./ctr-model.png (PNG copy)>]
 Overfull \hbox (1.51364pt too wide) in paragraph at lines 565--580
  [] 
  []
 
-[7]
-
-LaTeX Warning: Citation `tSNE' on page 8 undefined on input line 657.
-
-<lda-tsne.png, id=98, 1175.1102pt x 641.0349pt>
+[7] <lda-tsne.png, id=175, 1175.1102pt x 641.0349pt>
 File: lda-tsne.png Graphic file (type png)
  <use lda-tsne.png>
 Overfull \hbox (8.60284pt too wide) in paragraph at lines 663--664
 [][] 
  []
 
-<indian-movies.png, id=100, 833.1125pt x 625.33624pt>
+<indian-movies.png, id=177, 833.1125pt x 625.33624pt>
 File: indian-movies.png Graphic file (type png)
  <use indian-movies.png>
 Overfull \hbox (8.59956pt too wide) in paragraph at lines 669--670
 [][] 
  []
 
-<close-movies.jpg, id=101, 702.625pt x 574.145pt>
+<close-movies.jpg, id=178, 702.625pt x 574.145pt>
 File: close-movies.jpg Graphic file (type jpg)
  <use close-movies.jpg>
 Overfull \hbox (8.6063pt too wide) in paragraph at lines 675--676
 [][] 
  []
 
-
-LaTeX Warning: Reference `fig:lda-movies' on page 8 undefined on input line 685
-.
-
-
-LaTeX Warning: Reference `fig:lda-movies' on page 8 undefined on input line 691
-.
-
-
-LaTeX Warning: Reference `fig:indian-movies' on page 8 undefined on input line 
-692.
-
-
-LaTeX Warning: Reference `fig:close-movies' on page 8 undefined on input line 6
-94.
-
 [8 <./lda-tsne.png> <./indian-movies.png> <./close-movies.jpg>]
-<CF-parameter.png, id=111, 1202.4925pt x 684.5575pt>
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
+[]|\OT1/ptm/m/n/10 CTR-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
+[]|\OT1/ptm/m/n/10 CTR-
+ []
+
+<CF-parameter.png, id=193, 1202.4925pt x 684.5575pt>
 File: CF-parameter.png Graphic file (type png)
  <use CF-parameter.png>
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 706--707
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 742--743
 [][] 
  []
 
-<LDA-in-matrix-parameter.png, id=112, 1216.545pt x 691.58376pt>
+<LDA-in-matrix-parameter.png, id=194, 1216.545pt x 691.58376pt>
 File: LDA-in-matrix-parameter.png Graphic file (type png)
 
 <use LDA-in-matrix-parameter.png>
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 711--712
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 747--748
 [][] 
  []
 
-<CTR-in-matrix-parameter.png, id=113, 1208.515pt x 687.56876pt>
+<CTR-in-matrix-parameter.png, id=195, 1208.515pt x 687.56876pt>
 File: CTR-in-matrix-parameter.png Graphic file (type png)
 
 <use CTR-in-matrix-parameter.png>
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 716--717
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 752--753
 [][] 
  []
 
-<CTR-out-matrix-parameter.png, id=114, 1192.455pt x 686.565pt>
+<CTR-out-matrix-parameter.png, id=196, 1192.455pt x 686.565pt>
 File: CTR-out-matrix-parameter.png Graphic file (type png)
 
 <use CTR-out-matrix-parameter.png>
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 721--722
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 757--758
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 735--735
-[]|\OT1/ptm/m/n/10 CTR-
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 735--735
-[]|\OT1/ptm/m/n/10 CTR-
- []
-
-
-LaTeX Warning: Reference `tab:topic-error-variation' on page 9 undefined on inp
-ut line 748.
-
-[9 <./CF-parameter.png> <./LDA-in-matrix-parameter.png> <./CTR-in-matrix-parame
-ter.png> <./CTR-out-matrix-parameter.png>] (./finalreport.bbl) [10]
+(./finalreport.bbl [9]) [10 <./CF-parameter.png> <./LDA-in-matrix-parameter.png
+> <./CTR-in-matrix-parameter.png> <./CTR-out-matrix-parameter.png>]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 15.
 See the caption package documentation for explanation.
 
 (./finalreport.aux)
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8006 strings out of 493848
- 115206 string characters out of 1152824
- 244744 words of memory out of 3000000
- 11071 multiletter control sequences out of 15000+50000
+ 8024 strings out of 493848
+ 115463 string characters out of 1152824
+ 247744 words of memory out of 3000000
+ 11089 multiletter control sequences out of 15000+50000
  24501 words of font info for 53 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,19n,38p,728b,522s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,19n,38p,728b,512s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -631,9 +573,9 @@ hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-t
 exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (10 pages, 1246690 bytes).
+Output written on finalreport.pdf (10 pages, 1253784 bytes).
 PDF statistics:
- 211 PDF objects out of 1000 (max. 8388607)
+ 283 PDF objects out of 1000 (max. 8388607)
  65 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 200 words of extra memory for PDF output out of 10000 (max. 10000000)
 
