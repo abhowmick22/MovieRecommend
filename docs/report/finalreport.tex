@@ -19,25 +19,24 @@
 
 \title{Movie Recommendation based on Collaborative Topic Modeling}
 
-
 \author{
 Abhishek Bhowmick \\
-Department of Computer Science\\
+Dept. of Computer Science\\
 Carnegie Mellon University\\
 Pittsburgh, PA 15213 \\
-\texttt{abhowmi1@andrew.cmu.edu} \\
+\texttt{abhowmi1} \\
 \And
 Udbhav Prasad \\
-Department of Computer Science\\
+Dept. of Computer Science\\
 Carnegie Mellon University\\
 Pittsburgh, PA 15213 \\
-\texttt{udbhavp@andrew.cmu.edu} \\
+\texttt{udbhavp} \\
 \And
 Satwik Kottur \\
-Department of Electrical Engineering\\
+Dept. of Electrical Engineering\\
 Carnegie Mellon University\\
 Pittsburgh, PA 15213 \\
-\texttt{skottur@andrew.cmu.edu} \\
+\texttt{skottur}\ \\
 }
 
 % The \author macro works with any number of authors. There are two commands
@@ -99,10 +98,10 @@ Among various information sources, data in the form of natural text is a
 particularly rich and expressive source of information, however it is highly 
 unstructured in general. Topic models are used to extract latent structures
 from large volumes of unlabeled text, that can be used for analysis of 
-contents and in turn, aid end goals such as making recommendations. In
+content and in turn, aid end goals such as making recommendations. In
 particular, textual information such as movie plot summaries can be very
-helpful to improve the prediction performance of traditional movie
-recommendation based on collaborative filtering. In the remaining 
+helpful to improve the prediction performance of traditional
+collaborative filtering. In the remaining 
 part of this report, we limit ourselves to the study of how topic modeling of 
 large text corpora can help in the task of movie recommendation, however most 
 of the discussion/analysis can be applied to other domains.  
@@ -113,9 +112,11 @@ Traditional collaborative filtering makes use of interactions between users and
 items. They may be broadly classified into two categories - neighbourhood methods and latent factor models. Neighbourhood models explicitly capture relationships between items (or users) and predict a user's liking for a particular item based on ratings of neighbouring items by the same user. The other approach, latent
 factor models, directly characterize both users and items by latent factors. We focus on factor based models as they are more accurate than neighbourhood based 
 methods. However, all collaborative filtering methods suffer from the `cold 
-start' problem, that is 
+start' problem, that is, 
 they are unable to recommend movies in the absence of rating patterns. In fact, 
-in the domain of music, it has been observed \cite{music-long-tail} that the distribution of available rating information for music artists has a very long tail, meaning that most of the music items have little rating data available. We believe the same is true of movies as well and hence, would like to be able to recommend movies that are in this long tail. 
+in the domain of music, it has been observed \cite{music-long-tail} that the 
+distribution of available rating information for music artists has a very long 
+tail, which means that most of the music items have little rating data available. We believe the same is true of movies as well and hence, would like to be able to recommend movies that are in this long tail. 
 
 
 %Traditional collaborative filtering techniques make use of usage patterns, 
@@ -139,7 +140,7 @@ Content-based recommendation addresses the `cold start' problem associated with
 collaborative filtering, where certain items do not have any rating information 
 and hence the corresponding item vectors consist of all zeroes (we use 
 zeroes to represent missing ratings in the rating matrix). One approach is to 
-use topic modeling on movie plot summaries to identify latent themes/topics. We 
+use topic modeling of plot summaries to identify latent themes/topics. We 
 can learn topic representations for each item (a vector of topic proportions) 
 and add them to the item vectors in the latent-factor model. Such topic 
 representations of movie items are also useful outside the domain
@@ -190,7 +191,7 @@ returning the items with highest predicted rating values.
 
 Specifically, we are interested in observing how incorporation of item topic 
 representations increases the prediction accuracy of factor models. We would
-also like to analyse the interpretability of the latent topics that are 
+also like to analyze the interpretability of the latent topics that are 
 captured by the topic model, however this will be just be a qualitative 
 analysis.
 
@@ -210,11 +211,11 @@ collaborative filtering framework \cite{ctr}.
 \label{sec:pmf}
 
 One of the most popular methods approaches to collaborative filtering is based
-on low-dimensional factor models. The idea behind such models is that the preferences of a user are based on a small number of unobserved factors. For example, if there are $N$ users and $M$ movies, the $N \times M$ preference matrix $R$ is given by the product of an $N \times D$ user coefficient matrix $U^T$ and a $D \times M$ factor matrix $V$. Training such a model amounts to finding the best rank-$D$ approximation of the observed $N \times M$ target matrix $R$ under the given loss function.
+on low-dimensional factor models. The idea behind such models is that the preferences of a user are based on a small number of unobserved factors. For example, if there are $N$ users and $M$ movies, the $N \times M$ preference matrix $R$ is given by the product of an $N \times D$ user coefficient matrix $U^T$ and a $D \times M$ factor matrix $V$. Training such a model amounts to finding the best rank-$D$ approximation of the observed $N \times M$ target matrix $R$ under a given loss function.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=3cm,height=3cm,keepaspectratio]{pmf_graphical_model.png}
+\includegraphics[width=0.2\textwidth]{pmf_graphical_model.png}
 \caption{Graphical model for Probabilistic Matrix Factorization}
 \label{fig:pmf_gm}
 \end{figure}
@@ -234,7 +235,7 @@ p(U \mid \sigma_U^2) = \prod_{i=1}^N \mathcal{N}(U_i \mid 0, \sigma_U^2 I)
 p(V \mid \sigma_V^2) = \prod_{j=1}^M \mathcal{N}(U_i \mid 0, \sigma_V^2 I)
 \end{equation}
 
-Maximizing the log-posterior over movie and user feature vectors with hyper-parameters kept (the observation noise variances and prior variances) fixed is equivalent to minimizing the sum-of-squared errors objective function with quadratic regularization terms.
+Maximizing the log-posterior over movie and user feature vectors with hyper-parameters (the observation noise variances and prior variances) kept fixed is equivalent to minimizing the sum-of-squared errors objective function with quadratic regularization terms.
 
 \begin{equation}
 E = \frac{1}{2} \sum_{i=1}^N \sum_{j=1}^M I_{ij}(R_{ij} - U_i^T V_j)^2 + \frac{\lambda_U}{2} || U_i ||^2 + \frac{\lambda}{2} ||V_j||^2 
@@ -244,7 +245,7 @@ where $\lambda_U = \sigma^2/\sigma_U^2$ and $\lambda_V = \sigma^2/\sigma_V^2$. A
 
 \subsubsection{Gradient descent}
 
-Since we have more than 10 million ratings, we use stochastic gradient descent as our learning algorithm. For each given training case, the algorithm predicts $R_{ij}$ and computes the associated prediction error 
+Since we have more than 10 million ratings, we use stochastic gradient descent as our learning algorithm. For each given training case, the algorithm predicts $R_{ij}$ and computes the associated prediction error:
 \begin{equation}
 e_{ij} = R_{ij} - U_i^T V_j
 \end{equation}
@@ -258,11 +259,7 @@ U_i \leftarrow U_i + \gamma (e_{ij} V_j - \lambda_U U_i)
 V_j \leftarrow V_j + \gamma (e_{ij} U_i - \lambda_V V_j) 
 \end{equation}
 
-Additionally, instead of taking each rating one by one, we took them in chunks of 100 ratings at a time, and calculated the updates over all those 100 ratings. This made the algorithm faster, and also made the updates more stable, and immune to any outlier gradient values.
-
-Convergence check was done by taking the average over a fixed number of gradients from previous iterations. If the average was smaller than a particular threshold, we considered the algorithm to have converged. The algorithm generally converged in less than 3 iterations over all the ratings.
-
-The learning rate was chosen to be an function that decayed with the number of iterations. In particular, the learning rate was formulated as :
+Additionally, instead of taking each rating one by one, we took them in chunks of 100 ratings at a time, and calculated the updates over all those 100 ratings. This made the algorithm faster, and also made the updates more stable, and immune to any outlier gradient values. Convergence check was done by taking the average over a fixed number of gradients from previous iterations. If the average was smaller than a particular threshold, we considered the algorithm to have converged. The algorithm generally converged in less than 3 iterations over all the ratings. The learning rate was chosen to be an function that decayed with the number of iterations. In particular, the learning rate was formulated as :
 
 \begin{equation}
 \gamma = (\tau + i)^{-\kappa}
@@ -272,12 +269,11 @@ where $\tau$ is for normalizing, $\kappa$ is the ``forgetting'' rate, and $i$ is
 
 \subsection{Latent Dirichlet Allocation}
 For a collection of text documents, a topic modeling algorithm extracts a set of
-`topics', where each `topic' is a distribution over words that occur in the
+topics, where each topic is a distribution over words that occur in the
 documents. Words belonging to a topic are biased around a single theme. The
 topic model that we use for representation of documents is Latent Dirichlet 
 Allocation (LDA), which is a
-generative probabilistic graphical model for collections of discrete data \cite{lda}. Each document in the corpus is modeled as a finite mixture over a set of 
-underlying topics.
+generative probabilistic graphical model for collections of discrete data \cite{lda}. Each document is modeled as a finite mixture over a set of underlying topics.
 
 %The tf-idf scheme \cite{tf-idf} reduces each document in a corpus to a vector 
 %of real numbers,
@@ -291,7 +287,7 @@ underlying topics.
 
 LDA has the underlying assumptions that the words in a document and documents
 in a corpus are exchangeable - i.e., the specific ordering of words and
-documents can be neglected. Now, De Finetti's representation theorem states that
+documents can be neglected. De Finetti's representation theorem states that
 a collection of infinitely exhangeable random variables are conditionally 
 independent and identically distributed, if they are conditioned on a random
 parameter that is drawn from some probability distribution. Now, the generative
@@ -313,9 +309,9 @@ Choose $\theta$ $\sim$ Dirichlet($\alpha$)\;
 \caption{Generative process for LDA}
 \end{algorithm}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
-	\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
+	\captionsetup[subfigure]{oneside,margin={0cm,1.5cm}}
 	\begin{subfigure}[b]{0.45\textwidth}
 	%\includegraphics[width=6cm,height=6cm,keepaspectratio]{lda-model.png}
 	\includegraphics[width=\textwidth, height=4cm]{lda-model.png}
@@ -337,7 +333,7 @@ Choose $\theta$ $\sim$ Dirichlet($\alpha$)\;
 Figure~\ref{fig:lda-model} shows the graphical model representation of LDA, which is
 a three-level hierarchical model. We
 assume that the number of topic vectors k is fixed and the vocabulary size of
-the corpus to be modeled is V. Now, the word probabilities are parametrized
+the corpus to be modeled is V. The word probabilities are parametrized
 by a k X V random matrix $\beta$, each row of which represents the distribution 
 of topics over words in the vocabulary. Each row of $\beta$ is independently 
 drawn from an exchangeable Dirichlet distribution with parameter $\eta$.
@@ -367,11 +363,11 @@ we treat $\beta$ as a fixed parameter for the following discussion)
 p(\theta,{\bf z} | {\bf w},\alpha,\beta ) = \frac{p(\theta,{\bf z}, {\bf w}|\alpha,\beta)}{p({\bf w}|\alpha,\beta)} 
 \end{equation}
 
-Computing this distribution is intractible and hence we use variational 
+Computing this distribution is intractable and hence we use variational 
 approximate inference, as described by Blei et al. \cite{lda}. Simple 
 modifications to the LDA graphical model such as dropping edges between 
 $\theta$, {\bf z} and 
-{\bf w} and adding variational parameters lead us to the variational model as inFigure~\ref{fig:lda-variational}, which has the following variational distribution:
+{\bf w} and adding variational parameters lead us to the variational model in Figure~\ref{fig:lda-variational}, which has the following variational distribution:
  
 \begin{equation} 
 q(\theta,{\bf z}|\gamma, \phi) = q(\theta|\gamma)\prod_{n=1}^{N}q(z_{n}|\phi_{n})
@@ -392,7 +388,7 @@ maximize a lower bound on the log-likelihood of data with respect to
 variational parameters $\gamma$, $\phi$ and $\lambda$. This is the E-step. We 
 then maximize this lower bound with respect to the parameters $\alpha$ and 
 $\eta$, which comprises the M-step. The updates for both the parameters $\alpha$
-and $\eta$ are obtained using an efficient Newton-Raphson method in which 
+and $\eta$ are obtained using an efficient Newton-Raphson method in which the 
 Hessian is inverted in linear time.
 
 \end{itemize}
@@ -400,12 +396,12 @@ Hessian is inverted in linear time.
 \subsection{Collaborative Topic Regression}
 
 The Collaborative Topic Regression (CTR) model combines a topic model such as
-LDA with traditional collaborative filtering \cite{ctr}. This is done by
+LDA with traditional collaborative filtering~\cite{ctr}. This is done by
 combining both the latent topic vector and observed ratings to describe the
 item latent vector in the factor model of Section~\ref{sec:pmf}. The graphical
 model and generative process of CTR are given below:
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
 	\begin{subfigure}[b]{0.6\textwidth}
@@ -462,12 +458,12 @@ model and generative process of CTR are given below:
 
 \item[] {\bf Parameter Estimation}: First, we train our LDA implementation on a separate training corpus and learn the model parameters $\alpha$ and $\beta$. 
 Now, the log likelihood of the data is given by:
-\begin{equation} 
+\begin{multline*} 
 \mathcal{L} = \frac{-\lambda_{u}}{2}\sum_{i}u_{i}^{T}u_{i} -
-		\frac{\lambda_{v}}{2}\sum_{j}(v_{j}-\theta_{j})^{T}(v_{j}-\theta_{j})
-		+ \sum_{j}\sum_{n}log(\sum_{k}\theta_{jk}\beta_{k,w_{jn}})
+		\frac{\lambda_{v}}{2}\sum_{j}(v_{j}-\theta_{j})^{T}(v_{j}-\theta_{j}) + \\
+		\sum_{j}\sum_{n}log(\sum_{k}\theta_{jk}\beta_{k,w_{jn}})
 		- \sum_{i,j}\frac{1}{2\sigma^{2}}(r_{ij}-u_{i}^{T}v_{j})^{2}
-\end{equation}
+\end{multline*}
 
 Computing the full posterior of $u_{i}$, $v_{j}$ and $\theta_{j}$ given
 parameter $\beta$ is intractable. Our approach is to maximize the likelihood
@@ -477,13 +473,12 @@ topic estimate $\theta_{j}$, setting the gradient of the log likelihood with
 respect to $u_{i}$ and $v_{j}$ equal to zero gives us closed form update rules
 for the collaborative filtering variables. Similarly, in the next phase, we can
 optimize the topic estimate $\theta_{j}$ given $u_{i}$ and $v_{j}$. However,
-similar to the approach taken by Blei et al. \cite{ctr}, we simply set 
+similar to the approach taken by Blei et al.~\cite{ctr}, we simply set 
 $\theta_{j}$ equal to the topic estimate obtained from our LDA implementation,
 to save computation time without significant performance loss.\footnote{We 
 use the movies for which we have both ratings and plot summaries to learn
 the optimal parameters $u_{i=1:I}^{*}$, $v_{j=1:J}^{*}$, $\theta_{1:J}^{*}$,
-$\beta^{*}$. We also use include these movies in the training corpus of our 
-LDA.}
+$\beta^{*}$.}
 
 \item[] {\bf Prediction} : We then use the learned parameters for prediction
 of movie ratings. For in-matrix prediction, we use the following approximation:
@@ -570,7 +565,7 @@ each topic is color-coded).
 \begin{tabular}{l|p{3.5in}|p{1.2in}}
 %\multicolumn{1}{c}{\bf PART}  &\multicolumn{1}{c}{\bf DESCRIPTION}
 %\\ \hline \\
-Topic	& Terms	& Intruders \\ \hline
+Topic	& Terms	after stemming & Intruders \\ \hline
 1 & \textcolor{red}{film, movi, stori, play, show, perform, charact, scene, music, star, follow,includ, peopl, around, end, song, first, band, act, role} & follow, around, end, includ, first \\
 2 & \textcolor{green}{polic, kill, murder, offic, prison, arrestm investig, man, gang, case, death, crime, one, drug, shoot, killer, crimin, detect, escap, suspect} & offic, one, man \\
 3 & \textcolor{cyan}{war, american, forc, state, soldier, armi, unit, order, offic, german,
@@ -596,8 +591,9 @@ useful, such topics have a large number of `intruders'.
 \subsubsection{Topic Intrusion}
 The topic intrusion test measures how well a topic model assigns topics to
 documents. Similar to the word intrusion test, the topic intrusion test consists
-of building a set of topics that are assigned to a particular document alongwith
-an `intruder' topic. This set of topics is presented along with the document
+of building a set of topics that are assigned to a particular document along 
+with an `intruder' topic. This set of topics is presented along with the 
+document
 to a human subject to see if the `intruder' topic is correctly identified by the
 subject. For our evaluation, we present a sample processed movie plot summary 
 and highlight the topic mixture of this document by coloring the words that 
@@ -660,7 +656,7 @@ corpus. We try to identify this latent structure by visualizing the
 corpus using t-SNE, a dimensionality reduction tool that is used for the 
 visualization of high dimensional datasets \cite{tSNE}. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	%\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
 	\begin{subfigure}[b]{0.45\textwidth}
@@ -677,8 +673,8 @@ visualization of high dimensional datasets \cite{tSNE}.
 	~
 	\begin{subfigure}[b]{0.45\textwidth}
 	\fbox{\includegraphics[width=6.35cm,height=5cm]{close-movies.jpg}}
-	\caption{Indian movies are clustered together}
-	\label{fig:indian-movies}
+	\caption{Movies similar in content spaced together}
+	\label{fig:close-movies}
 	\end{subfigure}
 \caption{t-SNE visualizations}
 \label{fig:models}
@@ -695,7 +691,7 @@ inferred from the corpus of plot summaries. For instance, all Indian movies
 are clustered in the boxed region of Figure \ref{fig:lda-movies}, a close-up
 view of this region is shown in Figure \ref{fig:indian-movies}. Similarly, 
 movies that have the same color (genre) and are clustered together usually
-tend to have very similar content. For instance, as seen in Figure \ref{fig:close-movies.jpg}, the movies `Coney Island', `Burning Season' and `Unprecedented: The 2000 Presidential Elections' all have the same color (orange) and are placed
+tend to have very similar content. For instance, as seen in Figure \ref{fig:close-movies}, the movies `Coney Island', `Burning Season' and `Unprecedented: The 2000 Presidential Elections' all have the same color (orange) and are placed
 close by, indicating that they should have similar content. A study of their 
 plot summaries indicates that these are all documentaries based on various 
 issues in America. Similar observations are recorded in other parts of the graph
@@ -703,6 +699,58 @@ as well.
 
 \subsection{Prediction}
 
+\begin{figure}[h]
+	\centering
+	%\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
+	\begin{subfigure}[b]{0.49\textwidth}
+	\fbox{\includegraphics[width=\textwidth]{CF-parameter.png}}
+	\caption{Vanilla Collaborative filtering}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.49\textwidth}
+	\fbox{\includegraphics[width=\textwidth]{LDA-in-matrix-parameter.png}}
+	\caption{Vanilla Collaborative filtering}
+	\end{subfigure}
+	\\
+	\begin{subfigure}[b]{0.49\textwidth}
+	\fbox{\includegraphics[width=\textwidth]{CTR-in-matrix-parameter.png}}
+	\caption{Indian movies are clustered together}
+	\end{subfigure}
+	~	
+	\begin{subfigure}[b]{0.49\textwidth}
+	\fbox{\includegraphics[width=\textwidth]{CTR-out-matrix-parameter.png}}
+	\caption{Indian movies are clustered together}
+	\end{subfigure}
+\caption{Regularization and RMSE errors for training and testing}
+\label{fig:models}
+\end{figure}
+
+%Table of RMSE (training and testing) wrt number of topics
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|cp{1.2cm}cc|cp{1.2cm}cc|}
+	\hline
+	Topics & \multicolumn{4}{ |c| }{Train Error} & \multicolumn{4}{ |c| }{Test Error}\\	
+	\hline
+	 & CF & CTR-LDA-in & CTR-in & CTR-out & CF & CTR-LDA-in & CTR-in & CTR-out \\ \hline
+	&&&&&&&&\\
+	15 & 0.915 & 0.912 & 0.912 & 0.912 & 1.140 & 1.370 & 1.029 & 1.167 \\
+	&&&&&&&&\\
+	25 & 0.915 & 0.913 & 0.913 & 0.912 & 1.140 & 1.303 & 1.039 & 1.136 \\
+	&&&&&&&&\\
+	40 & 0.914 & 0.914 & 0.913 & 0.913 & 1.138 & 1.271 & 1.052 & 1.148 \\
+	\hline
+	\end{tabular}
+	\caption{Train and test error of different models for different number of latent topics}
+	\label{tab:topic-error-variation}
+\end{table}
+
+Table \ref{tab:topic-error-variation} lists the train and test errors of the
+different models as we vary the number of topics in our topic model. On average,
+for any number of topics, we observe that in-matrix prediction of the CTR model
+does better than the CF model. This is expected as the CTR model incorporates
+content analysis along with rating information, whereas the CF model relies on
+user rating data alone. We get an improvement 
 
 
 
@@ -711,7 +759,11 @@ as well.
 
 
 \section{Conclusions}
-
+We used a Collaborative Topic Regression model, which combines topic modeling
+with traditional collaborative filtering, to recommend movies based on both
+item content and user ratings from the community. We implement our own version
+of Latent Dirichlet Allocation for topic modeling of the corpus of movie
+summaries and combine . We see that the CTR model  
 
 
 
