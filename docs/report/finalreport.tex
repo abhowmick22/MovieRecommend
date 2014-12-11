@@ -215,7 +215,7 @@ on low-dimensional factor models. The idea behind such models is that the prefer
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.4\textwidth]{pmf_graphical_model.png}
+\includegraphics[width=0.2\textwidth]{pmf_graphical_model.png}
 \caption{Graphical model for Probabilistic Matrix Factorization}
 \label{fig:pmf_gm}
 \end{figure}
@@ -697,7 +697,43 @@ plot summaries indicates that these are all documentaries based on various
 issues in America. Similar observations are recorded in other parts of the graph
 as well. 
 
-\subsection{Prediction}
+\subsection{Prediction of Ratings}
+
+%Table of RMSE (training and testing) wrt number of topics
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|cp{1.2cm}cc|cp{1.2cm}cc|}
+	\hline
+	Topics & \multicolumn{4}{ |c| }{Train Error} & \multicolumn{4}{ |c| }{Test Error}\\	
+	\hline
+	 & CF & CTR-LDA-in & CTR-in & CTR-out & CF & CTR-LDA-in & CTR-in & CTR-out \\ \hline
+	&&&&&&&&\\
+	15 & 0.915 & 0.912 & 0.912 & 0.912 & 1.140 & 1.370 & 1.029 & 1.167 \\
+	&&&&&&&&\\
+	25 & 0.915 & 0.913 & 0.913 & 0.912 & 1.140 & 1.303 & 1.039 & 1.136 \\
+	&&&&&&&&\\
+	40 & 0.914 & 0.914 & 0.913 & 0.913 & 1.138 & 1.271 & 1.052 & 1.148 \\
+	\hline
+	\end{tabular}
+	\caption{Train and test error of different models for different number of latent topics}
+	\label{tab:topic-error-variation}
+\end{table}
+
+Table \ref{tab:topic-error-variation} lists the train and test errors of the
+different models as we vary the number of topics in our topic model. On average,
+for any number of topics, we observe that in-matrix prediction of the CTR model
+does better than the CF model. This is expected as the CTR model incorporates
+content analysis along with rating information, whereas the CF model relies on
+user rating data alone. We get a reduction of nearly 9.7\% in prediction rating
+RMSE test error, when the number of topics is 15. As the number of topics 
+increases, we find that the test RMSE error of CTR-in slightly increases, hence
+we fix the final number of topics to 15 for CTR for further evaluations. Also, 
+we evaluate the out-of-matrix prediction of CTR by removing certain ratings from
+the rating matrix, remembering them as true ratings, computing the predicted
+rating values using CTR and comparing them against the true values. We observe
+that CTR is able to perform out-of-matrix prediction with almost as good accuracy as that of CF in-matrix predictions (note that out-of-matrix prediction is a 
+feature of CTR that CF does not possess). CTR-LDA-in gives poorer prediction 
+than CF, implying that just content-based prediction performs worse than ratings-based predictions (we do not list the values for CTR-LDA-out as it performs nearly the same as CTR-LDA-in). 
 
 \begin{figure}[h]
 	\centering
@@ -725,43 +761,10 @@ as well.
 \label{fig:models}
 \end{figure}
 
-%Table of RMSE (training and testing) wrt number of topics
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|c|cp{1.2cm}cc|cp{1.2cm}cc|}
-	\hline
-	Topics & \multicolumn{4}{ |c| }{Train Error} & \multicolumn{4}{ |c| }{Test Error}\\	
-	\hline
-	 & CF & CTR-LDA-in & CTR-in & CTR-out & CF & CTR-LDA-in & CTR-in & CTR-out \\ \hline
-	&&&&&&&&\\
-	15 & 0.915 & 0.912 & 0.912 & 0.912 & 1.140 & 1.370 & 1.029 & 1.167 \\
-	&&&&&&&&\\
-	25 & 0.915 & 0.913 & 0.913 & 0.912 & 1.140 & 1.303 & 1.039 & 1.136 \\
-	&&&&&&&&\\
-	40 & 0.914 & 0.914 & 0.913 & 0.913 & 1.138 & 1.271 & 1.052 & 1.148 \\
-	\hline
-	\end{tabular}
-	\caption{Train and test error of different models for different number of latent topics}
-	\label{tab:topic-error-variation}
-\end{table}
-
-Table \ref{tab:topic-error-variation} lists the train and test errors of the
-different models as we vary the number of topics in our topic model. On average,
-for any number of topics, we observe that in-matrix prediction of the CTR model
-does better than the CF model. This is expected as the CTR model incorporates
-content analysis along with rating information, whereas the CF model relies on
-user rating data alone. We get a redcution of nearly 9.7\% in prediction rating
-RMSE test error, when the number of topics is 15. As the number of topics 
-increases, we find that the test RMSE error of CTR-in slightly increases, hence
-we fix the final number of topics to 15 for CTR for further evaluations. Also, 
-we evaluate the out-of-matrix prediction of CTR by removing certain ratings fromthe rating matrix, remembering them as true ratings, computing the predicted
-rating values using CTR and comparing them against the true values. We observe
-that CTR is able to perform out-of-matrix prediction with almost as good accuracy as that of CF in-matrix predictions (note that out-of-matrix prediction is a 
-feature of CTR that CF does not possess).   
+Figure~\ref{fig:models} plots the performance of the various models as a function of the regularization parameter 
 
 
 \subsection{Recommendation}
-
 
 
 \section{Conclusions}
