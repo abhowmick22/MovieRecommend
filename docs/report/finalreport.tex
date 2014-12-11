@@ -556,12 +556,44 @@ LDA provides feature vectors for movie plot summaries in the form of topic
 proportions, and models the latent structure in the items belonging to the
 corpus. We try to identify this latent structure by visualizing the
 corpus using t-SNE, a dimensionality reduction tool that is used for the 
-visualization of high dimensional datasets. 
+visualization of high dimensional datasets \cite{tSNE}. 
 
+\begin{figure}[h]
+	\centering
+	%\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
+	\begin{subfigure}[b]{0.45\textwidth}
+	\fbox{\includegraphics[width=6.35cm,height=6cm]{lda-tsne.png}}
+	\caption{2D plot of feature representations of movies}
+	\label{fig:lda-movies}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.45\textwidth}
+	\fbox{\includegraphics[width=6.35cm,height=6cm]{indian-movies-short.png}}
+	\caption{Indian movies are clustered together}
+	\label{fig:indian-movies}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.45\textwidth}
+	\fbox{\includegraphics[width=6.35cm,height=6cm]{indian-movies-short.png}}
+	\caption{Indian movies are clustered together}
+	\label{fig:indian-movies}
+	\end{subfigure}
+\caption{t-SNE visualizations}
+\label{fig:models}
+\end{figure}
+
+Figure \ref{fig:lda-movies} is a plot of the feature representations of the
+movies when mapped to 2D using t-SNE. Colors indicate the genres of the movies.
+From the plot, we can observe that similar genres (colors) aren't necessarily
+clustered together, implying that there is no on-to-one mapping from the topic
+representation of a movie to its genre. However, we do observe some structure 
+inferred from the corpus of plot summaries. For instance, all Indian movies
+are clustered in the boxed region of Figure \ref{fig:lda-movies}, a close-up
+view of this region is shown in Figure \ref{fig:indian-movies}. Similarly, 
+movies that have the same color (genre) and are clustered together usually
+tend to have very similar content ()
 
 \subsection{Prediction}
-
-
 
 
 

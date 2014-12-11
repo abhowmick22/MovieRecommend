@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 17:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 19:09
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -363,7 +363,11 @@ File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 )
 (/usr/share/texmf/tex/latex/xcolor/svgnam.def
 File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
-)) (./finalreport.aux)
+)) (./finalreport.aux
+
+LaTeX Warning: Label `fig:models' multiply defined.
+
+)
 \openout1 = `finalreport.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
@@ -381,8 +385,7 @@ LaTeX Font Info:    ... okay on input line 55.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
 LaTeX Font Info:    ... okay on input line 55.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 55.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+ (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ABD: EveryShipout initializing macros
@@ -512,29 +515,44 @@ Overfull \hbox (1.51364pt too wide) in paragraph at lines 468--483
  []
 
 
+LaTeX Warning: Citation `tSNE' on page 6 undefined on input line 559.
+
+
 Underfull \vbox (badness 2285) has occurred while \output is active []
 
  [6]
+<lda-tsne.png, id=169, 1175.1102pt x 641.0349pt>
+File: lda-tsne.png Graphic file (type png)
+ <use lda-tsne.png>
+Overfull \hbox (8.60284pt too wide) in paragraph at lines 565--566
+[][] 
+ []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<indian-movies-short.png, id=171, 833.1125pt x 625.33624pt>
+File: indian-movies-short.png Graphic file (type png)
 
-[7] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 728--730
+<use indian-movies-short.png>
+Overfull \hbox (8.59956pt too wide) in paragraph at lines 571--572
+[][] 
+ []
+
+[7 <./lda-tsne.png> <./indian-movies-short.png>] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 752--754
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 728--730
+Underfull \hbox (badness 10000) in paragraph at lines 752--754
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
 [9]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 796.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 820.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 811.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 835.
  [10]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 14.
@@ -544,15 +562,18 @@ See the caption package documentation for explanation.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 7997 strings out of 493848
- 114586 string characters out of 1152824
+ 8013 strings out of 493848
+ 114900 string characters out of 1152824
  242744 words of memory out of 3000000
- 11075 multiletter control sequences out of 15000+50000
+ 11088 multiletter control sequences out of 15000+50000
  31164 words of font info for 61 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,15n,38p,396b,585s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,15n,38p,396b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -569,9 +590,9 @@ exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
 -texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (10 pages, 323595 bytes).
+Output written on finalreport.pdf (10 pages, 1140633 bytes).
 PDF statistics:
- 277 PDF objects out of 1000 (max. 8388607)
- 57 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 286 PDF objects out of 1000 (max. 8388607)
+ 58 named destinations out of 1000 (max. 500000)
+ 231 words of extra memory for PDF output out of 10000 (max. 10000000)
 
