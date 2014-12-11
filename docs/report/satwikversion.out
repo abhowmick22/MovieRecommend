@@ -1,0 +1,18 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Collaborative Filtering and its shortcoming}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Content Based Recommendation}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Problem Definition}{}% 4
+\BOOKMARK [1][-]{section.3}{Proposed Method}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Probabilistic Matrix Factorization}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Gradient descent}{subsection.3.1}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Latent Dirichlet Allocation}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Collaborative Topic Regression}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Experiments}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Dataset}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Evaluation of LDA implementation}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Word Intrusion}{subsection.4.2}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Topic Intrusion}{subsection.4.2}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Visualization of movie corpus}{subsection.4.2}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Prediction}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Recommendation}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Conclusions}{}% 18

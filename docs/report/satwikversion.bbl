@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{music-long-tail}
+O.~Celma, ``Music recommendation and recovery in the long tail,'' {\em PhD
+  thesis, Universitat Pompeu Fabra, Barcelona}, 2008.
+
+\bibitem{fLDA}
+D.~Agarwal and B.-C. Chen, ``flda: matrix factorization through latent
+  dirichlet allocation,'' in {\em Proceedings of the third ACM international
+  conference on Web search and data mining}, pp.~91--100, ACM, 2010.
+
+\bibitem{grouplens}
+B.~Sarwar, G.~Karypis, J.~Konstan, and J.~Riedl, ``Item-based collaborative
+  filtering recommendation algorithms,'' in {\em Proceedings of the 10th
+  international conference on World Wide Web}, pp.~285--295, ACM, 2001.
+
+\bibitem{ctr}
+C.~Wang and D.~M. Blei, ``Collaborative topic modeling for recommending
+  scientific articles,'' in {\em Proceedings of the 17th ACM SIGKDD
+  international conference on Knowledge discovery and data mining},
+  pp.~448--456, ACM, 2011.
+
+\bibitem{lda}
+D.~M. Blei, A.~Y. Ng, and M.~I. Jordan, ``Latent dirichlet allocation,'' {\em
+  the Journal of machine Learning research}, vol.~3, pp.~993--1022, 2003.
+
+\bibitem{nltk}
+``{Python Natural Language Toolkit}.'' \url{http://www.nltk.org/}.
+
+\bibitem{tea-leaves}
+J.~Chang, S.~Gerrish, C.~Wang, J.~L. Boyd-graber, and D.~M. Blei, ``Reading tea
+  leaves: How humans interpret topic models,'' in {\em Advances in neural
+  information processing systems}, pp.~288--296, 2009.
+
+\bibitem{tSNE}
+L.~Van~der Maaten and G.~Hinton, ``Visualizing data using t-sne,'' {\em Journal
+  of Machine Learning Research}, vol.~9, no.~2579-2605, p.~85, 2008.
+
+\end{thebibliography}
