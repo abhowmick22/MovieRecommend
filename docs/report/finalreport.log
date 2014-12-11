@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 23:31
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 23:49
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -505,14 +505,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 709--709
 []|\OT1/ptm/m/n/10 CTR-
  []
 
-<CF-parameter.png, id=193, 1202.4925pt x 684.5575pt>
+<CF-parameter.png, id=193, 561.09625pt x 419.5675pt>
 File: CF-parameter.png Graphic file (type png)
  <use CF-parameter.png>
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 742--743
 [][] 
  []
 
-<LDA-in-matrix-parameter.png, id=194, 1216.545pt x 691.58376pt>
+<LDA-in-matrix-parameter.png, id=194, 562.1pt x 417.56pt>
 File: LDA-in-matrix-parameter.png Graphic file (type png)
 
 <use LDA-in-matrix-parameter.png>
@@ -520,11 +520,27 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 747--748
 [][] 
  []
 
+<CTR-in-matrix-parameter.png, id=195, 560.0925pt x 419.5675pt>
+File: CTR-in-matrix-parameter.png Graphic file (type png)
+
+<use CTR-in-matrix-parameter.png>
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 752--753
+[][] 
+ []
+
+<CTR-out-matrix-paramter.png, id=196, 561.09625pt x 419.5675pt>
+File: CTR-out-matrix-paramter.png Graphic file (type png)
+
+<use CTR-out-matrix-paramter.png>
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 757--758
+[][] 
+ []
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./finalreport.bbl [9] [10 <./CF-parameter.png> <./LDA-in-matrix-parameter.png>
-]) [11]
+[9] (./finalreport.bbl [10 <./CF-parameter.png> <./LDA-in-matrix-parameter.png>
+ <./CTR-in-matrix-parameter.png> <./CTR-out-matrix-paramter.png>]) [11]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 15.
 See the caption package documentation for explanation.
@@ -535,10 +551,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8015 strings out of 493848
- 115157 string characters out of 1152824
+ 8025 strings out of 493848
+ 115465 string characters out of 1152824
  247744 words of memory out of 3000000
- 11081 multiletter control sequences out of 15000+50000
+ 11089 multiletter control sequences out of 15000+50000
  24501 words of font info for 53 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  41i,19n,38p,728b,512s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -557,9 +573,9 @@ hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-t
 exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (11 pages, 1199444 bytes).
+Output written on finalreport.pdf (11 pages, 1198445 bytes).
 PDF statistics:
- 284 PDF objects out of 1000 (max. 8388607)
+ 288 PDF objects out of 1000 (max. 8388607)
  66 named destinations out of 1000 (max. 500000)
- 190 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 200 words of extra memory for PDF output out of 10000 (max. 10000000)
 

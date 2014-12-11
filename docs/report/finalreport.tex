@@ -738,12 +738,12 @@ than CF, implying that just content-based prediction performs worse than ratings
 \begin{figure}[h]
 	\centering
 	%\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
-	\begin{subfigure}[b]{\textwidth}
+	\begin{subfigure}[b]{0.49\textwidth}
 	\fbox{\includegraphics[width=\textwidth]{CF-parameter.png}}
 	\caption{CF model}
 	\end{subfigure}
 	~
-	\begin{subfigure}[b]{\textwidth}
+	\begin{subfigure}[b]{0.49\textwidth}
 	\fbox{\includegraphics[width=\textwidth]{LDA-in-matrix-parameter.png}}
 	\caption{LDA-in model}
 	\end{subfigure}
@@ -754,7 +754,7 @@ than CF, implying that just content-based prediction performs worse than ratings
 	\end{subfigure}
 	~	
 	\begin{subfigure}[b]{0.49\textwidth}
-	\fbox{\includegraphics[width=\textwidth]{CTR-out-matrix-parameter.png}}
+	\fbox{\includegraphics[width=\textwidth]{CTR-out-matrix-paramter.png}}
 	\caption{CTR-out model}
 	\end{subfigure}
 \caption{RMSE Train and Test errors for CF, CTR-LDA-in, CTR-in-matrix, CTR-out-matrix models}
@@ -773,14 +773,14 @@ value of $\lambda_{v}$ is , ...
 We have done a qualitative analysis of the movies recommended by the 
 Collaborative Filter model. We calculated the user biases and overall average 
 rating. We used the sum of the two values as the threshold 
-for deciding which movies the user "liked". Some of the genres of the movies that came up after filtering with the threshold were: \\
-horror sci-fi, drama thriller, drama horror, action drama scifi thriller, action, adventure scifi, comedy romance drama
+for deciding which movies the user `liked'. Some of the genres of the movies that came up after filtering with the threshold were: \\
+\textit{horror sci-fi, drama thriller, drama horror, action drama scifi thriller, action, adventure scifi, comedy romance drama}
 
 Each item in the above list represents the mixture of genres for individual movies. 
 
 And some of the recommendations that the Collaborative Filtering model came up with were:
 
-adventure, drama mystery crime, action thriller adventure, animation children fantasy musical
+\textit{adventure, drama mystery crime, action thriller adventure, animation children fantasy musical}
 
 We can see from these recommended genres that although Collaborative Filtering makes relevant recommendations, 
 it does not seem to be able to recommend movies of widely different genres. For example, in this case, although the user 
@@ -790,11 +790,11 @@ We found this to be a general pattern in the recommendations made by Collaborati
 On the other hand, Collaborative Topic Regression did not seem to suffer from this problem. One of the examples we found was in 
 a case where the user "liked" a set of movies of these genres:
 
-comedy drama romance, comedy drama, drama romance, drama, action thriller, action adventure mystery thriller, comedy, action adventure romance thriller, action drama thriller
+\textit{comedy drama romance, comedy drama, drama romance, drama, action thriller, action adventure mystery thriller, comedy, action adventure romance thriller, action drama thriller}
 
 and the genres suggested by CTR were:
 
-drama romance, comedy drama, comedy drama romance, drama, comedy, action adventure thriller, comedy romance, action adventure comedy romance thriller
+\textit{drama romance, comedy drama, comedy drama romance, drama, comedy, action adventure thriller, comedy romance, action adventure comedy romance thriller}
 
 We can see that CTR came up with a movie suggestion that combined the "likes" of the user.
 The user "liked" separate action/adventure/thriller and comedy/romance movies and CTR could come up with a suggestion of a movie which combined all these genres.
