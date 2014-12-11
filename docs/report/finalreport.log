@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 19:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.8.9)  10 DEC 2014 19:15
 entering extended mode
  %&-line parsing enabled.
 **finalreport.tex
@@ -365,6 +365,12 @@ File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
 )) (./finalreport.aux
 
+LaTeX Warning: Label `fig:indian-movies' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:indian-movies' multiply defined.
+
+
 LaTeX Warning: Label `fig:models' multiply defined.
 
 )
@@ -528,32 +534,39 @@ Overfull \hbox (8.60284pt too wide) in paragraph at lines 565--566
 [][] 
  []
 
-<indian-movies-short.png, id=171, 833.1125pt x 625.33624pt>
-File: indian-movies-short.png Graphic file (type png)
-
-<use indian-movies-short.png>
+<indian-movies.png, id=171, 833.1125pt x 625.33624pt>
+File: indian-movies.png Graphic file (type png)
+ <use indian-movies.png>
 Overfull \hbox (8.59956pt too wide) in paragraph at lines 571--572
 [][] 
  []
 
-[7 <./lda-tsne.png> <./indian-movies-short.png>] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 752--754
+<close-movies.jpg, id=172, 702.625pt x 574.145pt>
+File: close-movies.jpg Graphic file (type jpg)
+ <use close-movies.jpg>
+Overfull \hbox (8.6063pt too wide) in paragraph at lines 577--578
+[][] 
+ []
+
+[7 <./lda-tsne.png> <./indian-movies.png> <./close-movies.jpg>] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 760--762
 []\OT1/ptm/m/n/10 Install the Mi-crosoft Save as PDF Of-fice 2007 Add-in from [
 ]$\OT1/pcr/m/n/10 http :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 752--754
+Underfull \hbox (badness 10000) in paragraph at lines 760--762
 \OT1/pcr/m/n/10 / / www . microsoft . com / downloads / details . aspx ? displa
 ylang =
  []
 
 [9]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 820.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 835.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 828.
  [10]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 843.
+ [11]
 
 Package caption Warning: Unused \captionsetup[algorithm] on input line 14.
 See the caption package documentation for explanation.
@@ -567,13 +580,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8013 strings out of 493848
- 114900 string characters out of 1152824
+ 8020 strings out of 493848
+ 114980 string characters out of 1152824
  242744 words of memory out of 3000000
- 11088 multiletter control sequences out of 15000+50000
+ 11092 multiletter control sequences out of 15000+50000
  31164 words of font info for 61 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,15n,38p,396b,456s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,15n,38p,396b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -590,9 +603,9 @@ exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
 /urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.p
 fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf
 -texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalreport.pdf (10 pages, 1140633 bytes).
+Output written on finalreport.pdf (11 pages, 1163186 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 58 named destinations out of 1000 (max. 500000)
- 231 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 291 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
+ 236 words of extra memory for PDF output out of 10000 (max. 10000000)
 
