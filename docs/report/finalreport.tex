@@ -215,7 +215,7 @@ on low-dimensional factor models. The idea behind such models is that the prefer
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.2\textwidth]{pmf_graphical_model.png}
+\includegraphics[width=0.4\textwidth]{pmf_graphical_model.png}
 \caption{Graphical model for Probabilistic Matrix Factorization}
 \label{fig:pmf_gm}
 \end{figure}
@@ -311,17 +311,17 @@ Choose $\theta$ $\sim$ Dirichlet($\alpha$)\;
 
 \begin{figure}[ht]
 	\centering
-	\captionsetup[subfigure]{oneside,margin={0cm,1.5cm}}
-	\begin{subfigure}[b]{0.45\textwidth}
+	%\captionsetup[subfigure]{oneside,margin={0cm,1.5cm}}
+	\begin{subfigure}[b]{0.55\textwidth}
 	%\includegraphics[width=6cm,height=6cm,keepaspectratio]{lda-model.png}
-	\includegraphics[width=\textwidth, height=4cm]{lda-model.png}
+	\includegraphics[width=\textwidth]{lda-model.png}
 	\caption{True posterior distribution}
 	\label{fig:lda-model}
 	\end{subfigure}
 	~
-	\begin{subfigure}[b]{0.5\textwidth}
+	\begin{subfigure}[b]{0.4\textwidth}
 	%\includegraphics[width=8cm,height=3cm,keepaspectratio]{lda-variational.png}
-	\includegraphics[width=\textwidth, height=4cm]{lda-variational.png}
+	\includegraphics[width=\textwidth]{lda-variational.png}
 	\caption{Variational posterior distribution}
 	\label{fig:lda-variational}
 	\end{subfigure}
@@ -403,14 +403,14 @@ model and generative process of CTR are given below:
 
 \begin{figure}[ht]
 	\centering
-	\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
-	\begin{subfigure}[b]{0.6\textwidth}
+	%\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
+	\begin{subfigure}[b]{0.5\textwidth}
 		\generativeprocess
 	\caption{Generative process}
 	\label{fig:ctr-gen}
 	\end{subfigure}
 	~
-	\begin{subfigure}[b]{0.35\textwidth}
+	\begin{subfigure}[b]{0.48\textwidth}
 	%\includegraphics[width=6cm,height=8cm,keepaspectratio]{ctr-model.png}
 	\includegraphics[width=\textwidth]{ctr-model.png}
 	\caption{Graphical model}
@@ -751,7 +751,13 @@ for any number of topics, we observe that in-matrix prediction of the CTR model
 does better than the CF model. This is expected as the CTR model incorporates
 content analysis along with rating information, whereas the CF model relies on
 user rating data alone. We get a redcution of nearly 9.7\% in prediction rating
-RMSE test error, when the number of topics is 15. 
+RMSE test error, when the number of topics is 15. As the number of topics 
+increases, we find that the test RMSE error of CTR-in slightly increases, hence
+we fix the final number of topics to 15 for CTR for further evaluations. Also, 
+we evaluate the out-of-matrix prediction of CTR by removing certain ratings fromthe rating matrix, remembering them as true ratings, computing the predicted
+rating values using CTR and comparing them against the true values. We observe
+that CTR is able to perform out-of-matrix prediction with almost as good accuracy as that of CF in-matrix predictions (note that out-of-matrix prediction is a 
+feature of CTR that CF does not possess).   
 
 
 \subsection{Recommendation}
