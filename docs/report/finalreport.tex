@@ -187,6 +187,50 @@ collaborative filtering framework \cite{ctr}.
 
 \subsection{Probabilistic Matrix Factorization}
 
+One of the most popular methods approaches to collaborative filtering is based
+on low-dimensional factor models. The idea behind such models is that the preferences of a user are based on a small number of unobserved factors. For example, if there are $N$ users and $M$ movies, the $N \times M$ preference matrix $R$ is given by the product of an $N \times D$ user coefficient matrix $U^T$ and a $D \times M$ factor matrix $V$. Training such a model amounts to finding the best rank-$D$ approximation of the observed $N \times M$ target matrix $R$ under the given loss function.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=3cm,height=3cm,keepaspectratio]{pmf_graphical_model.png}
+\caption{Graphical model for Probabilistic Matrix Factorization}
+\label{fig:pmf_gm}
+\end{figure}
+
+We adopt a probabilistic linear model with Gaussian observation noise. The graphical model is shown in figure \ref{fig:pmf_gm}. We define the conditional probability distribution over the observed ratings as
+
+$$ p(R \mid U, V) = \prod_{i=1}^N \prod_{j=1}^M [\mathcal{N} (R_{ij} \mid U_i^T V_j, \sigma^2)]^{I_{ij}} $$
+
+where $mathcal{N}(x \mid \mu, \sigma^2)$ is the probability density function of the Gaussian distribution with mean $\mu$ and variance $\sigma^2$, and $I_{ij}$ is the indicator function that is equal to 1 if the user $i$ rated movie $j$, and is 0 otherwise. We also place zero-mean spherical Gaussian priors on movie and user feature vectors:
+
+$$ p(U \mid \sigma_U^2) = \prod_{i=1}^N \mathcal{N}(U_i \mid 0, \sigma_U^2 I) $$
+$$ p(V \mid \sigma_V^2) = \prod_{j=1}^M \mathcal{N}(U_i \mid 0, \sigma_V^2 I) $$
+
+Maximizing the log-posterior over movie and user feature vectors with hyper-parameters kept (the observation noise variances and prior variances) fixed is equivalent to minimizing the sum-of-squared errors objective function with quadratic regularization terms.
+
+$$ E = \frac{1}{2} \sum_{i=1}^N \sum_{j=1}^M I_{ij}(R_{ij} - U_i^T V_j)^2 + \frac{\lambda_U}{2} || U_i ||^2 + \frac{\lambda}{2} ||V_j||^2 $$
+
+where $\lambda_U = \sigma^2/\sigma_U^2$ and $\lambda_V = \sigma^2/\sigma_V^2$. A local minimum of the objective function can be found using gradient descent in $U$ and $V$.
+
+\subsubsection{Gradient descent}
+
+Since we have more than 10 million ratings, we use stochastic gradient descent as our learning algorithm. For each given training case, the algorithm predicts $R_{ij}$ and computes the associated prediction error 
+$$e_{ij} = R_{ij} - U_i^T V_j$$
+
+It then modifies the model parameters by a magnitude proportional to $\gamma$ (the ``learning rate'') in the opposite direction of the gradient, yielding
+
+$$ U_i \leftarrow U_i + \gamma (e_{ij} V_j - \lambda_U U_i) $$
+$$ V_j \leftarrow V_j + \gamma (e_{ij} U_i - \lambda_V V_j) $$
+
+Additionally, instead of taking each rating one by one, we took them in chunks of 100 ratings at a time, and calculated the updates over all those 100 ratings. This made the algorithm faster, and also made the updates more stable, and immune to any outlier gradient values.
+
+Convergence check was done by taking the average over a fixed number of gradients from previous iterations. If the average was smaller than a particular threshold, we considered the algorithm to have converged. The algorithm generally converged in less than 3 iterations over all the ratings.
+
+The learning rate was chosen to be an function that decayed with the number of iterations. In particular, the learning rate was formulated as :
+
+$$  \gamma = (\tau + i)^{-\kappa}$$
+
+where $\tau$ is for normalizing, $\kappa$ is the ``forgetting'' rate, and $i$ is the iteration number.
 
 \subsection{Latent Dirichlet Allocation}
 For a collection of text documents, a topic modeling algorithm extracts a set of
@@ -582,6 +626,8 @@ visualization of high dimensional datasets \cite{tSNE}.
 \label{fig:models}
 \end{figure}
 
+%\vspace{-0.7cm}
+
 Figure \ref{fig:lda-movies} is a plot of the feature representations of the
 movies when mapped to 2D using t-SNE. Colors indicate the genres of the movies.
 From the plot, we can observe that similar genres (colors) aren't necessarily
@@ -591,7 +637,11 @@ inferred from the corpus of plot summaries. For instance, all Indian movies
 are clustered in the boxed region of Figure \ref{fig:lda-movies}, a close-up
 view of this region is shown in Figure \ref{fig:indian-movies}. Similarly, 
 movies that have the same color (genre) and are clustered together usually
-tend to have very similar content ()
+tend to have very similar content. For instance, as seen in Figure \ref{fig:close-movies.jpg}, the movies `Coney Island', `Burning Season' and `Unprecedented: The 2000 Presidential Elections' all have the same color (orange) and are placed
+close by, indicating that they should have similar content. A study of their 
+plot summaries indicates that these are all documentaries based on various 
+issues in America. Similar observations are recorded in other parts of the graph
+as well. 
 
 \subsection{Prediction}
 
