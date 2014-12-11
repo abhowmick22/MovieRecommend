@@ -9,9 +9,9 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\captionsetup[algorithm]{labelfont=rm,labelsep=period}
 \usepackage{color}
-
+%\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\captionsetup[algorithm]{labelfont=rm,labelsep=period}
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -50,6 +50,26 @@ Pittsburgh, PA 15213 \\
 \newcommand{\new}{\marginpar{NEW}}
 
 %\nipsfinalcopy % Uncomment for camera-ready version
+
+% Algorithm for generative process
+\newcommand{\generativeprocess}{%
+\begin{algorithm}[H]
+		\For{each user i}{
+			Draw user latent vector $u_{i}$ $\sim$ $\mathcal{N}(0,\sigma^{2}\lambda_{u}^{-1}I_{K}$)\; 
+		}
+		\For{each item j}{
+			Draw topic proportions $\theta_{j}$ $\sim$ Dirichlet($\alpha$)\;
+			Draw item latent offset $\epsilon_{j}$ $\sim$ $\mathcal(N)(0, \sigma^{2}\lambda_{v}^{-1}I_{K})$\;
+			Set item latent vector as $v_{j} = \epsilon_{j} + \theta_{j}$\;
+			\For{each word $w_{jn}$}{
+				Draw a topic assignment $z_{jn}$ $\sim$ Multinomial($\theta$)\;
+				Draw word $w_{jn}$ $\sim$ Multinomial($\beta_{z_{jn}}$)\;
+			}
+		}
+		\For{each user-item pair (i,j)}{
+			Draw the rating $r_{ij}$ $\sim$ $\mathcal{N}(u_{i}^{T}v_{j}, \sigma^{2}I)$\;
+		}
+		\end{algorithm}}
 
 \begin{document}
 
@@ -320,34 +340,19 @@ combining both the latent topic vector and observed ratings to describe the
 item latent vector in the factor model of Section~\ref{sec:pmf}. The graphical
 model and generative process of CTR are given below:
 
-%\begin{algorithm}
-%\For{each user i}{
-%	Draw user latent vector $u_{i}$ $\sim$ $\mathcal{N}(0,\sigma^{2}\lambda_{u}^{-1}I_{K}$)\; 
-%}
-%\For{each item j}{
-%	Draw topic proportions $\theta_{j}$ $\sim$ Dirichlet($\alpha$)\;
-%	Draw item latent offset $\epsilon_{j}$ $\sim$ $\mathcal(N)(0, \sigma^{2}\lambda_{v}^{-1}I_{K})$\;
-%	Set item latent vector as $v_{j} = \epsilon_{j} + \theta_{j}$\;
-%	\For{each word $w_{jn}$}{
-%		Draw a topic assignment $z_{jn}$ $\sim$ Multinomial($\theta$)\;
-%		Draw word $w_{jn}$ $\sim$ Multinomial($\beta_{z_{jn}}$)\;
-%	}
-%}
-%\For{each user-item pair (i,j)}{
-%	Draw the rating $r_{ij}$ $\sim$ $\mathcal{N}(u_{i}^{T}v_{j}, \sigma^{2}I)$\;
-%}
-%\end{algorithm}
+
 \begin{figure}[h]
 	\centering
 	\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
-	\begin{subfigure}[b]{0.45\textwidth}
-	\includegraphics[width=6cm,height=6cm,keepaspectratio]{ctr-gen-process.png}
+	\begin{subfigure}[b]{0.6\textwidth}
+		\generativeprocess
 	\caption{Generative process of CTR}
 	\label{fig:ctr-gen}
 	\end{subfigure}
 	~
-	\begin{subfigure}[b]{0.45\textwidth}
-	\includegraphics[width=6cm,height=8cm,keepaspectratio]{ctr-model.png}
+	\begin{subfigure}[b]{0.35\textwidth}
+	%\includegraphics[width=6cm,height=8cm,keepaspectratio]{ctr-model.png}
+	\includegraphics[width=\textwidth]{ctr-model.png}
 	\caption{Graphical model of CTR}
 	\label{fig:ctr-model}
 	\end{subfigure}
@@ -441,14 +446,14 @@ vocabulary. For ease of combining the summary and rating datasets, we
 created a map from the Wikipedia IDs to the Movielens IDs (by linking movie IDs 
 that have the same movie names). 
 
-\subsection{Evaluation of LDA}
+\subsection{Evaluation of LDA implementation}
 
-We evaluate the interpretability of latent topics discovered by our LDA
-implementation using two human evaluation tasks namely, {\textit word intrusion}
-and {\textit topic intrusion}, proposed by Chang, Blei et al \cite{tea-leaves}. 
+Interpretability of latent topics discovered by a topic model can be 
+evaluated using two human evaluation tasks namely, \textit{word intrusion}
+and \textit{topic intrusion}, proposed by Chang, Blei et al \cite{tea-leaves}. 
 These tasks evaluate the quality of topics inferred by the model and the 
-assignment of topics to documents. We describe these tests in more detail and
-evaluate our LDA using these below:
+assignment of topics to documents. We briefly describe these tests and
+evaluate our LDA using similar notions below:
 
 \subsubsection{Word Intrusion}
 This test measures whether the topics inferred by the topic model correspond
@@ -456,10 +461,10 @@ to natural interpretations and contain words that are semantically close. An
 `intruder' is defined as a word that doesn't belong with the the others in a 
 group. The original task proposed in \cite{tea-leaves} consists of 
 building a set of words from a randomly chosen topic and injecting an `intruder'from some other topic. This set is then presented to a human subject to see if 
-the `intruder' is correctly identified within the presented set. We modify the 
-test for our evaluation. We list out some of the topics from a 15-topic 
-LDA and identify the `intruders' in each topic and try to interpret themes
-represented by each of these topics.
+the `intruder' word is correctly identified by the subject. For our 
+evaluation, we just observe the proportion of `intruder' words per topic. 
+In the following table, we list out some of the topics from our 15-topic LDA (
+each topic is color-coded).
 
 \begin{table}[h]
 \label{table:word-intrusion}
@@ -468,20 +473,37 @@ represented by each of these topics.
 %\multicolumn{1}{c}{\bf PART}  &\multicolumn{1}{c}{\bf DESCRIPTION}
 %\\ \hline \\
 Topic	& Terms	& Intruders \\ \hline
-1 & film, movi, stori, play, show, perform, charact, scene, music, star, follow,includ, peopl, around, end, song, first, band, act, role & follow, around, end, includ, first \\
-2 & polic, kill, murder, offic, prison, arrestm investig, man, gang, case,
-death, crime, one, drug, shoot, killer, crimin, detect, escap, suspect & offic, one, man \\
-3 & war, american, forc, state, soldier, armi, unit, order, offic, german,
-govern, british, world, command, general, men, captain, group, agent, militari & men \\
-4 & tell, go, ask, see, say, leav, back, day, get, call, goe, come, home, next,
-want, find, night, one, know, time & tell, go, ask ... \\
-5 & use, ship, destroy, island, human, earth, crew, attack, discov, world,
-control, escap, power, one, alien, monster, caus, find, time, rescu & use, one,
+1 & \textcolor{red}{film, movi, stori, play, show, perform, charact, scene, music, star, follow,includ, peopl, around, end, song, first, band, act, role} & follow, around, end, includ, first \\
+2 & \textcolor{green}{polic, kill, murder, offic, prison, arrestm investig, man, gang, case, death, crime, one, drug, shoot, killer, crimin, detect, escap, suspect} & offic, one, man \\
+3 & \textcolor{cyan}{war, american, forc, state, soldier, armi, unit, order, offic, german,
+govern, british, world, command, general, men, captain, group, agent, militari} & men \\
+4 & \textcolor{yellow}{tell, go, ask, see, say, leav, back, day, get, call, goe, come, home, next,
+want, find, night, one, know, time} & tell, go, ask ... \\
+5 & \textcolor{blue}{use, ship, destroy, island, human, earth, crew, attack, discov, world,
+control, escap, power, one, alien, monster, caus, find, time, rescu} & use, one,
 caus, find \\ 
+6 & \textcolor{brown}{king, power, kill, find, use, one, evil, return, take, villag, save, princ, magic, howev, queen, order, fight, name, world, death} & find, use, one, take, howev \\ \hline 
 \end{tabular}
 \end{center}
 \caption{Topics identified by LDA and `intruders' per topic}
 \end{table}
+
+We see that our LDA is able to identify important movie `themes' such as 
+theatre/drama (topic 1), crime/violence (topic 2), war movies (topic 3), 
+adventure/fiction (topic 5), history/drama (topic 6). 
+These topics have a few number of `intruders' (3 per topic on average). 
+However, there are certain topics like topic 4, that are too general to be 
+useful, such topics have a large number of `intruders'.
+
+\subsubsection{Topic Intrusion}
+The topic intrusion test measures how well a topic model assigns topics to
+documents. Similar to the word intrusion test, the topic intrusion test consists
+of building a set of topics that are assigned to a particular document alongwith
+an `intruder' topic. This set of topics is presented along with the document
+to a human subject to see if the `intruder' topic is correctly identified by the
+subject. For our evaluation, we present a sample processed movie plot summary 
+and highlight the topic mixture of this document by coloring the words that 
+belong to the topics assigned by LDA. 
 
 \begin{figure}[H]
 	\centering
@@ -522,24 +544,56 @@ caus, find \\
 	            \textcolor{blue}{sea}
 	            set 
 	            \textcolor{red}{aflame}
-	\caption{Topic distribution for summary of 'First Knight' (1995)}
+	\caption{Topic distribution for summary of `First Knight' (1995)}
 	\label{fig:topic-distr-sample}
 \end{figure}
 
-\textcolor{red}{0}, \textcolor{green}{1}, \textcolor{cyan}{2}, \textcolor{yellow}{4}, \textcolor{brown}{6}, \textcolor{blue}{9}
+We see that the summary for the movie `First Knight' contains a large
+proportion of words belonging to topic 6 - history/drama(brown).
+The other significant topics contained in this are topic 2 - crime/violence
+(green) and topic 3 - war movies (cyan). We thus see that our LDA correctly 
+identifies the topics in the plot summary of `First Knight', a historical period
+war drama based on the life of King Arthur.
 
-We see that our LDA is also able to identify important movie `themes' such as 
-theatre/drama (topic 1), crime/violence (topic 2), war movies (topic 3), 
-adventure/fiction (topic 5). However, there are certain topics that are too
-general  We observe that there are a small number of `intruders' per topic (3 on 
-average).We also see that some of the topics are too general to be useful.
+\subsubsection{Visualization of movie corpus}
+LDA provides feature vectors for movie plot summaries in the form of topic
+proportions, and models the latent structure in the items belonging to the
+corpus. We try to identify this latent structure by visualizing the
+corpus using t-SNE, a dimensionality reduction tool that is used for the 
+visualization of high dimensional datasets \cite{tSNE}. 
 
+\begin{figure}[h]
+	\centering
+	%\captionsetup[subfigure]{oneside,margin={0cm,1.8cm}}
+	\begin{subfigure}[b]{0.45\textwidth}
+	\fbox{\includegraphics[width=6.35cm,height=6cm]{lda-tsne.png}}
+	\caption{2D plot of feature representations of movies}
+	\label{fig:lda-movies}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.45\textwidth}
+	\fbox{\includegraphics[width=6.35cm,height=6cm]{close-movies-short.png}}
+	\caption{Indian movies are clustered together}
+	\label{fig:indian-movies}
+	\end{subfigure}
+\caption{t-SNE visualizations}
+\label{fig:models}
+\end{figure}
 
-
-
-\subsubsection{Topic Intrusion}
+Figure \ref{fig:lda-movies} is a plot of the feature representations of the
+movies when mapped to 2D using t-SNE. Colors indicate the genres of the movies.
+From the plot, we can observe that similar genres (colors) aren't necessarily
+clustered together, implying that there is no on-to-one mapping from the topic
+representation of a movie to its genre. However, we do observe some structure 
+inferred from the corpus of plot summaries. For instance, all Indian movies
+are clustered in the boxed region of Figure \ref{fig:lda-movies}, a close-up
+view of this region is shown in Figure \ref{fig:indian-movies}. Similarly, 
+movies that have the same color (genre) and are clustered together usually
+tend to have very similar content ()
 
 \subsection{Prediction}
+
+
 
 
 \subsection{Recommendation}
